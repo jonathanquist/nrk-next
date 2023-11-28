@@ -6,28 +6,36 @@ import { IconBack } from '../../../public/images/IconBack';
 import { IconNext } from '../../../public/images/IconNext';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { usePost } from '@/hooks/PostContext';
 
-export default function PostList({ tag }: { tag: string }) {
+export default function PostList() {
   const [pageNumber, setPageNumber] = useState(1);
+  const { currentPage, updatePage, currentTag } = usePost();
   const postsPerPage = 2; // Set the number of posts per page
   const maxPagesToShow = 5; // Maximum number of page buttons to show
 
   const fetchedPosts =
-    tag !== ''
-      ? useFetch(`http://localhost/nrk/wp-json/wp/v2/posts?_embed&tags=${tag}`)
+    currentTag !== ''
+      ? useFetch(
+          `http://localhost/nrk/wp-json/wp/v2/posts?_embed&tags=${currentTag}`
+        )
       : useFetch(`http://localhost/nrk/wp-json/wp/v2/posts?_embed`);
 
   const postTags: any = useFetch('http://localhost/nrk/wp-json/wp/v2/tags/');
 
-  useEffect(() => {
-    setPageNumber(1);
-  }, [tag]);
+  // <  useEffect(() => {
+  //     //setPageNumber(1);
+  //     updatePage(1);
+  //     console.log(currentTag);
+  //   }, [currentTag]);>
+
+  console.log(currentPage);
 
   if (!fetchedPosts || !postTags) {
     return <div>Loading...</div>;
   }
 
-  const indexOfLastPost = pageNumber * postsPerPage;
+  const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const posts = (fetchedPosts as any[])?.slice(
     indexOfFirstPost,
@@ -38,21 +46,23 @@ export default function PostList({ tag }: { tag: string }) {
   const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   const handleNextPage = () => {
-    if (pageNumber < totalPages) {
-      setPageNumber(pageNumber + 1);
+    if (currentPage < totalPages) {
+      //setPageNumber(pageNumber + 1);
+      updatePage(currentPage + 1);
     }
   };
 
   const handlePrevPage = () => {
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
+    if (currentPage > 1) {
+      //setPageNumber(pageNumber - 1);
+      updatePage(currentPage - 1);
     }
   };
 
   const getTags = (tagArr: any) => {
     const tagNames = tagArr.map((tagId: any) => {
       const tagObject = postTags.find(
-        (tag: { id: string }) => tag.id === tagId
+        (currentTag: { id: string }) => currentTag.id === tagId
       );
       return tagObject
         ? tagObject.name === 'tavling'
@@ -80,22 +90,22 @@ export default function PostList({ tag }: { tag: string }) {
     const maxPagesBeforeCurrent = Math.floor(maxPagesToShow / 2);
     const maxPagesAfterCurrent = Math.ceil(maxPagesToShow / 2) - 1;
 
-    if (pageNumber <= maxPagesBeforeCurrent) {
+    if (currentPage <= maxPagesBeforeCurrent) {
       endPage = maxPagesToShow;
-    } else if (pageNumber + maxPagesAfterCurrent >= totalPages) {
+    } else if (currentPage + maxPagesAfterCurrent >= totalPages) {
       startPage = totalPages - maxPagesToShow + 1;
     } else {
-      startPage = pageNumber - maxPagesBeforeCurrent;
-      endPage = pageNumber + maxPagesAfterCurrent;
+      startPage = currentPage - maxPagesBeforeCurrent;
+      endPage = currentPage + maxPagesAfterCurrent;
     }
   }
 
   for (let i = startPage; i <= endPage; i++) {
     paginationItems.push(
-      <button key={i} onClick={() => setPageNumber(i)}>
+      <button key={i} onClick={() => updatePage(i)}>
         <li
           className={`${
-            pageNumber === i && 'bg-accent-500 rounded-lg text-primary-100'
+            currentPage === i && 'bg-accent-500 rounded-lg text-primary-100'
           } px-3 py-1`}
         >
           {i}
@@ -186,7 +196,7 @@ export default function PostList({ tag }: { tag: string }) {
       {/* Pagination */}
       <div className="flex justify-center items-center w-full">
         <div className="flex justify-between items-center w-96 font-medium">
-          {pageNumber !== 1 ? (
+          {currentPage !== 1 ? (
             <button onClick={handlePrevPage}>
               <IconBack className="w-12 h-12 text-accent-500" />
             </button>
@@ -195,7 +205,7 @@ export default function PostList({ tag }: { tag: string }) {
             // <div className="w-12 h-12 shrink-0" />
           )}
           <ul className="flex gap-4">{paginationItems}</ul>
-          {pageNumber !== totalPages ? (
+          {currentPage !== totalPages ? (
             <button onClick={handleNextPage}>
               <IconNext className="w-12 h-12 text-accent-500" />
             </button>

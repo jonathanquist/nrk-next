@@ -3,15 +3,17 @@ import PostList from './PostList';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { usePost } from '@/hooks/PostContext';
 
 export default function Anslagstavlan() {
   const params = useSearchParams();
   const [tag, setTag] = useState(params.get('tag') || '');
+  const { updateTag, currentTag } = usePost();
 
   //console.log('hate', params, params.get('tag'), tag);
 
   return (
-    <div>
+    <>
       <div className="bg-accent-500 flex flex-col items-center justify-center">
         <div className="flex justify-center items-end relative w-full h-80">
           <div className="bg-primary-100 bg-opacity-75 w-full max-w-xl py-6 relative z-10 mb-12 backdrop-blur-sm flex item-center justify-center">
@@ -36,8 +38,8 @@ export default function Anslagstavlan() {
           <ul className="flex w-full justify-between text-primary-100 py-6 px-10 font-cambria small text-2xl">
             <li>
               <button
-                onClick={() => setTag('')}
-                className={`${!tag && 'underline underline-offset-4'}`}
+                onClick={() => updateTag('')}
+                className={`${!currentTag && 'underline underline-offset-4'}`}
               >
                 Alla
               </button>
@@ -47,8 +49,10 @@ export default function Anslagstavlan() {
             </li>
             <li>
               <button
-                onClick={() => setTag('3')}
-                className={`${tag === '3' && 'underline underline-offset-4'}`}
+                onClick={() => updateTag('3')}
+                className={`${
+                  currentTag === '3' && 'underline underline-offset-4'
+                }`}
               >
                 Tävlingar
               </button>
@@ -58,8 +62,10 @@ export default function Anslagstavlan() {
             </li>
             <li>
               <button
-                onClick={() => setTag('6')}
-                className={`${tag === '6' && 'underline underline-offset-4'}`}
+                onClick={() => updateTag('6')}
+                className={`${
+                  currentTag === '6' && 'underline underline-offset-4'
+                }`}
               >
                 Kurser
               </button>
@@ -69,8 +75,10 @@ export default function Anslagstavlan() {
             </li>
             <li>
               <button
-                onClick={() => setTag('4')}
-                className={`${tag === '4' && 'underline underline-offset-4'}`}
+                onClick={() => updateTag('4')}
+                className={`${
+                  currentTag === '4' && 'underline underline-offset-4'
+                }`}
               >
                 Daglig Verksamhet
               </button>
@@ -80,21 +88,23 @@ export default function Anslagstavlan() {
             </li>
             <li>
               <button
-                onClick={() => setTag('5')}
-                className={`${tag === '5' && 'underline underline-offset-4'}`}
+                onClick={() => updateTag('5')}
+                className={`${
+                  currentTag === '5' && 'underline underline-offset-4'
+                }`}
               >
                 Bus
               </button>
             </li>
             {/* <li>
-            <button onClick={() => setTag('')}>Övrigt</button>
+            <button onClick={() => updateTag('')}>Övrigt</button>
           </li> */}
           </ul>
         </div>
       </div>
       <div className="card-px pb-12 pt-24">
-        <PostList tag={tag} />
+        <PostList />
       </div>
-    </div>
+    </>
   );
 }
