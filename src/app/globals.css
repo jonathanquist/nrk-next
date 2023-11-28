@@ -1,27 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,500;0,700;1,500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700&display=swap'); */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer base {
+  html,
+  body {
+    @apply bg-primary-300 text-primary-900 font-fira tracking-wider;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  /* Headings */
+  h1 {
+    @apply text-3xl font-normal font-cambria;
+  }
+  h2 {
+    @apply font-normal text-2xl font-cambria;
+  }
+  h3 {
+    @apply font-bold text-lg font-cambria;
+  }
+  .card h1 {
+    @apply text-a5xl font-bold mb-5 tracking-normal;
+  }
+
+  .card h2 {
+    @apply text-lg font-bold leading-snug tracking-normal font-fira;
+  }
+
+  .desktop h1 {
+    @apply text-4xl;
+  }
+
+  .desktop h2 {
+    @apply text-3xl font-bold;
+  }
+
+  .headline-s h2 {
+    @apply text-lg font-bold font-fira;
+  }
+
+  .headline-m h2 {
+    @apply text-3xl font-bold font-fira;
+  }
+
+  .headline-l h1 {
+    @apply text-[42px] font-bold font-fira;
+  }
+
+  /* Paragraphs */
+
+  p {
+    @apply font-thin;
+  }
+
+  .paragraph-s {
+    @apply text-sm font-thin my-0.5;
+  }
+
+  .paragraph-m {
+    @apply text-base font-thin;
+  }
+
+  .paragraph-l {
+    @apply text-xl font-thin leading-8;
+  }
+
+  p.preview > p {
+    @apply text-ellipsis overflow-hidden;
+  }
+
+  /* Cards */
+
+  .card-base {
+    @apply bg-primary-100 rounded-2xl shadow-md overflow-hidden;
+  }
+  .card-px {
+    @apply px-16;
+  }
+  .card-py {
+    @apply py-14;
+  }
+
+  /* Wordpress */
+
+  .wordpress-content {
+    @apply flex items-start flex-col;
+  }
+
+  .wordpress-content div {
+    @apply w-full;
+  }
+
+  .wordpress-content a {
+    @apply underline text-accent-500 font-medium;
+  }
+
+  .wordpress-content a:hover {
+    @apply text-primary-900;
+  }
+
+  .wordpress-content figure {
+    @apply flex flex-col rounded-lg p-4 shadow-md mx-auto items-center gap-2;
+  }
+
+  .wordpress-content img {
+    @apply object-cover overflow-hidden;
+  }
+
+  .wordpress-content figcaption {
+    @apply text-sm font-thin text-center text-primary-900;
+  }
+
+  .wordpress-content ul {
+    @apply list-disc list-inside w-full;
+  }
+
+  .wordpress-content ol {
+    @apply list-decimal list-inside w-full;
+  }
+
+  .wordpress-content li {
+    @apply text-base font-thin;
+  }
+
+  .wordpress-content h1 {
+    @apply text-4xl font-medium font-fira;
+  }
+
+  .wordpress-content h2 {
+    @apply text-3xl font-medium font-fira;
+  }
+
+  .wordpress-content h3 {
+    @apply text-2xl font-medium font-fira;
+  }
+
+  .wordpress-content h4 {
+    @apply text-xl font-medium font-fira;
+  }
+
+  .wordpress-content blockquote {
+    @apply flex flex-col w-2/3 rounded-lg bg-primary-100 text-accent-500 py-4 px-12 shadow-md mx-auto;
+  }
+
+  .wordpress-content blockquote p {
+    @apply text-xl font-bold;
+  }
+
+  .wordpress-content blockquote p::before {
+    @apply content-['“'] text-2xl font-medium pr-2;
+  }
+
+  .wordpress-content blockquote p::after {
+    @apply content-['”'] text-2xl font-medium pl-2;
+  }
+
+  .wordpress-content cite {
+    @apply text-base font-thin ml-auto text-primary-500;
+  }
+
+  /* Scroll */
+
+  body::-webkit-scrollbar,
+  textarea::-webkit-scrollbar,
+  .scroll-child::-webkit-scrollbar {
+    @apply w-2.5 h-2.5;
+  }
+  body::-webkit-scrollbar-track,
+  textarea::-webkit-scrollbar-track,
+  .scroll-child::-webkit-scrollbar-track {
+    @apply bg-primary-100;
+  }
+  body::-webkit-scrollbar-thumb,
+  textarea::-webkit-scrollbar-thumb,
+  .scroll-child::-webkit-scrollbar-thumb {
+    @apply border-2 border-primary-100 border-solid rounded-md bg-primary-500;
+  }
+
+  /* Misc */
+
+  figure > img {
+    @apply object-cover;
   }
 }
 
+html,
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  scroll-behavior: smooth !important;
+  /*  */
+}
+
+html,
+textarea,
+.scroll-child {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.primary.500') white;
+  scrollbar-gutter: 1rem;
+}
+
+/* .rdg-row {
+  background-color: blue;
+} */
+
+/* span.small {
+  font-variant: small-caps;
+} */
+
+.small {
+  font-variant: small-caps;
 }
