@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Logo from '../../public/images/logo_text.svg';
 import { links } from './links.const';
+import { usePathname } from 'next/navigation';
 
 interface Link {
   icon?: React.ReactNode;
@@ -16,9 +17,22 @@ interface Link {
 export default function Menu() {
   const [currentPage, setCurrentPage] = useState('');
   const [showSubmenu, setShowSubmenu] = useState('');
+  //const { currentPage, updatePage } = useMenu();
+
+  const path = usePathname();
+
+  useEffect(() => {
+    const paths = path.split('/');
+    const currentPath =
+      paths[paths.length - 2] === 'posts'
+        ? 'anslagstavlan'
+        : paths[paths.length - 1];
+
+    setCurrentPage(currentPath);
+  }, [path]);
 
   const handleClick = (label: string) => {
-    console.log(label);
+    //console.log(label);
     if (label === showSubmenu) {
       setShowSubmenu('');
     } else {
@@ -26,22 +40,24 @@ export default function Menu() {
     }
   };
 
+  const handleLink = (page: string) => {
+    //updatePage(page);
+    //setCurrentPage(page);
+    setShowSubmenu('');
+  };
+
   return (
     <div className="">
       <div className="w-full bg-primary-100 flex items-center justify-center h-24">
         <div className="max-w-7xl w-full flex justify-between items-center gap-96">
-          <div className="relative h-14 w-96 shrink-0">
-            <Link
-              href="/"
-              onClick={() => {
-                setShowSubmenu('');
-                setCurrentPage('');
-              }}
-              className=""
-            >
-              <Image src={Logo} alt="logo" sizes="100%" fill />
-            </Link>
-          </div>
+          <Link
+            href="/"
+            onClick={() => handleLink('')}
+            className="relative h-14 w-96 shrink-0"
+          >
+            <Image src={Logo} alt="logo" sizes="100%" fill priority />
+          </Link>
+
           <div className="w-full">
             <ul className="flex items-center justify-between">
               {links.map((link, index) => (
@@ -50,7 +66,7 @@ export default function Menu() {
                     onClick={() => handleClick(link.label)}
                     className={`text-xl font-bold hover:underline flex items-center gap-2 transition rounded-b-lg pb-3 pt-2 px-6 ${
                       link.subLinks.some(
-                        (subLink) => subLink.label === currentPage
+                        (subLink) => subLink.slug === currentPage
                       )
                         ? 'text-accent-500'
                         : ''
@@ -84,6 +100,7 @@ export default function Menu() {
             if (link.label !== showSubmenu) {
               return null;
             }
+            //console.log(link.subLinks, currentPage);
             return link.subLinks?.map((subLink: Link, index: number) => (
               <Link
                 key={index}
@@ -93,15 +110,16 @@ export default function Menu() {
                   query: { slug: subLink.label },
                   //pathname: `/aktiviteter/anslagstavla/`,
                 }}
-                onClick={() => {
-                  setCurrentPage(subLink.label);
-                  setShowSubmenu('');
-                }}
+                onClick={() => handleLink(subLink.label)}
+                // onClick={() => {
+                //   setCurrentPage(subLink.label);
+                //   setShowSubmenu('');
+                // }}
                 className="font-bold text-xl hover:underline flex items-center"
               >
                 <span
                   className={`small ${
-                    currentPage === subLink.label ? 'text-accent-500' : ''
+                    currentPage === subLink.slug ? 'text-accent-500' : ''
                   }`}
                 >
                   {subLink.label}

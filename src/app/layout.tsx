@@ -1,7 +1,10 @@
+'use client';
+
 import Menu from '@/components/Menu';
 import './globals.css';
 import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
+import { PostProvider } from '@/hooks/PostContext';
 
 export const metadata: Metadata = {
   title: 'Nybro Ridklubb',
@@ -20,7 +23,9 @@ export default function RootLayout({
           <Menu />
         </header>
         <div className="flex justify-center items-center pb-48">
-          <div className="max-w-7xl w-full">{children}</div>
+          <div className="max-w-7xl w-full">
+            <PostProvider>{children}</PostProvider>
+          </div>
         </div>
         <Footer />
       </body>

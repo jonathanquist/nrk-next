@@ -6,9 +6,12 @@ import StandardImg from '../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
 import Button from '../Button';
 import { IconArrowDouble } from '../../../public/images/IconArrowDouble';
+import { useMenu } from '@/hooks/MenuContext';
 
 export default function Posts() {
   const [postLimit, setPostLimit] = useState(4);
+  // const { updatePage } = useMenu();
+
   const posts: any = useFetch(
     'http://localhost/nrk/wp-json/wp/v2/posts?_embed'
   );
@@ -16,6 +19,11 @@ export default function Posts() {
   if (!posts) {
     return <div>Loading...</div>;
   }
+
+  // const handleLink = (page: string) => {
+  //   // Update the menu state when the link is clicked
+  //   updatePage(page);
+  // };
 
   return (
     <div className="flex flex-col w-full gap-20 py-20 items-center">
@@ -57,6 +65,7 @@ export default function Posts() {
                     //href={post.link}
                     href={`/posts/${post.slug}`}
                     className="mt-auto"
+                    //onClick={() => handleLink('Anslagstavlan')}
                   >
                     <Button className="" size="sm">
                       Läs mer

@@ -12,8 +12,10 @@ import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import { IconSocialFacebook } from '../../../../public/images/IconSocialFacebook';
 import { IconSocialTwitter } from '../../../../public/images/IconSocialTwitter';
 import Breadcrumb from '@/components/Breadcrumb';
+import { useMenu } from '@/hooks/MenuContext';
 
 export default function Page({ params }: { params: { slug: string } }) {
+  // const { updatePage } = useMenu();
   const router = useRouter();
 
   const posts: any = useFetch(
@@ -25,9 +27,10 @@ export default function Page({ params }: { params: { slug: string } }) {
     return <div>Loading...</div>;
   }
 
-  const handleBack = () => {
-    router.back();
-  };
+  // const handleBack = () => {
+  //   updatePage('Anslagstavlan');
+  //   router.back();
+  // };
 
   // const getTags = (tagArr: any) => {
   //   return tagArr.map((tagId: any) => {
@@ -110,7 +113,7 @@ export default function Page({ params }: { params: { slug: string } }) {
     if (post.slug === params.slug) {
       //console.log(post, tags);
       return (
-        <div className="mt-8">
+        <div className="mt-8" key={post.id}>
           <Breadcrumb
             section="Aktiviteter"
             subsection={{
@@ -120,7 +123,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             current={post.title.rendered}
           />
           <div className="card-base mt-9">
-            <div key={post.id} className="flex flex-col">
+            <div className="flex flex-col">
               {/* Image */}
               <div className="relative h-[535px] w-full">
                 <Image
@@ -132,6 +135,7 @@ export default function Page({ params }: { params: { slug: string } }) {
                   alt="featured"
                   sizes="100%"
                   fill
+                  priority
                   className="object-center object-cover"
                 />
               </div>
@@ -182,15 +186,21 @@ export default function Page({ params }: { params: { slug: string } }) {
                       </TwitterShareButton> */}
                   </div>
                 </div>
-
-                <Button
-                  className=""
-                  size={'md'}
-                  icon={<IconArrowDouble className="-rotate-90 h-7 w-7" />}
-                  onClick={handleBack}
+                <Link
+                  href={{
+                    pathname: '/aktiviteter/anslagstavlan',
+                    query: { slug: 'Anslagstavlan' },
+                  }}
                 >
-                  Återgå till anslagstavlan
-                </Button>
+                  <Button
+                    className=""
+                    size={'md'}
+                    icon={<IconArrowDouble className="-rotate-90 h-7 w-7" />}
+                    // onClick={handleBack}
+                  >
+                    Återgå till anslagstavlan
+                  </Button>
+                </Link>
 
                 {/* Signature */}
                 {/* <div className="flex items-center justify-between">

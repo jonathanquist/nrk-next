@@ -1,10 +1,12 @@
 'use client';
 
 import Breadcrumb from '@/components/Breadcrumb';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 export default function Page() {
   const params = useSearchParams();
+  const path = usePathname();
+  console.log(path);
 
   return (
     <div className="mt-8">

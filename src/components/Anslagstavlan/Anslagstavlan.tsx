@@ -8,7 +8,7 @@ export default function Anslagstavlan() {
   const params = useSearchParams();
   const [tag, setTag] = useState(params.get('tag') || '');
 
-  console.log('hate', params, params.get('tag'), tag);
+  //console.log('hate', params, params.get('tag'), tag);
 
   return (
     <div>
