@@ -22,7 +22,7 @@
     @apply font-bold text-lg font-cambria;
   }
   .card h1 {
-    @apply text-a5xl font-bold mb-5 tracking-normal;
+    @apply text-5xl font-bold tracking-normal leading-loose;
   }
 
   .card h2 {
@@ -35,6 +35,10 @@
 
   .desktop h2 {
     @apply text-3xl font-bold;
+  }
+
+  .headline-s h1 {
+    @apply text-lg leading-none font-bold font-fira;
   }
 
   .headline-s h2 {
@@ -77,7 +81,7 @@
     @apply bg-primary-100 rounded-2xl shadow-md overflow-hidden;
   }
   .card-px {
-    @apply px-16;
+    @apply px-6 md:px-16;
   }
   .card-py {
     @apply py-14;
@@ -86,7 +90,10 @@
   /* Wordpress */
 
   .wordpress-content {
-    @apply flex items-start flex-col;
+    @apply flex items-start flex-col gap-4;
+  }
+  .wordpress-content .wp-block-column {
+    @apply flex items-start flex-col gap-2;
   }
 
   .wordpress-content div {
@@ -142,11 +149,11 @@
   }
 
   .wordpress-content blockquote {
-    @apply flex flex-col w-2/3 rounded-lg bg-primary-100 text-accent-500 py-4 px-12 shadow-md mx-auto;
+    @apply flex flex-col w-full mb-4 mt-2 md:w-2/3 rounded-lg bg-primary-100 text-accent-500 pt-6 pb-4 px-4 md:px-12 shadow-md mx-auto;
   }
 
   .wordpress-content blockquote p {
-    @apply text-xl font-bold;
+    @apply text-xl font-bold text-center mb-1;
   }
 
   .wordpress-content blockquote p::before {
@@ -158,24 +165,24 @@
   }
 
   .wordpress-content cite {
-    @apply text-base font-thin ml-auto text-primary-500;
+    @apply text-xs md:text-base font-thin text-primary-500 text-center;
   }
 
   /* Scroll */
 
   body::-webkit-scrollbar,
   textarea::-webkit-scrollbar,
-  .scroll-child::-webkit-scrollbar {
+  .custom-scroll::-webkit-scrollbar {
     @apply w-2.5 h-2.5;
   }
   body::-webkit-scrollbar-track,
   textarea::-webkit-scrollbar-track,
-  .scroll-child::-webkit-scrollbar-track {
+  .custom-scroll::-webkit-scrollbar-track {
     @apply bg-primary-100;
   }
   body::-webkit-scrollbar-thumb,
   textarea::-webkit-scrollbar-thumb,
-  .scroll-child::-webkit-scrollbar-thumb {
+  .custom-scroll::-webkit-scrollbar-thumb {
     @apply border-2 border-primary-100 border-solid rounded-md bg-primary-500;
   }
 
@@ -183,6 +190,10 @@
 
   figure > img {
     @apply object-cover;
+  }
+
+  li::marker {
+    @apply text-accent-500;
   }
 }
 
@@ -194,7 +205,7 @@ body {
 
 html,
 textarea,
-.scroll-child {
+.custom-scroll {
   scrollbar-width: thin;
   scrollbar-color: theme('colors.primary.500') white;
   scrollbar-gutter: 1rem;

@@ -1,10 +1,14 @@
 'use client';
 
-import Menu from '@/components/Menu';
+import Menu from '@/components/Menu/Menu';
 import './globals.css';
 import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import { PostProvider } from '@/hooks/PostContext';
+// import { ViewportProvider, useViewport } from '@/hooks/ViewportContext';
+import { useViewport } from '@/hooks/useViewport';
+import MenuMobile from '@/components/Menu/MenuMobile';
+import HeaderMobile from '@/components/Menu/HeaderMobile';
 
 export const metadata: Metadata = {
   title: 'Nybro Ridklubb',
@@ -16,19 +20,34 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { breakpoint } = useViewport();
+
   return (
     <html lang="en">
-      <body className="min-h-screen relative">
-        <header className="App-header">
-          <Menu />
-        </header>
-        <div className="flex justify-center items-center pb-48">
-          <div className="max-w-7xl w-full">
+      {breakpoint ? (
+        <body className="min-h-screen relative">
+          <header className="App-header">
+            <Menu />
+          </header>
+
+          <div className="flex justify-center items-center pb-48">
+            <div className="max-w-7xl w-full">
+              <PostProvider>{children}</PostProvider>
+            </div>
+          </div>
+          <Footer />
+        </body>
+      ) : (
+        <body className="">
+          <header className="App-header">
+            <HeaderMobile />
+          </header>
+          <div className="flex justify-center items-start h-[calc(100dvh-13.625rem)] w-screen overflow-y-auto rounded-xl shadow-md">
             <PostProvider>{children}</PostProvider>
           </div>
-        </div>
-        <Footer />
-      </body>
+          <MenuMobile />
+        </body>
+      )}
     </html>
   );
 }

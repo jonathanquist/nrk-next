@@ -1,12 +1,18 @@
+import { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
-import HeroImg from '../../../public/images/hero_img.jpg';
-import useFetch from '@/hooks/useFetch';
+import StandardImg from '../../../public/images/hero_img.jpg';
 import Link from 'next/link';
 import Button from '../Button';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import useFetch from '@/hooks/useFetch';
+import { useViewport } from '@/hooks/useViewport';
 
 export default function Hero() {
-  const posts: any = useFetch('http://localhost/nrk/wp-json/wp/v2/posts') || [];
+  const posts: any = useFetch(
+    'http://localhost/nrk/wp-json/wp/v2/posts?_embed'
+  );
+
+  const { breakpoint } = useViewport();
+  console.log('new', posts);
 
   const containerRef = useRef<HTMLParagraphElement>(null);
 
@@ -16,21 +22,29 @@ export default function Hero() {
     }
   });
 
-  // console.log(posts);
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="flex items-center justify-center h-[calc(100vh-8.5rem)] pt-16 pb-20">
-      <div className="relative bg-transparent overflow-hidden flex justify-start items-end py-24 px-16 w-full h-full card-base">
-        <div className="bg-primary-100 relative bg-opacity-75 px-10 pt-12 pb-8 z-10 w-[550px] backdrop-blur-sm card h-60">
+    <div className="flex items-center justify-center h-48 md:h-[calc(100vh-8.5rem)] md:pt-16 md:pb-20 w-full">
+      <div className="relative bg-transparent overflow-hidden flex justify-start items-end pb-10 md:py-24 md:px-16 w-full h-48 md:h-full rounded-t-2xl rounded-b-none md:rounded-2xl md:shadow-md">
+        <div className="bg-primary-100 relative bg-opacity-75 px-6 md:px-10 justify-between items-center md:justify-start md:items-start py-3 md:pt-12 md:pb-8 z-10 w-full flex md:flex-col headline-s md:headline-l md:w-[550px] backdrop-blur-sm card h-14 md:h-60">
           {posts.length > 0 && (
             <>
               <h1
                 dangerouslySetInnerHTML={{ __html: posts[0].title.rendered }}
+                className="md:mb-5 truncate md:w-[450px]"
               />
-              <p
-                dangerouslySetInnerHTML={{ __html: posts[0].excerpt.rendered }}
-                ref={containerRef}
-                className="åaragraph-m mb-5 w-full line-clamp-2 break-words"
-              />
+              {breakpoint && (
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: posts[0].excerpt.rendered,
+                  }}
+                  ref={containerRef}
+                  className="paragraph-m mb-5 w-full line-clamp-2 break-words"
+                />
+              )}
               <Link href={posts[0].link}>
                 <Button className="" size="sm">
                   Läs mer
@@ -40,11 +54,15 @@ export default function Hero() {
           )}
         </div>
         <Image
-          src={HeroImg}
+          src={
+            posts[0]._embedded['wp:featuredmedia']
+              ? posts[0]._embedded['wp:featuredmedia'][0].source_url
+              : StandardImg
+          }
           alt="logo"
           sizes="100%"
           fill
-          className="z-0 object-center object-cover"
+          className="z-0 object-center object-cover opacity-90"
         />
       </div>
     </div>

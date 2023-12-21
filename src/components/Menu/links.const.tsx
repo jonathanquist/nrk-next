@@ -1,10 +1,10 @@
-import { IconHorse } from '../../public/images/IconHorse';
-import { IconHouse } from '../../public/images/IconHouse';
-import { IconShoe } from '../../public/images/IconShoe';
+import { IconHorse } from '../../../public/images/IconHorse';
+import { IconHouse } from '../../../public/images/IconHouse';
+import { IconShoe } from '../../../public/images/IconShoe';
 
 export const links = [
   {
-    icon: <IconShoe className="w-6 h-6 md:h-9 md:w-9" />,
+    icon: <IconShoe className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
     label: 'Aktiviteter',
     slug: 'aktiviteter',
     subLinks: [
@@ -23,34 +23,7 @@ export const links = [
     ],
   },
   {
-    icon: <IconHouse className="w-6 h-6 md:h-9 md:w-9" />,
-    label: 'Föreningen',
-    slug: 'foreningen',
-    subLinks: [
-      {
-        label: 'Om Oss',
-        slug: 'about',
-      },
-      {
-        label: 'Vision & Policy',
-        slug: 'vision-policy',
-      },
-      {
-        label: 'Bli Medlem',
-        slug: 'medlem',
-      },
-      {
-        label: 'Sektioner',
-        slug: 'sektioner',
-      },
-      {
-        label: 'Styrelsen',
-        slug: 'styrelsen',
-      },
-    ],
-  },
-  {
-    icon: <IconHorse className="w-6 h-6 md:h-9 md:w-9" />,
+    icon: <IconHorse className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
     label: 'Ridskolan',
     slug: 'ridskolan',
     subLinks: [
@@ -81,6 +54,33 @@ export const links = [
       {
         label: 'Frågor',
         slug: 'faq',
+      },
+    ],
+  },
+  {
+    icon: <IconHouse className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
+    label: 'Föreningen',
+    slug: 'foreningen',
+    subLinks: [
+      {
+        label: 'Om Oss',
+        slug: 'about',
+      },
+      {
+        label: 'Vision & Policy',
+        slug: 'vision-policy',
+      },
+      {
+        label: 'Bli Medlem',
+        slug: 'medlem',
+      },
+      {
+        label: 'Sektioner',
+        slug: 'sektioner',
+      },
+      {
+        label: 'Styrelsen',
+        slug: 'styrelsen',
       },
     ],
   },

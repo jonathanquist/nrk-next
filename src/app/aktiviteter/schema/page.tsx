@@ -1,19 +1,25 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
+import { useViewport } from '@/hooks/useViewport';
+
 import Breadcrumb from '@/components/Breadcrumb';
-import { usePathname, useSearchParams } from 'next/navigation';
+import Anslagstavlan from '@/components/Anslagstavlan/Anslagstavlan';
 
 export default function Page() {
+  const { breakpoint } = useViewport();
   const params = useSearchParams();
-  const path = usePathname();
-  console.log(path);
 
   return (
-    <div className="mt-8">
-      <Breadcrumb section="Aktiviteter" current={'Schema'} />
-      <div className="card-base mt-9">
+    <>
+      {breakpoint && (
+        <div className="mt-8 mb-9">
+          <Breadcrumb section="Aktiviteter" current={'Schema'} />
+        </div>
+      )}
+      <div className="card-base">
         <p>{params!.get('slug')}</p>
       </div>
-    </div>
+    </>
   );
 }

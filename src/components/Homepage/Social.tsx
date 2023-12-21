@@ -3,6 +3,7 @@ import React from 'react';
 import Button from '../Button';
 import { IconSocialFacebook } from '../../../public/images/IconSocialFacebook';
 import { IconSocialInstagram } from '../../../public/images/IconSocialInstagram';
+import { IconSocialFacebookSimple } from '../../../public/images/IconSocialFacebookSimple';
 
 export default function Social() {
   return (
@@ -14,7 +15,7 @@ export default function Social() {
             <Button
               className=""
               size={'md'}
-              icon={<IconSocialFacebook className="h-8 w-8" />}
+              icon={<IconSocialFacebookSimple className="h-8 w-8" />}
             >
               Facebook
             </Button>

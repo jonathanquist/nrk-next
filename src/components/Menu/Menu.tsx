@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import Logo from '../../public/images/logo_text.svg';
+import Logo from '../../../public/images/logo_text.svg';
 import { links } from './links.const';
 import { usePathname } from 'next/navigation';
 
@@ -48,23 +48,23 @@ export default function Menu() {
 
   return (
     <div className="">
-      <div className="w-full bg-primary-100 flex items-center justify-center h-24">
-        <div className="max-w-7xl w-full flex justify-between items-center gap-96">
+      <div className="w-full md:bg-primary-100 flex items-center justify-center pt-6 pb-4 md:pt-12 md:pb-7 md:py-0 md:h-24">
+        <div className="max-w-7xl w-full flex justify-center md:justify-between items-center px-4 md:px-0 ">
           <Link
             href="/"
             onClick={() => handleLink('')}
-            className="relative h-14 w-96 shrink-0"
+            className="relative h-14 w-full md:w-72 lg:w-96 shrink-0"
           >
             <Image src={Logo} alt="logo" sizes="100%" fill priority />
           </Link>
 
-          <div className="w-full">
+          <div className="w-full hidden md:block max-w-md lg:max-w-lg xl:max-w-xl">
             <ul className="flex items-center justify-between">
               {links.map((link, index) => (
                 <li key={index}>
                   <button
                     onClick={() => handleClick(link.label)}
-                    className={`text-xl font-bold hover:underline flex items-center gap-2 transition rounded-b-lg pb-3 pt-2 px-6 ${
+                    className={`text-lg lg:text-xl font-bold hover:underline flex items-center gap-2 transition rounded-b-lg pb-3 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5 ${
                       link.subLinks.some(
                         (subLink) => subLink.slug === currentPage
                       )
@@ -86,13 +86,13 @@ export default function Menu() {
         </div>
       </div>
       <div
-        className={`bg-primary-500 h-10 w-full flex justify-center items-center duration-300 ${
+        className={`bg-primary-500 h-10 w-full md:flex justify-center items-center duration-300 hidden ${
           !showSubmenu ? 'scale-y-0' : 'scale-y-100'
         }
             `}
       >
-        <div
-          className={`rounded-lg border-4 border-primary-500 bg-primary-300 flex justify-center items-center px-16 py-2 gap-8 transition ${
+        <ul
+          className={`rounded-lg border-4 border-primary-500 bg-primary-300 flex justify-center items-center px-8 lg:px-16 py-2 gap-6 lg:gap-8 transition ${
             !showSubmenu ? 'scale-y-0' : 'scale-y-100'
           }`}
         >
@@ -102,32 +102,33 @@ export default function Menu() {
             }
             //console.log(link.subLinks, currentPage);
             return link.subLinks?.map((subLink: Link, index: number) => (
-              <Link
-                key={index}
-                //href={subLink.url}
-                href={{
-                  pathname: `/${link.slug}/${subLink.slug}`,
-                  query: { slug: subLink.label },
-                  //pathname: `/aktiviteter/anslagstavla/`,
-                }}
-                onClick={() => handleLink(subLink.label)}
-                // onClick={() => {
-                //   setCurrentPage(subLink.label);
-                //   setShowSubmenu('');
-                // }}
-                className="font-bold text-xl hover:underline flex items-center"
-              >
-                <span
-                  className={`small ${
-                    currentPage === subLink.slug ? 'text-accent-500' : ''
-                  }`}
+              <li key={index}>
+                <Link
+                  //href={subLink.url}
+                  href={{
+                    pathname: `/${link.slug}/${subLink.slug}`,
+                    query: { slug: subLink.label },
+                    //pathname: `/aktiviteter/anslagstavla/`,
+                  }}
+                  onClick={() => handleLink(subLink.label)}
+                  // onClick={() => {
+                  //   setCurrentPage(subLink.label);
+                  //   setShowSubmenu('');
+                  // }}
+                  className="font-bold text-md lg:text-xl hover:underline flex items-center"
                 >
-                  {subLink.label}
-                </span>
-              </Link>
+                  <span
+                    className={`small ${
+                      currentPage === subLink.slug ? 'text-accent-500' : ''
+                    }`}
+                  >
+                    {subLink.label}
+                  </span>
+                </Link>
+              </li>
             ));
           })}
-        </div>
+        </ul>
       </div>
     </div>
   );

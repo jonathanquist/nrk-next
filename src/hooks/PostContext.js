@@ -6,19 +6,19 @@ const PostContext = createContext();
 export const PostProvider = ({ children }) => {
   const params = useSearchParams();
   const [currentPage, setCurrentPage] = useState(1);
-  const [currentTag, setCurrentTag] = useState(params.get('tag') || '');
+  const [currentCat, setCurrentCat] = useState(params.get('cat') || '');
 
   const updatePage = (page) => {
     setCurrentPage(page);
   };
-  const updateTag = (tag) => {
-    setCurrentTag(tag);
+  const updateCat = (cat) => {
+    setCurrentCat(cat);
     setCurrentPage(1);
   };
 
   return (
     <PostContext.Provider
-      value={{ currentPage, updatePage, currentTag, updateTag }}
+      value={{ currentPage, updatePage, currentCat, updateCat }}
     >
       {children}
     </PostContext.Provider>

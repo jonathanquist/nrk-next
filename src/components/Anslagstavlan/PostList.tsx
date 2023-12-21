@@ -1,27 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import StandardImg from '../../../public/images/hero_img.jpg';
+import { format } from 'date-fns';
+import { usePost } from '@/hooks/PostContext';
 import useFetch from '@/hooks/useFetch';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import StandardImg from '../../../public/images/hero_img.jpg';
+
 import { IconBack } from '../../../public/images/IconBack';
 import { IconNext } from '../../../public/images/IconNext';
-import { format } from 'date-fns';
-import Link from 'next/link';
-import { usePost } from '@/hooks/PostContext';
 
 export default function PostList() {
   const [pageNumber, setPageNumber] = useState(1);
-  const { currentPage, updatePage, currentTag } = usePost();
-  const postsPerPage = 2; // Set the number of posts per page
+  const { currentPage, updatePage, currentCat } = usePost();
+  const postsPerPage = 3; // Set the number of posts per page
   const maxPagesToShow = 5; // Maximum number of page buttons to show
 
   const fetchedPosts =
-    currentTag !== ''
+    currentCat !== ''
       ? useFetch(
-          `http://localhost/nrk/wp-json/wp/v2/posts?_embed&tags=${currentTag}`
+          `http://localhost/nrk/wp-json/wp/v2/posts?_embed&categories=${currentCat}`
         )
       : useFetch(`http://localhost/nrk/wp-json/wp/v2/posts?_embed`);
 
-  const postTags: any = useFetch('http://localhost/nrk/wp-json/wp/v2/tags/');
+  const postCats: any = useFetch(
+    'http://localhost/nrk/wp-json/wp/v2/categories/'
+  );
 
   // <  useEffect(() => {
   //     //setPageNumber(1);
@@ -29,9 +33,9 @@ export default function PostList() {
   //     console.log(currentTag);
   //   }, [currentTag]);>
 
-  console.log(currentPage);
+  console.log(postCats);
 
-  if (!fetchedPosts || !postTags) {
+  if (!fetchedPosts || !postCats) {
     return <div>Loading...</div>;
   }
 
@@ -59,27 +63,27 @@ export default function PostList() {
     }
   };
 
-  const getTags = (tagArr: any) => {
-    const tagNames = tagArr.map((tagId: any) => {
-      const tagObject = postTags.find(
-        (currentTag: { id: string }) => currentTag.id === tagId
+  const getCats = (catArr: any) => {
+    const catNames = catArr.map((catId: any) => {
+      const catObject = postCats.find(
+        (currentCat: { id: string }) => currentCat.id === catId
       );
-      return tagObject
-        ? tagObject.name === 'tavling'
+      return catObject
+        ? catObject.name === 'tavling'
           ? 'tävling'
-          : tagObject.name === 'daglig'
+          : catObject.name === 'daglig'
           ? 'Daglig Verksamhet'
-          : tagObject.name
+          : catObject.name
         : null;
     });
 
     // Filter out null values (tags that were not found)
-    const filteredTagNames = tagNames.filter(
-      (tagName: string) => tagName !== null
+    const filteredCatNames = catNames.filter(
+      (catName: string) => catName !== null
     );
 
-    // Join tag names with commas
-    return filteredTagNames.join(', ');
+    // Join cat names with commas
+    return filteredCatNames.join(', ');
   };
 
   const paginationItems = [];
@@ -127,17 +131,18 @@ export default function PostList() {
   let currentMonth = '';
 
   return (
-    <div className="flex justify-between w-full gap-12 items-stretch flex-col">
+    <div className="flex justify-between md:w-full md:gap-12 gap-6 items-stretch flex-col">
       {/* Post list */}
       {posts?.map((post: any, index: any) => {
         const postMonth = getMonthMarker(post.date); // Fetch the month of the post
         let monthMarker = null;
+        // console.log(post);
 
         // Display month marker if the month changes
         if (postMonth !== currentMonth) {
           monthMarker = (
-            <div className="flex items-center justify-start w-full mb-20 group-first:mt-0 mt-12">
-              <div className="h-1 w-32 bg-primary-500 rounded-full mt-1 shrink-0" />
+            <div className="flex items-center justify-start md:w-full mb-6 md:mb-20 group-first:mt-0 md:mt-12 mt-2 md:px-0">
+              <div className="h-1 w-8 md:w-32 bg-primary-500 rounded-full mt-1 shrink-0" />
               <div className="text-accent-500 text-2xl small font-cambria capitalize w-56 flex justify-center shrink-0">
                 <div>{postMonth}</div>
               </div>
@@ -148,11 +153,11 @@ export default function PostList() {
         }
 
         return (
-          <Link href={`/posts/${post.slug}`} key={index} className="group ">
+          <Link href={`/posts/${post.slug}`} key={index} className="group">
             {monthMarker}
-            <div className="px-10">
-              <div className="w-full overflow-hidden bg-primary-300 p-0 card card-base h-[270px] flex">
-                <div className="relative h-full w-72 shrink-0">
+            <div className="md:px-10">
+              <div className="w-full overflow-hidden bg-primary-300 p-0 card card-base md:h-[270px] flex">
+                <div className="relative h-36  md:h-full w-24 md:w-72 shrink-0">
                   <Image
                     src={
                       post._embedded['wp:featuredmedia']
@@ -162,10 +167,10 @@ export default function PostList() {
                     alt="featured"
                     sizes="100%"
                     fill
-                    className="object-center object-cover"
+                    className="object-center object-cover "
                   />
                 </div>
-                <div className="text-sm font-medium grow flex flex-col md:headline-m py-10 pl-10 pr-16 gap-3.5">
+                <div className="text-sm font-medium grow hidden md:flex flex-col md:headline-m py-10 pl-10 pr-16 gap-3.5">
                   <h2
                     dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                   />
@@ -180,7 +185,7 @@ export default function PostList() {
                       {format(new Date(post.date), 'dd MMMM, yyyy')}
                     </div>
                     <div className="font-light ml-5 capitalize">
-                      {getTags(post.tags)}
+                      {getCats(post.categories)}
                     </div>
                     <button className="small text-primary-900 ml-auto">
                       Läs Mer

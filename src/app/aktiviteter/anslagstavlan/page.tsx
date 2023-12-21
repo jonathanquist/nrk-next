@@ -1,18 +1,27 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import Anslagstavlan from '@/components/Anslagstavlan/Anslagstavlan';
+import { useViewport } from '@/hooks/useViewport';
+
 import Breadcrumb from '@/components/Breadcrumb';
+import Anslagstavlan from '@/components/Anslagstavlan/Anslagstavlan';
 
 export default function Page() {
+  const { breakpoint } = useViewport();
   const params = useSearchParams();
-  //console.log('hut', params.get('slug'));
+
+  console.log('pie', breakpoint);
+
   return (
-    <div className="mt-8">
-      <Breadcrumb section="Aktiviteter" current={'Anslagstavlan'} />
-      <div className="card-base mt-9">
+    <>
+      {breakpoint && (
+        <div className="mt-8 mb-9">
+          <Breadcrumb section="Aktiviteter" current={'Anslagstavlan'} />
+        </div>
+      )}
+      <div className="card-base h-full">
         <Anslagstavlan />
       </div>
-    </div>
+    </>
   );
 }
