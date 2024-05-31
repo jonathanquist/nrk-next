@@ -5,7 +5,6 @@ import Posts from './Posts';
 import Social from './Social';
 import Sponsors from './Sponsors';
 import { useViewport } from '@/hooks/useViewport';
-import WelcomeTemp from './WelcomeTemp';
 
 export default function Homepage() {
   const { breakpoint } = useViewport();
@@ -26,10 +25,10 @@ export default function Homepage() {
     );
   } else {
     return (
-      <div className="card-base flex flex-col overflow-y-auto justify-start items-start h-full">
+      <div className="card-base w-full flex flex-col overflow-y-auto justify-start items-start h-full">
         <Hero />
         {/* <Welcome /> */}
-        <WelcomeTemp />
+        <Welcome />
       </div>
     );
   }

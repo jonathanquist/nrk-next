@@ -1,7 +1,7 @@
 import { Fragment, ReactNode, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-export default function Modal({
+export function Modal({
   children,
   action,
   state,

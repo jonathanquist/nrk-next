@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import Image from 'next/image';
 import useFetch from '@/hooks/useFetch';
 import StandardImg from '../../../public/images/hero_img.jpg';
+import React from 'react';
 
 export default function SinglePage({
   children,
@@ -46,9 +47,10 @@ export default function SinglePage({
         {slug && (
           <div
             dangerouslySetInnerHTML={{ __html: page[0].content.rendered }}
-            className="paragraph-l"
+            className="paragraph-l wordpress-content"
           />
         )}
+
         {children && children}
       </div>
     </div>

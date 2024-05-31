@@ -5,13 +5,13 @@ import Image from 'next/image';
 import StandardImg from '../../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
 import Link from 'next/link';
-import Button from '@/components/Button';
+import Button from '@/components/UI/Button/Button';
 import { useRouter } from 'next/navigation';
 import { IconArrowDouble } from '../../../../public/images/IconArrowDouble';
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import { IconSocialFacebook } from '../../../../public/images/IconSocialFacebook';
 import { IconSocialTwitter } from '../../../../public/images/IconSocialTwitter';
-import Breadcrumb from '@/components/Breadcrumb';
+import Breadcrumb from '@/components/UI/Breadcrumb/Breadcrumb';
 import { useMenu } from '@/hooks/MenuContext';
 import { useViewport } from '@/hooks/useViewport';
 
@@ -62,7 +62,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             }}
           >
             {catObject.name === 'tavling'
-              ? 'tävling'
+              ? 'Tävling'
               : catObject.name === 'daglig'
               ? 'Daglig Verksamhet'
               : catObject.name}

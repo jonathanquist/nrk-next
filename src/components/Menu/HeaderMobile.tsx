@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Logo from '../../../public/images/logo_text.svg';
 import LogoSimple from '../../../public/images/logo.svg';
-import { IconArrowSimple } from '../../../public/images/IconArrowSimple';
+import { IconArrowSimple } from '../UI';
 
 export default function HeaderMobile() {
   const [currentPage, setCurrentPage] = useState<string>('');

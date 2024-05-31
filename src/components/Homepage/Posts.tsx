@@ -4,9 +4,9 @@ import useFetch from '@/hooks/useFetch';
 import React, { useState, useEffect } from 'react';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
-import Button from '../Button';
-import { IconArrowDouble } from '../../../public/images/IconArrowDouble';
+import Button from '../UI/Button/Button';
 import { useMenu } from '@/hooks/MenuContext';
+import { IconArrowDouble } from '../UI';
 
 export default function Posts() {
   const [postLimit, setPostLimit] = useState(4);
@@ -15,8 +15,6 @@ export default function Posts() {
   const posts: any = useFetch(
     'http://localhost/nrk/wp-json/wp/v2/posts?_embed'
   );
-
-  console.log('new2', posts);
 
   if (!posts) {
     return <div>Loading...</div>;
@@ -48,7 +46,7 @@ export default function Posts() {
                     alt="featured"
                     sizes="100%"
                     fill
-                    className=" object-center object-cover"
+                    className=" object-center object-cover "
                   />
                 </div>
                 <div className="text-sm font-medium pt-4 pb-8 px-6 flex flex-col grow md:headline-s">

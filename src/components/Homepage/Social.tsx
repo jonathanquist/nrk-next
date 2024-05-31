@@ -1,9 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import Button from '../Button';
-import { IconSocialFacebook } from '../../../public/images/IconSocialFacebook';
-import { IconSocialInstagram } from '../../../public/images/IconSocialInstagram';
-import { IconSocialFacebookSimple } from '../../../public/images/IconSocialFacebookSimple';
+import Button from '../UI/Button/Button';
+import { IconSocialFacebookSimple, IconSocialInstagram } from '../UI';
 
 export default function Social() {
   return (

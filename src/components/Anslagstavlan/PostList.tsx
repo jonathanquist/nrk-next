@@ -6,9 +6,7 @@ import useFetch from '@/hooks/useFetch';
 import Image from 'next/image';
 import Link from 'next/link';
 import StandardImg from '../../../public/images/hero_img.jpg';
-
-import { IconBack } from '../../../public/images/IconBack';
-import { IconNext } from '../../../public/images/IconNext';
+import { IconBack, IconNext } from '../UI';
 
 export default function PostList() {
   const [pageNumber, setPageNumber] = useState(1);
@@ -16,12 +14,12 @@ export default function PostList() {
   const postsPerPage = 3; // Set the number of posts per page
   const maxPagesToShow = 5; // Maximum number of page buttons to show
 
-  const fetchedPosts =
-    currentCat !== ''
-      ? useFetch(
-          `http://localhost/nrk/wp-json/wp/v2/posts?_embed&categories=${currentCat}`
-        )
-      : useFetch(`http://localhost/nrk/wp-json/wp/v2/posts?_embed`);
+  const allPosts = useFetch(`http://localhost/nrk/wp-json/wp/v2/posts?_embed`);
+  const categoryPosts = useFetch(
+    `http://localhost/nrk/wp-json/wp/v2/posts?_embed&categories=${currentCat}`
+  );
+
+  const fetchedPosts = currentCat !== '' ? categoryPosts : allPosts;
 
   const postCats: any = useFetch(
     'http://localhost/nrk/wp-json/wp/v2/categories/'

@@ -1,6 +1,4 @@
-import { IconHorse } from '../../../public/images/IconHorse';
-import { IconHouse } from '../../../public/images/IconHouse';
-import { IconShoe } from '../../../public/images/IconShoe';
+import { IconShoe, IconHorse, IconHouse } from '../UI';
 
 export const links = [
   {

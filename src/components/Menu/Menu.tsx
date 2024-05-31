@@ -48,7 +48,7 @@ export default function Menu() {
 
   return (
     <div className="">
-      <div className="w-full md:bg-primary-100 flex items-center justify-center pt-6 pb-4 md:pt-12 md:pb-7 md:py-0 md:h-24">
+      <div className="w-full md:bg-primary-100 flex items-center justify-center pt-6 pb-4 md:pt-8 md:pb-7 md:py-0 md:h-24">
         <div className="max-w-7xl w-full flex justify-center md:justify-between items-center px-4 md:px-0 ">
           <Link
             href="/"
@@ -72,7 +72,7 @@ export default function Menu() {
                         : ''
                     } ${
                       showSubmenu === link.label
-                        ? 'bg-primary-500 -translate-y-5'
+                        ? 'bg-primary-500 -translate-y-6'
                         : ''
                     }`}
                   >

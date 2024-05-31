@@ -6,9 +6,10 @@ import Homepage from './Homepage/Homepage';
 export default function Page({ currentPage }: { currentPage: string }) {
   console.log('Hit', currentPage);
   return (
-    <div className="flex justify-center items-center">
-      {currentPage === 'home' && <Homepage />}
-      {currentPage === 'anslagstavla' && 'Bjes'}
-    </div>
+    // <div className="flex justify-center items-center">
+    //   {currentPage === 'home' && <Homepage />}
+    //   {currentPage === 'anslagstavla' && 'Bjes'}
+    // </div>
+    'quack'
   );
 }

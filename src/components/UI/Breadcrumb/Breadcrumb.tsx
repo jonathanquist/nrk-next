@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { IconBack } from '../../public/images/IconBack';
 import { useSearchParams } from 'next/dist/client/components/navigation';
+import { IconBack } from '..';
 
 export default function Breadcrumb({
   section,
@@ -15,7 +15,7 @@ export default function Breadcrumb({
   current: string | null;
 }) {
   return (
-    <div className="flex gap-1 small font-bold">
+    <div className="flex gap-1 small font-bold px-8">
       {/*Home*/}
       <Link href="/">Hem</Link>
 

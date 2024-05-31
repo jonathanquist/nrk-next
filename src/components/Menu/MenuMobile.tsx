@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { links } from './links.const';
 import { usePathname } from 'next/navigation';
-import Modal from '../Modal';
+import { Modal } from '../UI';
 
 interface Link {
   icon?: React.ReactNode;

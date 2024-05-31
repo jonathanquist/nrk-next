@@ -28,11 +28,11 @@ const config: Config = {
           500: 'rgb(204 68 75 / <alpha-value>)',
         },
         schedule: {
-          1: 'rgb(100 143 255 / <alpha-value>)',
-          2: 'rgb(78 58 167 / <alpha-value>)',
-          3: 'rgb(195 38 220 / <alpha-value>)',
-          4: 'rgb(254 97 0 / <alpha-value>)',
-          5: 'rgb(253 193 60 / <alpha-value>)',
+          tavling: 'rgb(100 143 255 / <alpha-value>)',
+          event: 'rgb(78 58 167 / <alpha-value>)',
+          lektion: 'rgb(195 38 220 / <alpha-value>)',
+          clinic: 'rgb(254 97 0 / <alpha-value>)',
+          annat: 'rgb(253 193 60 / <alpha-value>)',
         },
       },
       boxShadow: {
