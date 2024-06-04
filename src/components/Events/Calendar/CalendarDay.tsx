@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { cn, getEventColor } from '@/lib/utils';
-import { IconClose } from '../UI';
+import { IconClose } from '../../UI';
 
 interface CalendarDayProps {
   currentDay: any[];

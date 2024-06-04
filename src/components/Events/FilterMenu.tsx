@@ -30,8 +30,6 @@ export default function Filter({ filtered, setFiltered }: FilterMenuProps) {
     }
   };
 
-  console.log(filtered, 'filtered');
-
   return (
     <div className="absolute z-30 top-2 right-2">
       <Popover>

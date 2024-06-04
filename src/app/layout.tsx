@@ -5,10 +5,9 @@ import './globals.css';
 import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import { PostProvider } from '@/hooks/PostContext';
-// import { ViewportProvider, useViewport } from '@/hooks/ViewportContext';
 import { useViewport } from '@/hooks/useViewport';
 import MenuMobile from '@/components/Menu/MenuMobile';
-import HeaderMobile from '@/components/Menu/HeaderMobile';
+import MenuHeader from '@/components/Menu/MenuHeader';
 
 export const metadata: Metadata = {
   title: 'Nybro Ridklubb',
@@ -24,30 +23,40 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      {breakpoint ? (
-        <body className="min-h-screen relative">
-          <header className="App-header">
-            <Menu />
-          </header>
-
-          <div className="flex justify-center items-center pb-48">
-            <div className="max-w-7xl w-full">
-              <PostProvider>{children}</PostProvider>
+      <PostProvider>
+        {breakpoint === 'load' && (
+          <body>
+            <div className="flex items-center justify-center bg-transparent rounded-xl m-4 h-48 md:h-[calc(100vh-8.5rem)]  md:pt-16 md:pb-20  w-full">
+              <div className=" overflow-hidden w-full h-48 md:h-full rounded-t-2xl rounded-b-none md:rounded-2xl md:shadow-md animate-pulse" />
             </div>
-          </div>
-          <Footer />
-        </body>
-      ) : (
-        <body className="">
-          <header className="App-header">
-            <HeaderMobile />
-          </header>
-          <div className="flex justify-center items-start h-[calc(100dvh-13.625rem)] w-screen overflow-y-auto rounded-xl shadow-md">
-            <PostProvider>{children}</PostProvider>
-          </div>
-          <MenuMobile />
-        </body>
-      )}
+          </body>
+        )}
+
+        {breakpoint === 'xl' && (
+          <body className="min-h-screen relative">
+            <header className="App-header">
+              <Menu />
+            </header>
+
+            <div className="flex justify-center items-center pb-48">
+              <div className="max-w-7xl w-full">{children}</div>
+            </div>
+            <Footer />
+          </body>
+        )}
+
+        {breakpoint === 'sm' && (
+          <body className="">
+            <header className="App-header">
+              <MenuHeader />
+            </header>
+            <div className="flex justify-center items-start h-[calc(100dvh-13.625rem)] w-screen overflow-y-auto rounded-xl shadow-md">
+              {children}
+            </div>
+            <MenuMobile />
+          </body>
+        )}
+      </PostProvider>
     </html>
   );
 }

@@ -3,9 +3,9 @@ import { useViewport } from '@/hooks/useViewport';
 
 import Image from 'next/image';
 import StandardImg from '../../../public/images/hero_img.jpg';
-import CalendarWidget from '../Events/Calendar/CalendarWidget';
+import ScheduleWidget from '../Events/Schedule/ScheduleWidget';
 
-export default function Calendar() {
+export default function Schedule() {
   const { breakpoint } = useViewport();
 
   return (
@@ -13,7 +13,7 @@ export default function Calendar() {
       <div className="bg-accent-500 flex flex-col items-center justify-center shadow-md md:shadow-none">
         <div className="hidden md:flex justify-center items-end relative w-full h-80">
           <div className="bg-primary-100 bg-opacity-75 w-full max-w-xl py-6 relative z-10 mb-12 backdrop-blur-sm flex item-center justify-center">
-            <h1>Kalender</h1>
+            <h1>Schema</h1>
           </div>
           <Image
             src={StandardImg}
@@ -24,8 +24,8 @@ export default function Calendar() {
           />
         </div>
       </div>
-      <div className="calendar-big">
-        <CalendarWidget size={'lg'} />
+      <div className="schedule-big">
+        <ScheduleWidget size={'lg'} />
       </div>
     </>
   );

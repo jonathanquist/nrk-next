@@ -12,7 +12,7 @@ export default function Hero() {
   );
 
   const { breakpoint } = useViewport();
-  console.log('new', posts);
+  //console.log('new', posts);
 
   const containerRef = useRef<HTMLParagraphElement>(null);
 

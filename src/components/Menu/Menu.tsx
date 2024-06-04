@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react';
 import Logo from '../../../public/images/logo_text.svg';
 import { links } from './links.const';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 interface Link {
   icon?: React.ReactNode;
@@ -86,15 +87,16 @@ export default function Menu() {
         </div>
       </div>
       <div
-        className={`bg-primary-500 h-10 w-full md:flex justify-center items-center duration-300 hidden ${
+        className={cn(
+          'bg-primary-500 h-10 w-full md:flex justify-center items-center duration-300 hidden',
           !showSubmenu ? 'scale-y-0' : 'scale-y-100'
-        }
-            `}
+        )}
       >
         <ul
-          className={`rounded-lg border-4 border-primary-500 bg-primary-300 flex justify-center items-center px-8 lg:px-16 py-2 gap-6 lg:gap-8 transition ${
+          className={cn(
+            'rounded-lg border-4 border-primary-500 bg-primary-300 flex justify-center items-center px-8 lg:px-16 py-2 gap-6 lg:gap-8 transition',
             !showSubmenu ? 'scale-y-0' : 'scale-y-100'
-          }`}
+          )}
         >
           {links.map((link: Link, index: number) => {
             if (link.label !== showSubmenu) {

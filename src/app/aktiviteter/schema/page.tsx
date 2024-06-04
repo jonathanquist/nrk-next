@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useViewport } from '@/hooks/useViewport';
 
 import Breadcrumb from '@/components/UI/Breadcrumb/Breadcrumb';
-import Anslagstavlan from '@/components/Anslagstavlan/Anslagstavlan';
+import Schedule from '@/components/Schedule/Schedule';
 
 export default function Page() {
   const { breakpoint } = useViewport();
@@ -18,7 +18,7 @@ export default function Page() {
         </div>
       )}
       <div className="card-base">
-        <p>{params!.get('slug')}</p>
+        <Schedule />
       </div>
     </>
   );

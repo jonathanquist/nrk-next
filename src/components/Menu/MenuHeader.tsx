@@ -6,7 +6,7 @@ import Logo from '../../../public/images/logo_text.svg';
 import LogoSimple from '../../../public/images/logo.svg';
 import { IconArrowSimple } from '../UI';
 
-export default function HeaderMobile() {
+export default function MenuHeader() {
   const [currentPage, setCurrentPage] = useState<string>('');
   const path = usePathname();
 

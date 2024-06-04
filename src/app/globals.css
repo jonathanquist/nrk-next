@@ -21,6 +21,7 @@
   h3 {
     @apply font-bold text-lg font-cambria;
   }
+
   .card h1 {
     @apply text-5xl font-bold tracking-normal leading-loose;
   }
@@ -255,7 +256,7 @@
   }
 
   .calendar-big tbody tr {
-    @apply h-[150px];
+    @apply h-[160px];
   }
 
   .calendar-big .fc-daygrid-day-top {
@@ -293,6 +294,34 @@
 
   .calendar-small .fc {
     @apply w-full h-full;
+  }
+
+  .calendar-small .fc-header-toolbar {
+    @apply hidden;
+  }
+  .calendar-small .fc-theme-standard td,
+  .calendar-small .fc-theme-standard th,
+  .calendar-small .fc-scrollgrid {
+    @apply border-0;
+  }
+
+  .calendar-small thead .fc-daygrid-day-number {
+    @apply text-xl text-primary-500 font-normal;
+  }
+
+  .calendar-small tbody .fc-day {
+    @apply h-8;
+  }
+  .calendar-small .fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+    @apply mb-0 min-h-0;
+  }
+
+  .calendar-small .fc .fc-daygrid-day-top {
+    @apply justify-center items-center;
+  }
+
+  .calendar-small tbody .fc-daygrid-day-number {
+    @apply text-xs font-fira p-0 font-bold;
   }
 
   /* Scroll */

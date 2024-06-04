@@ -3,10 +3,10 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import Button from '../UI/Button/Button';
 import { useViewport } from '@/hooks/useViewport';
-import CalendarWidget from '../Calendar/CalendarWidget';
+import CalendarWidget from '../Events/Calendar/CalendarWidget';
 import { IconArrowDouble, IconCall, IconSocialFacebook } from '../UI';
 
-export default function Welcome() {
+export default function WelcomeMobile() {
   const [showCalendar, setShowCalendar] = useState(false);
   const { breakpoint } = useViewport();
   const page: any = useFetch(
@@ -134,7 +134,7 @@ export default function Welcome() {
               }}
               className="flex justify-center h-full items-center"
             /> */}
-            <div className="calendar-small overflow-hidden  w-full h-full">
+            <div className="calendar-small overflow-hidden w-full h-full">
               <CalendarWidget />
             </div>
           </div>

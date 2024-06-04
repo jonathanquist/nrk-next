@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export const useViewport = () => {
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
-  const [breakpointW, setBreakpointW] = useState(undefined);
+  const [breakpoint, setBreakpoint] = useState('load');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -23,6 +23,20 @@ export const useViewport = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (width < 768) {
+      setBreakpoint('xs');
+    } else if (width >= 768 && width < 992) {
+      setBreakpoint('sm');
+    } else if (width >= 992 && width < 1200) {
+      setBreakpoint('md');
+    } else if (width >= 1200 && width < 1400) {
+      setBreakpoint('lg');
+    } else if (width >= 1400) {
+      setBreakpoint('xl');
+    }
+  }, [width]);
+
   // Return both the height and width
-  return { width, height, breakpoint: width > 768 };
+  return { width, height, breakpoint };
 };
