@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,500;0,700;1,500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,400;10..48,500;10..48,600;10..48,700&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply bg-primary-300 text-primary-900 font-fira tracking-wider;
+  }
+
+  /* Headings */
+  h1 {
+    @apply text-3xl font-normal font-cambria;
+  }
+  h2 {
+    @apply font-normal text-2xl font-cambria;
+  }
+  h3 {
+    @apply font-bold text-lg font-cambria;
+  }
+
+  .card h1 {
+    @apply text-5xl font-bold tracking-normal leading-loose;
+  }
+
+  .card h2 {
+    @apply text-lg font-bold leading-snug tracking-normal font-fira;
+  }
+
+  .desktop h1 {
+    @apply text-4xl;
+  }
+
+  .desktop h2 {
+    @apply text-3xl font-bold;
+  }
+
+  .headline-s h1 {
+    @apply text-lg leading-none font-bold font-fira;
+  }
+
+  .headline-s h2 {
+    @apply text-lg font-bold font-fira;
+  }
+
+  .headline-m h2 {
+    @apply text-3xl font-bold font-fira;
+  }
+
+  .headline-l h1 {
+    @apply text-[42px] font-bold font-fira;
+  }
+
+  /* Paragraphs */
+
+  p {
+    @apply font-thin;
+  }
+
+  .paragraph-s {
+    @apply text-sm font-thin my-0.5;
+  }
+
+  .paragraph-m {
+    @apply text-base font-thin;
+  }
+
+  .paragraph-l {
+    @apply text-xl font-thin leading-8;
+  }
+
+  p.preview > p {
+    @apply text-ellipsis overflow-hidden;
+  }
+
+  /* Cards */
+
+  .card-base {
+    @apply bg-primary-100 rounded-2xl shadow-md;
+  }
+  .card-px {
+    @apply px-6 md:px-16;
+  }
+  .card-py {
+    @apply py-14;
+  }
+
+  /* Misc */
+
+  figure > img {
+    @apply object-cover;
+  }
+
+  li::marker {
+    @apply text-accent-500;
+  }
+}
+
+html,
+body {
+  scroll-behavior: smooth !important;
+  /*  */
+}
+
+html,
+textarea,
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: theme('colors.primary.500') white;
+  scrollbar-gutter: 1rem;
+}
+
+/* .rdg-row {
+  background-color: blue;
+} */
+
+/* span.small {
+  font-variant: small-caps;
+} */
+
+.small {
+  font-variant: small-caps;
+}
+
+/* summary:before {
+  transform-origin: left;
+} */

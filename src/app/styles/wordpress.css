@@ -1,0 +1,115 @@
+.wordpress-content {
+  @apply flex items-start flex-col gap-4;
+}
+
+.wordpress-content > * {
+  @apply last:!mb-0;
+}
+
+.wordpress-content .wp-block-column {
+  @apply flex items-start flex-col gap-2;
+}
+
+.wordpress-content div {
+  @apply w-full;
+}
+
+.wordpress-content a {
+  @apply underline text-accent-500 font-medium;
+}
+
+.wordpress-content a:hover {
+  @apply text-primary-900;
+}
+
+.wordpress-content figure {
+  @apply flex flex-col rounded-lg p-4 shadow-md mx-auto items-center gap-2;
+}
+
+.wordpress-content img {
+  @apply object-cover overflow-hidden;
+}
+
+.wordpress-content figcaption {
+  @apply text-sm font-thin text-center text-primary-900;
+}
+
+.wordpress-content ul {
+  @apply list-disc list-outside pl-8 w-full flex flex-col gap-0.5;
+}
+
+.wordpress-content ol {
+  @apply list-decimal list-outside pl-8 w-full flex flex-col gap-0.5;
+}
+
+.wordpress-content li {
+  @apply text-base font-thin;
+}
+
+.wordpress-content h1 {
+  @apply text-4xl font-medium font-fira;
+}
+
+.wordpress-content h2 {
+  @apply text-3xl font-medium font-fira mt-4 first:mt-0;
+}
+
+.wordpress-content h3 {
+  @apply text-2xl font-medium font-fira mt-4;
+}
+
+.wordpress-content h4 {
+  @apply text-xl font-medium font-fira;
+}
+
+/* Wordpress blockquote */
+
+.wordpress-content blockquote {
+  @apply flex flex-col w-full mb-4 mt-2 md:w-2/3 rounded-lg bg-primary-100 text-accent-500 pt-6 pb-4 px-4 md:px-12 shadow-md mx-auto;
+}
+
+.wordpress-content blockquote p {
+  @apply text-xl font-bold text-center mb-1;
+}
+
+.wordpress-content blockquote p::before {
+  @apply content-['“'] text-2xl font-medium pr-2;
+}
+
+.wordpress-content blockquote p::after {
+  @apply content-['”'] text-2xl font-medium pl-2;
+}
+
+.wordpress-content cite {
+  @apply text-xs md:text-base font-thin text-primary-500 text-center;
+}
+
+/* Wordpress details */
+
+.wordpress-content details {
+  @apply w-full rounded-lg flex items-start my-2;
+}
+
+.wordpress-content details > * {
+  @apply mb-2 first:mb-0 last:mb-0 px-4 [&:nth-child(2)]:mt-4;
+}
+.wordpress-content details ol,
+.wordpress-content details ul {
+  @apply pl-12;
+}
+
+.wordpress-content details summary {
+  @apply w-full rounded-lg bg-accent-500 text-primary-100 py-2 pr-4 pl-12 cursor-pointer relative;
+}
+
+.wordpress-content details summary::marker {
+  @apply content-none;
+}
+
+.wordpress-content details summary:before {
+  @apply origin-[2px] content-[''] border-8 border-solid border-t-transparent border-b-transparent border-l-primary-100 border-r-transparent absolute top-4 left-6 transition;
+}
+
+.wordpress-content details[open] > summary:before {
+  @apply rotate-90;
+}

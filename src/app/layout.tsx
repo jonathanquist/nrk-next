@@ -1,13 +1,16 @@
 'use client';
 
 import Menu from '@/components/Menu/Menu';
-import './globals.css';
 import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
 import { PostProvider } from '@/hooks/PostContext';
 import { useViewport } from '@/hooks/useViewport';
 import MenuMobile from '@/components/Menu/MenuMobile';
 import MenuHeader from '@/components/Menu/MenuHeader';
+
+import './styles/globals.css';
+import './styles/calendar.css';
+import './styles/wordpress.css';
 
 export const metadata: Metadata = {
   title: 'Nybro Ridklubb',

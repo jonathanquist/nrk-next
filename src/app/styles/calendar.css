@@ -1,0 +1,135 @@
+/* Calendar */
+.calendar-big .fc-toolbar.fc-header-toolbar {
+  @apply bg-accent-500 h-20 text-primary-100 mb-0 px-8 justify-center;
+}
+
+.calendar-big .fc-toolbar-chunk {
+  @apply flex items-center justify-between first:mr-auto first:w-12 last:ml-auto;
+}
+
+.calendar-big .fc-toolbar-chunk .fc-toolbar-title {
+  @apply w-64 text-center;
+}
+
+.calendar-big .fc-toolbar-chunk > * {
+  @apply ml-0;
+}
+
+.calendar-big .fc-scrollgrid {
+  @apply border-t-0;
+}
+
+.calendar-big .fc-col-header-cell-cushion {
+  @apply p-0;
+}
+
+.calendar-big .fc-col-header-cell-cushion .fc-daygrid-day-number {
+  @apply py-3;
+}
+
+.calendar-big .fc-col-header-cell {
+  @apply border-none bg-primary-500 text-primary-100 font-fira;
+}
+
+.calendar-big .fc-theme-standard td {
+  @apply border-primary-500 border-[2px] first:border-l-0 last:border-r-0 font-fira;
+}
+
+.calendar-big .fc-theme-standard tr:first-child > td {
+  @apply border-t-0;
+}
+
+.calendar-big .fc-theme-standard tr:last-child > td {
+  @apply border-b-0;
+}
+
+.calendar-big .fc-daygrid-day-frame:has(.fc-event) {
+  @apply cursor-pointer hover:bg-primary-300;
+}
+
+.calendar-big tbody tr {
+  @apply h-[160px];
+}
+
+.calendar-big .fc-daygrid-day-top {
+  @apply justify-center mt-6 mb-2 text-xl;
+}
+.calendar-big .fc-daygrid-day-top {
+  @apply justify-center mt-6 mb-2 text-xl;
+}
+
+.calendar-big .fc .fc-daygrid-day.fc-day-today {
+  @apply bg-accent-500 text-primary-100 hover:text-primary-900;
+}
+
+.calendar-big .fc-event {
+  @apply hover:bg-transparent pointer-events-none;
+}
+
+.calendar-big .fc .fc-customPrevButton-button,
+.calendar-big .fc .fc-customNextButton-button,
+.calendar-big .fc .fc-customSettingsButton-button {
+  @apply bg-transparent border-none p-0;
+}
+
+.calendar-big .fc .fc-customPrevButton-button .fc-icon-custom {
+  @apply w-12 h-12 bg-[url(/images/icon_back.svg)];
+}
+.calendar-big .fc .fc-customNextButton-button .fc-icon-custom {
+  @apply w-12 h-12 bg-[url(/images/icon_next.svg)];
+}
+.calendar-big .fc .fc-customSettingsButton-button .fc-icon-custom {
+  @apply w-12 h-12 bg-[url(/images/icon_settings.svg)];
+}
+
+/* Calendar small */
+
+.calendar-small .fc {
+  @apply w-full h-full;
+}
+
+.calendar-small .fc-header-toolbar {
+  @apply hidden;
+}
+.calendar-small .fc-theme-standard td,
+.calendar-small .fc-theme-standard th,
+.calendar-small .fc-scrollgrid {
+  @apply border-0;
+}
+
+.calendar-small thead .fc-daygrid-day-number {
+  @apply text-xl text-primary-500 font-normal;
+}
+
+.calendar-small tbody .fc-day {
+  @apply h-8;
+}
+.calendar-small .fc .fc-daygrid-body-natural .fc-daygrid-day-events {
+  @apply mb-0 min-h-0;
+}
+
+.calendar-small .fc .fc-daygrid-day-top {
+  @apply justify-center items-center;
+}
+
+.calendar-small tbody .fc-daygrid-day-number {
+  @apply text-xs font-fira p-0 font-bold;
+}
+
+/* Scroll */
+
+body::-webkit-scrollbar,
+textarea::-webkit-scrollbar,
+.custom-scroll::-webkit-scrollbar {
+  @apply w-2.5 h-2.5;
+}
+body::-webkit-scrollbar-track,
+textarea::-webkit-scrollbar-track,
+.custom-scroll::-webkit-scrollbar-track {
+  @apply bg-primary-100;
+}
+body::-webkit-scrollbar-thumb,
+textarea::-webkit-scrollbar-thumb,
+.custom-scroll::-webkit-scrollbar-thumb {
+  @apply border-2 border-primary-100 border-solid rounded-md bg-primary-500;
+}
