@@ -1,10 +1,15 @@
 import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import Button from '../UI/Button/ButtonOld';
+
 import { useViewport } from '@/hooks/useViewport';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
-import { IconArrowDouble, IconCall, IconSocialFacebook } from '../UI';
+import {
+  ButtonOld,
+  IconArrowDouble,
+  IconCall,
+  IconSocialFacebook,
+} from '../UI';
 
 export default function WelcomeMobile() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -36,13 +41,13 @@ export default function WelcomeMobile() {
             className="mb-5 paragraph-l"
           />
           <Link href="/posts">
-            <Button
+            <ButtonOld
               className=""
               size={'md'}
               icon={<IconArrowDouble className="rotate-90 h-5 w-5" />}
             >
               Kontakta Oss
-            </Button>
+            </ButtonOld>
           </Link>
         </div>
         <div className="card-base w-96 flex flex-col items-center justify-center">
@@ -55,13 +60,13 @@ export default function WelcomeMobile() {
               <CalendarWidget />
             </div>
             <Link href="/aktiviteter/kalender">
-              <Button
+              <ButtonOld
                 className=""
                 size={'md'}
                 icon={<IconArrowDouble className="rotate-90 h-5 w-5" />}
               >
                 Se hela kalendern
-              </Button>
+              </ButtonOld>
             </Link>
           </div>
         </div>
@@ -109,22 +114,22 @@ export default function WelcomeMobile() {
               </p>
             </div>
             <Link href="tel:+4670882215" className="w-full">
-              <Button
+              <ButtonOld
                 className="justify-start rounded-xl text-base px-5 py-4 gap-5 mb-7 w-full"
                 icon={<IconCall className="h-9 w-9" />}
               >
                 <div className="flex flex-col items-start leading-none">
                   <span className="font-light">Telefon</span>0481-162 48
                 </div>
-              </Button>
+              </ButtonOld>
             </Link>
 
-            <Button
+            <ButtonOld
               className="justify-start rounded-xl text-base px-5 py-4 gap-5 w-full"
               icon={<IconSocialFacebook className=" h-9 w-9" />}
             >
               Följ oss på Facebook
-            </Button>
+            </ButtonOld>
           </div>
         ) : (
           <div className="w-full flex justify-between items-center flex-col h-full">

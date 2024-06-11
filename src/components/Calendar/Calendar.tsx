@@ -24,7 +24,7 @@ export default function Calendar() {
           />
         </div>
       </div>
-      <div className="calendar-big">
+      <div className="calendar-large">
         <CalendarWidget size={'lg'} />
       </div>
     </>
