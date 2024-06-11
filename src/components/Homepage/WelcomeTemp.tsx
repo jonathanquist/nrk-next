@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
-import Button from '../UI/Button/Button';
+import Button from '../UI/Button/ButtonOld';
 import { IconCall, IconSocialFacebook } from '../UI';
 
 export default function WelcomeTemp() {

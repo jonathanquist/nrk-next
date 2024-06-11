@@ -2,9 +2,9 @@ import { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import Link from 'next/link';
-import Button from '../UI/Button/Button';
 import useFetch from '@/hooks/useFetch';
 import { useViewport } from '@/hooks/useViewport';
+import { ButtonOld } from '../UI';
 
 export default function Hero() {
   const posts: any = useFetch(
@@ -50,9 +50,9 @@ export default function Hero() {
                 />
               )}
               <Link href={posts[0].link}>
-                <Button className="" size="sm">
+                <ButtonOld className="" size="sm">
                   Läs mer
-                </Button>
+                </ButtonOld>
               </Link>
             </>
           )}

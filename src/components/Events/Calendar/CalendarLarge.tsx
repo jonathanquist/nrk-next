@@ -15,7 +15,7 @@ interface LargeCalendarProps {
 
 export default function CalendarLarge({ events }: LargeCalendarProps) {
   const [eventID, setEventID] = useState<number | null>(null);
-  const [currentDay, setCurrentDay] = useState<any[]>([]);
+  const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
   const [filtered, setFiltered] = useState<string[]>([]);
 
@@ -56,7 +56,7 @@ export default function CalendarLarge({ events }: LargeCalendarProps) {
       x: clickInfo.dayEl.offsetLeft + clickInfo.dayEl.offsetWidth / 2,
       date: clickInfo.date.getDate(),
     });
-    setCurrentDay(clickedDateEvents);
+    setCurrentDayEvents(clickedDateEvents);
     // return clickedDateEvents;
     // Now, you have an array of events for the clicked date (clickedDateEvents)
   };
@@ -119,10 +119,10 @@ export default function CalendarLarge({ events }: LargeCalendarProps) {
         dateClick={(info) => handleDateClick(info)}
       />
       {/* {eventID && renderPost()} */}
-      {currentDay.length > 0 && (
+      {currentDayEvents.length > 0 && (
         <CalendarDay
-          currentDay={currentDay}
-          setCurrentDay={setCurrentDay}
+          currentDayEvents={currentDayEvents}
+          setCurrentDayEvents={setCurrentDayEvents}
           dayInfo={dayInfo}
         />
       )}

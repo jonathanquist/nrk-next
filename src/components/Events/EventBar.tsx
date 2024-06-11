@@ -10,11 +10,11 @@ interface BarProp {
 }
 
 const LargeEventBar = ({ category }: BarProp) => (
-  <div className="fc-event-title px-1">
+  <div className="fc-event-title">
     <div
       className={cn(
         category === 'annat' ? 'text-accent-500' : 'text-primary-100',
-        'px-2 py-1 rounded-md overflow-hidden font-cambria text-center'
+        'px-2 py-1 rounded-md overflow-hidden font-cambria text-center w-full h-full'
       )}
       style={{ backgroundColor: getEventColor(category) }}
     >

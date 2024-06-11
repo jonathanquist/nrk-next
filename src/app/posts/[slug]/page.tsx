@@ -5,13 +5,13 @@ import Image from 'next/image';
 import StandardImg from '../../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
 import Link from 'next/link';
-import Button from '@/components/UI/Button/Button';
 
 import { FacebookShareButton, TwitterShareButton } from 'react-share';
 
 import Breadcrumb from '@/components/UI/Breadcrumb/Breadcrumb';
 import { useViewport } from '@/hooks/useViewport';
 import {
+  ButtonOld,
   IconArrowDouble,
   IconSocialFacebook,
   IconSocialTwitter,
@@ -172,14 +172,14 @@ export default function Page({ params }: { params: { slug: string } }) {
                     query: { slug: 'Anslagstavlan' },
                   }}
                 >
-                  <Button
+                  <ButtonOld
                     className=""
                     size={'md'}
                     icon={<IconArrowDouble className="-rotate-90 h-7 w-7" />}
                     // onClick={handleBack}
                   >
                     Återgå till anslagstavlan
-                  </Button>
+                  </ButtonOld>
                 </Link>
 
                 {/* Signature */}
@@ -269,13 +269,13 @@ export default function Page({ params }: { params: { slug: string } }) {
                 query: { slug: 'Anslagstavlan' },
               }}
             >
-              <Button
+              <ButtonOld
                 className=""
                 size={'md'}
                 icon={<IconArrowDouble className="-rotate-90 h-7 w-7" />}
               >
                 Återgå till anslagstavlan
-              </Button>
+              </ButtonOld>
             </Link>
           </div>
         </div>

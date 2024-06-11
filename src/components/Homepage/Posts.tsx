@@ -4,9 +4,9 @@ import useFetch from '@/hooks/useFetch';
 import React, { useState, useEffect } from 'react';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
-import Button from '../UI/Button/Button';
+
 import { useMenu } from '@/hooks/MenuContext';
-import { IconArrowDouble } from '../UI';
+import { ButtonOld, IconArrowDouble } from '../UI';
 
 export default function Posts() {
   const [postLimit, setPostLimit] = useState(4);
@@ -67,9 +67,9 @@ export default function Posts() {
                     className="mt-auto"
                     //onClick={() => handleLink('Anslagstavlan')}
                   >
-                    <Button className="" size="sm">
+                    <ButtonOld className="" size="sm">
                       Läs mer
-                    </Button>
+                    </ButtonOld>
                   </Link>
                 </div>
               </div>
@@ -78,13 +78,13 @@ export default function Posts() {
         })}
       </div>
       <Link href="/aktiviteter/anslagstavlan">
-        <Button
+        <ButtonOld
           className=""
           size={'lg'}
           icon={<IconArrowDouble className="rotate-90 h-9 w-9" />}
         >
           Mer finns på anslagstavlan
-        </Button>
+        </ButtonOld>
       </Link>
     </div>
   );

@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import React from 'react';
-import Button from '../UI/Button/Button';
-import { IconSocialFacebookSimple, IconSocialInstagram } from '../UI';
+import {
+  ButtonOld,
+  IconSocialFacebookSimple,
+  IconSocialInstagram,
+} from '../UI';
 
 export default function Social() {
   return (
@@ -10,22 +13,22 @@ export default function Social() {
         <h2>Följ oss på sociala medier</h2>
         <div className="flex items-center gap-10">
           <Link href="https://www.facebook.com">
-            <Button
+            <ButtonOld
               className=""
               size={'md'}
               icon={<IconSocialFacebookSimple className="h-8 w-8" />}
             >
               Facebook
-            </Button>
+            </ButtonOld>
           </Link>
           <Link href="https://www.instagram.com">
-            <Button
+            <ButtonOld
               className=""
               size={'md'}
               icon={<IconSocialInstagram className="h-8 w-8" />}
             >
               Instagram
-            </Button>
+            </ButtonOld>
           </Link>
         </div>
       </div>

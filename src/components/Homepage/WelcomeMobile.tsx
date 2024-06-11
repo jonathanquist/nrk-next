@@ -1,7 +1,7 @@
 import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import Button from '../UI/Button/Button';
+import Button from '../UI/Button/ButtonOld';
 import { useViewport } from '@/hooks/useViewport';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
 import { IconArrowDouble, IconCall, IconSocialFacebook } from '../UI';

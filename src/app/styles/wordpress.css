@@ -99,7 +99,7 @@
 }
 
 .wordpress-content details summary {
-  @apply w-full rounded-lg bg-accent-500 text-primary-100 py-2 pr-4 pl-12 cursor-pointer relative;
+  @apply w-full rounded-lg bg-accent-500 text-primary-100 py-2 pr-4 pl-12 cursor-pointer relative select-none;
 }
 
 .wordpress-content details summary::marker {

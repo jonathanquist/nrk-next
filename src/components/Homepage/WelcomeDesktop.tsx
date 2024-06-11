@@ -1,10 +1,16 @@
 import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import Button from '../UI/Button/Button';
+
 import { useViewport } from '@/hooks/useViewport';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
-import { IconArrowDouble, IconCall, IconSocialFacebook } from '../UI';
+import {
+  Button,
+  ButtonOld,
+  IconArrowDouble,
+  IconCall,
+  IconSocialFacebook,
+} from '../UI';
 
 export default function WelcomeDesktop() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -37,13 +43,13 @@ export default function WelcomeDesktop() {
           className="mb-5 paragraph-l"
         />
         <Link href="/posts">
-          <Button
+          <ButtonOld
             className=""
             size={'md'}
             icon={<IconArrowDouble className="rotate-90 h-5 w-5" />}
           >
             Kontakta Oss
-          </Button>
+          </ButtonOld>
         </Link>
       </div>
 
@@ -58,13 +64,13 @@ export default function WelcomeDesktop() {
             <CalendarWidget />
           </div>
           <Link href="/aktiviteter/kalender">
-            <Button
+            <ButtonOld
               className=""
               size={'md'}
               icon={<IconArrowDouble className="rotate-90 h-5 w-5" />}
             >
               Se hela kalendern
-            </Button>
+            </ButtonOld>
           </Link>
         </div>
       </div>

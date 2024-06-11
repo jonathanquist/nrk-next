@@ -41,11 +41,15 @@ const config: Config = {
       screens: {
         '3xl': '2200px',
       },
-
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
+      animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'fade-in': 'fade-in 1s ease-in-out',
       },
     },
     fontFamily: {
@@ -54,6 +58,6 @@ const config: Config = {
       cambria: ['Cambria', 'serif'],
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 };
 export default config;
