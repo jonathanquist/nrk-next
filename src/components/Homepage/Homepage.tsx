@@ -16,7 +16,6 @@ interface HomeProps {
 }
 
 export default function Homepage({ posts, pages }: HomeProps) {
-  const { breakpoint } = useViewport();
   const { updatePosts, updatePages } = usePost();
 
   useEffect(() => {
@@ -24,9 +23,9 @@ export default function Homepage({ posts, pages }: HomeProps) {
     updatePages(pages);
   }, [updatePages, updatePosts, posts, pages]);
 
-  if (breakpoint === 'xl') {
-    return (
-      <>
+  return (
+    <>
+      <div className="hidden lg:block h-full">
         <Hero />
         <WelcomeDesktop />
         <Posts />
@@ -34,17 +33,16 @@ export default function Homepage({ posts, pages }: HomeProps) {
           <div className="h-1 w-full my-4 bg-primary-500" />
         </div>
         <Social />
-        {/* <Featured /> */}
+
         <Sponsors />
-      </>
-    );
-  } else {
-    return (
-      <div className="card-base w-full flex flex-col overflow-y-auto justify-start items-start h-full">
-        <Hero />
-        {/* <Welcome /> */}
-        <WelcomeMobile />
       </div>
-    );
-  }
+      <div className="flex lg:hidden h-full">
+        <div className="card-base w-full flex flex-col overflow-y-auto justify-start items-start h-full">
+          <Hero />
+
+          <WelcomeMobile />
+        </div>
+      </div>
+    </>
+  );
 }

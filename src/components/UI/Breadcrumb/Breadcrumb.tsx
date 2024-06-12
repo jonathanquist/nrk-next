@@ -15,7 +15,7 @@ export default function Breadcrumb({
   current: string | null;
 }) {
   return (
-    <div className="flex gap-1 small font-bold px-8 mt-8 mb-9">
+    <div className="hidden lg:flex gap-1 small font-bold px-8 mt-8 mb-9">
       {/*Home*/}
       <Link href="/">Hem</Link>
 

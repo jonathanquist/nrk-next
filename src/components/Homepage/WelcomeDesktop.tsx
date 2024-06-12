@@ -22,14 +22,6 @@ export default function WelcomeDesktop() {
     <div className="w-full flex justify-between gap-10 items-stretch">
       {/* Blurb */}
       <div className="card-base card-px pt-16 pb-9  w-full flex flex-col gap-8  h-full md:desktop">
-        {/* <h1
-          dangerouslySetInnerHTML={{ __html: page[0].title.rendered }}
-          className="small"
-        />
-        <div
-          dangerouslySetInnerHTML={{ __html: page[0].content.rendered }}
-          className="mb-5 paragraph-l"
-        /> */}
         <h1
           dangerouslySetInnerHTML={{ __html: pages.allmant.title.rendered }}
           className="small"
@@ -52,10 +44,6 @@ export default function WelcomeDesktop() {
       {/* Calendar */}
       <div className="card-base card-px w-96 pt-16 pb-9 shrink-0 flex flex-col items-center justify-center">
         <div className="h-full w-full flex justify-between items-center gap-8 flex-col">
-          {/* <div
-            dangerouslySetInnerHTML={{ __html: calendar[0].content.rendered }}
-            className="mb-5 paragraph-l"
-          /> */}
           <div className="calendar-small overflow-hidden w-full h-full">
             <CalendarWidget />
           </div>

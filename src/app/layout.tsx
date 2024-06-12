@@ -22,43 +22,31 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { breakpoint } = useViewport();
-
   return (
     <html lang="en">
       <PostProvider>
-        {breakpoint === 'load' && (
-          <body>
-            <div className="flex items-center justify-center bg-transparent rounded-xl m-4 h-48 md:h-[calc(100vh-8.5rem)]  md:pt-16 md:pb-20  w-full">
-              <div className=" overflow-hidden w-full h-48 md:h-full rounded-t-2xl rounded-b-none md:rounded-2xl md:shadow-md animate-pulse" />
-            </div>
-          </body>
-        )}
-
-        {breakpoint === 'xl' && (
-          <body className="min-h-screen relative">
+        <body className="lg:min-h-screen lg:relative">
+          <div className="hidden lg:block">
             <header className="App-header">
               <Menu />
             </header>
-
             <div className="flex justify-center items-center pb-48">
               <div className="max-w-7xl w-full">{children}</div>
             </div>
             <Footer />
-          </body>
-        )}
+          </div>
 
-        {breakpoint === 'sm' && (
-          <body className="">
+          <div className="block lg:hidden">
             <header className="App-header">
               <MenuHeader />
             </header>
-            <div className="flex justify-center items-start h-[calc(100dvh-13.625rem)] w-screen overflow-y-auto rounded-xl shadow-md">
+            <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-13.625rem)] w-screen overflow-y-auto rounded-xl shadow-md">
               {children}
             </div>
+
             <MenuMobile />
-          </body>
-        )}
+          </div>
+        </body>
       </PostProvider>
     </html>
   );

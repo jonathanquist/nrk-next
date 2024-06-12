@@ -24,8 +24,6 @@ export default function MenuHeader() {
     return title.charAt(0).toUpperCase() + title.slice(1);
   };
 
-  console.log('pie', currentPage, path);
-
   return (
     <div className="w-full flex items-center justify-center pt-6 pb-4 px-6">
       {path === '/' ? (

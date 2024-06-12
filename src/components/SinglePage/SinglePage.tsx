@@ -22,10 +22,10 @@ export default function SinglePage({
     );
   }
 
-  console.log('page', page);
+  // console.log('page', page);
 
   return (
-    <div>
+    <div className="card-base">
       <Header
         variant="page"
         title={page[0].title.rendered}

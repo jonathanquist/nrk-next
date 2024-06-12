@@ -8,7 +8,6 @@ import { usePost } from '@/contexts/PostContext';
 
 export default function Hero() {
   const { posts } = usePost();
-  const { breakpoint } = useViewport();
 
   const containerRef = useRef<HTMLParagraphElement>(null);
 
@@ -36,15 +35,15 @@ export default function Hero() {
                 dangerouslySetInnerHTML={{ __html: posts[0].title.rendered }}
                 className="md:mb-5 truncate md:w-[450px]"
               />
-              {breakpoint && (
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: posts[0].excerpt.rendered,
-                  }}
-                  ref={containerRef}
-                  className="paragraph-m mb-5 w-full line-clamp-2 break-words"
-                />
-              )}
+
+              <p
+                dangerouslySetInnerHTML={{
+                  __html: posts[0].excerpt.rendered,
+                }}
+                ref={containerRef}
+                className="hidden lg:block paragraph-m mb-5 w-full line-clamp-2 break-words"
+              />
+
               <Link href={posts[0].link}>
                 <ButtonOld className="" size="sm">
                   Läs mer
@@ -62,6 +61,7 @@ export default function Hero() {
           alt="logo"
           sizes="100%"
           fill
+          priority
           className="z-0 object-center object-cover opacity-90"
         />
       </div>

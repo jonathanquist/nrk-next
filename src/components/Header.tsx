@@ -36,6 +36,7 @@ export default function Header({
           alt={title}
           sizes="100%"
           fill
+          priority
           className="z-0 object-center object-cover"
         />
       </div>

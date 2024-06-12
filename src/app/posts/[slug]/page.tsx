@@ -6,10 +6,7 @@ import StandardImg from '../../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
 import Link from 'next/link';
 
-import { FacebookShareButton, TwitterShareButton } from 'react-share';
-
 import Breadcrumb from '@/components/UI/Breadcrumb/Breadcrumb';
-import { useViewport } from '@/hooks/useViewport';
 import {
   ButtonOld,
   IconArrowDouble,
@@ -18,10 +15,6 @@ import {
 } from '@/components/UI';
 
 export default function Page({ params }: { params: { slug: string } }) {
-  // const { updatePage } = useMenu();
-
-  const { breakpoint } = useViewport();
-
   const posts: any = useFetch(
     'http://localhost/nrk/wp-json/wp/v2/posts?_embed'
   );
@@ -69,7 +62,7 @@ export default function Page({ params }: { params: { slug: string } }) {
               ? 'Daglig Verksamhet'
               : catObject.name}
           </Link>
-          {breakpoint && index < catArr.length - 1 && <span>, </span>}
+          {index < catArr.length - 1 && <span>, </span>}
         </div>
       ) : null;
     });
@@ -283,5 +276,10 @@ export default function Page({ params }: { params: { slug: string } }) {
     }
   });
 
-  return <div className="w-full">{breakpoint ? article : articleMobile}</div>;
+  return (
+    <div className="w-full">
+      <div className="hidden lg:block">{article}</div>
+      <div className="block lg:hidden">{articleMobile}</div>
+    </div>
+  );
 }
