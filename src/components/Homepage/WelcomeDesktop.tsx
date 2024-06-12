@@ -1,17 +1,12 @@
-import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
 import React from 'react';
 
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
 import { ButtonOld, IconArrowDouble } from '../UI';
-import { usePost } from '@/contexts/PostContext';
+import { useSite } from '@/contexts/SiteContext';
 
 export default function WelcomeDesktop() {
-  // const page: any = useFetch(
-  //   'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant'
-  // );
-
-  const { pages } = usePost();
+  const { pages } = useSite();
 
   if (!pages) {
     return <div>Loading...</div>;

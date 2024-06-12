@@ -4,8 +4,7 @@ import Hero from './Hero';
 import Posts from './Posts';
 import Social from './Social';
 import Sponsors from './Sponsors';
-import { usePost } from '@/contexts/PostContext';
-import { useViewport } from '@/hooks/useViewport';
+import { useSite } from '@/contexts/SiteContext';
 import WelcomeDesktop from './WelcomeDesktop';
 import WelcomeMobile from './WelcomeMobile';
 import { useEffect } from 'react';
@@ -13,15 +12,17 @@ import { useEffect } from 'react';
 interface HomeProps {
   posts: any;
   pages: any;
+  events: any;
 }
 
-export default function Homepage({ posts, pages }: HomeProps) {
-  const { updatePosts, updatePages } = usePost();
+export default function Homepage({ posts, pages, events }: HomeProps) {
+  const { updatePosts, updatePages, updateEvents } = useSite();
 
   useEffect(() => {
     updatePosts(posts);
     updatePages(pages);
-  }, [updatePages, updatePosts, posts, pages]);
+    updateEvents(events);
+  }, [updatePages, updatePosts, updateEvents, posts, pages, events]);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { format } from 'date-fns';
-import { usePost } from '@/contexts/PostContext';
+import { useSite } from '@/contexts/SiteContext';
 import useFetch from '@/hooks/useFetch';
 
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import StandardImg from '../../../public/images/hero_img.jpg';
 
 export default function PostListMobile() {
-  const { currentPageNumber, updatePageNumber, currentCat } = usePost();
+  const { currentPageNumber, updatePageNumber, currentCat } = useSite();
   const [visiblePosts, setVisiblePosts] = useState(4); // Number of initially visible posts
   const observer = useRef<IntersectionObserver | null>(null);
 

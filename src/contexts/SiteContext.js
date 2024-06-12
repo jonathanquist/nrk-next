@@ -1,12 +1,13 @@
 import { createContext, useContext, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-const PostContext = createContext();
+const SiteContext = createContext();
 
-export const PostProvider = ({ children }) => {
+export const SiteProvider = ({ children }) => {
   const params = useSearchParams();
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useState();
   const [pages, setPages] = useState();
+  const [events, setEvents] = useState();
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
   const [currentCat, setCurrentCat] = useState(params.get('cat') || '');
 
@@ -16,6 +17,10 @@ export const PostProvider = ({ children }) => {
 
   const updatePages = (pages) => {
     setPages(pages);
+  };
+
+  const updateEvents = (events) => {
+    setEvents(events);
   };
 
   const updatePageNumber = (pageNumber) => {
@@ -28,12 +33,14 @@ export const PostProvider = ({ children }) => {
   };
 
   return (
-    <PostContext.Provider
+    <SiteContext.Provider
       value={{
         posts,
         updatePosts,
         pages,
         updatePages,
+        events,
+        updateEvents,
         currentPageNumber,
         updatePageNumber,
         currentCat,
@@ -41,10 +48,10 @@ export const PostProvider = ({ children }) => {
       }}
     >
       {children}
-    </PostContext.Provider>
+    </SiteContext.Provider>
   );
 };
 
-export const usePost = () => {
-  return useContext(PostContext);
+export const useSite = () => {
+  return useContext(SiteContext);
 };

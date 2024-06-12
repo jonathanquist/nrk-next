@@ -1,20 +1,15 @@
-// export async function getPosts() {
-//   const res = await fetch(`http://localhost/nrk/wp-json/wp/v2/posts?_embed`);
-//   const posts = await res.json();
-
-//   return posts;
-// }
+const BASE_URL = `http://localhost/nrk/wp-json`;
 
 // General fetch function
 async function fetchData(url: string) {
-  const res = await fetch(url);
+  const res = await fetch(`${BASE_URL}${url}`);
   const data = await res.json();
   return data;
 }
 
 // Fetch posts with optional category
 export async function getPosts(currentCat?: number) {
-  let url = `http://localhost/nrk/wp-json/wp/v2/posts?_embed`;
+  let url = `/wp/v2/posts?_embed`;
   if (currentCat) {
     url += `&categories=${currentCat}`;
   }
@@ -22,20 +17,18 @@ export async function getPosts(currentCat?: number) {
 }
 
 export async function getCats() {
-  const url = `http://localhost/nrk/wp-json/wp/v2/categories/`;
+  const url = `/wp/v2/categories/`;
   return fetchData(url);
 }
 
 // Fetch pages by slug
 export async function getPage(slug: string) {
-  const url = `http://localhost/nrk/wp-json/wp/v2/pages/?slug=${slug}&_embed`;
+  const url = `/wp/v2/pages/?slug=${slug}&_embed`;
   return fetchData(url);
 }
 
 export async function getPages(slugs: string[]) {
-  const urls = slugs.map(
-    (slug) => `http://localhost/nrk/wp-json/wp/v2/pages/?slug=${slug}&_embed`
-  );
+  const urls = slugs.map((slug) => `/wp/v2/pages/?slug=${slug}&_embed`);
   const fetchPromises = urls.map((url) => fetchData(url));
 
   const pagesArray = await Promise.all(fetchPromises);
@@ -49,4 +42,9 @@ export async function getPages(slugs: string[]) {
   }, {});
 
   return pagesObject;
+}
+
+export async function getEvents() {
+  const url = `/tribe/events/v1/events`;
+  return fetchData(url);
 }

@@ -1,13 +1,14 @@
-'use client';
-
 import { Breadcrumb } from '@/components/UI';
 import SinglePage from '@/components/SinglePage/SinglePage';
+import { getPage, getPosts } from '@/lib/api';
 
-export default function Page() {
+export default async function Page() {
+  const page = await getPage('vision-policy');
+
   return (
     <>
       <Breadcrumb section="Föreningen" current={'Vision & Policy'} />
-      <SinglePage slug="vision-policy" />
+      <SinglePage page={page} />
     </>
   );
 }

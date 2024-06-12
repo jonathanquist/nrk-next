@@ -4,10 +4,10 @@ import StandardImg from '../../../public/images/hero_img.jpg';
 import Link from 'next/link';
 import { useViewport } from '@/hooks/useViewport';
 import { ButtonOld } from '../UI';
-import { usePost } from '@/contexts/PostContext';
+import { useSite } from '@/contexts/SiteContext';
 
 export default function Hero() {
-  const { posts } = usePost();
+  const { posts } = useSite();
 
   const containerRef = useRef<HTMLParagraphElement>(null);
 

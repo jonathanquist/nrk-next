@@ -1,12 +1,12 @@
 'use client';
 
-import Menu from '@/components/Menu/Menu';
 import type { Metadata } from 'next';
-import Footer from '@/components/Footer';
-import { PostProvider } from '@/contexts/PostContext';
-import { useViewport } from '@/hooks/useViewport';
+import { SiteProvider } from '@/contexts/SiteContext';
+
+import Menu from '@/components/Menu/Menu';
 import MenuMobile from '@/components/Menu/MenuMobile';
 import MenuHeader from '@/components/Menu/MenuHeader';
+import Footer from '@/components/Footer';
 
 import './styles/globals.css';
 import './styles/calendar.css';
@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <PostProvider>
+      <SiteProvider>
         <body className="lg:min-h-screen lg:relative">
           <div className="hidden lg:block">
             <header className="App-header">
@@ -47,7 +47,7 @@ export default function RootLayout({
             <MenuMobile />
           </div>
         </body>
-      </PostProvider>
+      </SiteProvider>
     </html>
   );
 }

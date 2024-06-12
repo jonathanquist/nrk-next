@@ -1,4 +1,3 @@
-import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
@@ -9,29 +8,31 @@ import {
   IconCall,
   IconSocialFacebook,
 } from '../UI';
+import { useSite } from '@/contexts/SiteContext';
 
 export default function WelcomeMobile() {
   const [showCalendar, setShowCalendar] = useState(false);
+  const { pages } = useSite();
 
-  const pageMobile: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant-mobile'
-  );
-
-  if (!pageMobile) {
+  if (!pages) {
     return <div>Loading...</div>;
   }
 
   // console.log(page);
   return (
     <div className="w-full flex flex-col pt-5 pb-8 px-6 h-full md:desktop">
-      {/* <h1
-          dangerouslySetInnerHTML={{ __html: pageMobile[0].title.rendered }}
-          className="small"
-        />
-        <div
-          dangerouslySetInnerHTML={{ __html: pageMobile[0].content.rendered }}
-          className="mb-5 paragraph-l text-xl"
-        /> */}
+      <h1
+        dangerouslySetInnerHTML={{
+          __html: pages['allmant-mobile'].title.rendered,
+        }}
+        className="small"
+      />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: pages['allmant-mobile'].content.rendered,
+        }}
+        className="mb-5 paragraph-l text-xl"
+      />
       <div className="flex justify-between items-start mb-8">
         <button
           onClick={() => setShowCalendar(false)}

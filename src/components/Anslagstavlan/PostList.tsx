@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { usePost } from '@/contexts/PostContext';
+import { useSite } from '@/contexts/SiteContext';
 import useFetch from '@/hooks/useFetch';
 
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import { IconBack, IconNext } from '../UI';
 
 export default function PostList() {
   const [pageNumber, setPageNumber] = useState(1);
-  const { currentPageNumber, updatePageNumber, currentCat } = usePost();
+  const { currentPageNumber, updatePageNumber, currentCat } = useSite();
   const postsPerPage = 3; // Set the number of posts per page
   const maxPagesToShow = 5; // Maximum number of page buttons to show
 

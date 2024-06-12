@@ -1,10 +1,21 @@
-import React from 'react';
-import { useViewport } from '@/hooks/useViewport';
+'use client';
 
+import React, { useEffect } from 'react';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
 import Header from '../Header';
+import { useSite } from '@/contexts/SiteContext';
 
-export default function Calendar() {
+interface CalendarProps {
+  events: any;
+}
+
+export default function Calendar({ events }: CalendarProps) {
+  const { updateEvents } = useSite();
+
+  useEffect(() => {
+    updateEvents(events);
+  }, [updateEvents, events]);
+
   return (
     <div className="card-base">
       <Header variant="menu" title="Kalender" />

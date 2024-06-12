@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import useFetch from '@/hooks/useFetch';
-import { usePost } from '@/contexts/PostContext';
+import { useSite } from '@/contexts/SiteContext';
 import React, { useState } from 'react';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
@@ -11,7 +10,7 @@ import { ButtonOld, IconArrowDouble } from '../UI';
 export default function Posts() {
   const [postLimit, setPostLimit] = useState(4);
 
-  const { posts } = usePost();
+  const { posts } = useSite();
 
   if (!posts) {
     return <div>Loading...</div>;

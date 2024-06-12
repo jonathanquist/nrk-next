@@ -6,14 +6,13 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 import EventBar from '../EventBar';
 import WeekHeader from '../WeekHeader';
+import { useSite } from '@/contexts/SiteContext';
 
-interface SmallCalendarProps {
-  events: any;
-}
+export default function CalendarSmall() {
+  // const [currentDay, setCurrentDay] = useState<any[]>([]);
+  // const [dayInfo, setDayInfo] = useState({} as any);
 
-export default function CalendarSmall({ events }: SmallCalendarProps) {
-  const [currentDay, setCurrentDay] = useState<any[]>([]);
-  const [dayInfo, setDayInfo] = useState({} as any);
+  const { events } = useSite();
 
   const handleDateClick = (clickInfo: any) => {
     console.log('hi', clickInfo);
