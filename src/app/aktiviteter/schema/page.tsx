@@ -1,10 +1,7 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
-import { useViewport } from '@/hooks/useViewport';
-
-import Breadcrumb from '@/components/UI/Breadcrumb/Breadcrumb';
 import Schedule from '@/components/Schedule/Schedule';
+import { Breadcrumb } from '@/components/UI';
 
 export default function Page() {
   return (

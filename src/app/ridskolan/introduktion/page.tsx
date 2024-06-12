@@ -1,10 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useViewport } from '@/hooks/useViewport';
-
-import Breadcrumb from '@/components/UI/Breadcrumb/Breadcrumb';
-import Anslagstavlan from '@/components/Anslagstavlan/Anslagstavlan';
+import { Breadcrumb } from '@/components/UI';
 
 export default function Page() {
   const params = useSearchParams();
@@ -12,7 +9,6 @@ export default function Page() {
   return (
     <>
       <Breadcrumb section="Ridskolan" current={'Introduktion'} />
-
       <div className="card-base">
         <p>{params!.get('slug')}</p>
       </div>

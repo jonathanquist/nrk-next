@@ -1,8 +1,9 @@
+'use client';
+
 import Link from 'next/link';
-import { useSearchParams } from 'next/dist/client/components/navigation';
 import { IconBack } from '..';
 
-export default function Breadcrumb({
+export function Breadcrumb({
   section,
   subsection,
   current,
