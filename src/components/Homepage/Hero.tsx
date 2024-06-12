@@ -2,17 +2,13 @@ import { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import Link from 'next/link';
-import useFetch from '@/hooks/useFetch';
 import { useViewport } from '@/hooks/useViewport';
 import { ButtonOld } from '../UI';
+import { usePost } from '@/contexts/PostContext';
 
 export default function Hero() {
-  const posts: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/posts?_embed'
-  );
-
+  const { posts } = usePost();
   const { breakpoint } = useViewport();
-  //console.log('new', posts);
 
   const containerRef = useRef<HTMLParagraphElement>(null);
 
@@ -22,7 +18,7 @@ export default function Hero() {
     }
   });
 
-  if (!posts) {
+  if (posts.length <= 0) {
     return (
       <div className="flex items-center justify-center bg-transparent rounded-xl m-4 h-48 md:h-[calc(100vh-8.5rem)]  md:pt-16 md:pb-20  w-full">
         <div className=" overflow-hidden w-full h-48 md:h-full rounded-t-2xl rounded-b-none md:rounded-2xl md:shadow-md animate-pulse" />

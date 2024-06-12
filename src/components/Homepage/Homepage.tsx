@@ -1,15 +1,28 @@
-import Featured from './Featured';
+'use client';
+
 import Hero from './Hero';
-import Welcome from './WelcomeDesktop';
 import Posts from './Posts';
 import Social from './Social';
 import Sponsors from './Sponsors';
+import { usePost } from '@/contexts/PostContext';
 import { useViewport } from '@/hooks/useViewport';
 import WelcomeDesktop from './WelcomeDesktop';
 import WelcomeMobile from './WelcomeMobile';
+import { useEffect } from 'react';
 
-export default function Homepage() {
+interface HomeProps {
+  posts: any;
+  pages: any;
+}
+
+export default function Homepage({ posts, pages }: HomeProps) {
   const { breakpoint } = useViewport();
+  const { updatePosts, updatePages } = usePost();
+
+  useEffect(() => {
+    updatePosts(posts);
+    updatePages(pages);
+  }, [updatePages, updatePosts, posts, pages]);
 
   if (breakpoint === 'xl') {
     return (

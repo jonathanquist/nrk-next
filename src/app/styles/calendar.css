@@ -25,8 +25,8 @@
 }
 
 .calendar-large .fc-scrollgrid,
-.schedule-large .fc-scrollgrid {
-  @apply border-t-0;
+.calendar-large .fc-scrollgrid-section {
+  @apply border-none;
 }
 
 .calendar-large .fc-col-header-cell-cushion,
@@ -212,6 +212,10 @@
 .schedule-large {
   --fc-border-color: theme('colors.primary.500');
   --fc-today-bg-color: theme('colors.primary.300');
+}
+
+.schedule-large .fc-scrollgrid {
+  @apply border-t-0;
 }
 
 .schedule-large colgroup,

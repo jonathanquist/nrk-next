@@ -13,9 +13,7 @@ export default function Page() {
   return (
     <>
       {breakpoint && (
-        <div className="mt-8 mb-9">
-          <Breadcrumb section="Ridskolan" current={'Utbildningsplan'} />
-        </div>
+        <Breadcrumb section="Ridskolan" current={'Utbildningsplan'} />
       )}
       <div className="card-base">
         <p>{params!.get('slug')}</p>

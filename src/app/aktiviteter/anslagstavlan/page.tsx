@@ -8,14 +8,11 @@ import Anslagstavlan from '@/components/Anslagstavlan/Anslagstavlan';
 
 export default function Page() {
   const { breakpoint } = useViewport();
-  const params = useSearchParams();
 
   return (
     <>
       {breakpoint && (
-        <div className="mt-8 mb-9">
-          <Breadcrumb section="Aktiviteter" current={'Anslagstavlan'} />
-        </div>
+        <Breadcrumb section="Aktiviteter" current={'Anslagstavlan'} />
       )}
       <div className="card-base h-full">
         <Anslagstavlan />

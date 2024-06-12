@@ -1,29 +1,21 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import useFetch from '@/hooks/useFetch';
-import React, { useState, useEffect } from 'react';
+import { usePost } from '@/contexts/PostContext';
+import React, { useState } from 'react';
 import StandardImg from '../../../public/images/hero_img.jpg';
 import { format } from 'date-fns';
 
-import { useMenu } from '@/hooks/MenuContext';
 import { ButtonOld, IconArrowDouble } from '../UI';
 
 export default function Posts() {
   const [postLimit, setPostLimit] = useState(4);
-  // const { updatePage } = useMenu();
 
-  const posts: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/posts?_embed'
-  );
+  const { posts } = usePost();
 
   if (!posts) {
     return <div>Loading...</div>;
   }
-
-  // const handleLink = (page: string) => {
-  //   // Update the menu state when the link is clicked
-  //   updatePage(page);
-  // };
 
   return (
     <div className="flex flex-col w-full gap-20 py-20 items-center">

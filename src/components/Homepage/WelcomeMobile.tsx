@@ -14,9 +14,7 @@ import {
 export default function WelcomeMobile() {
   const [showCalendar, setShowCalendar] = useState(false);
   const { breakpoint } = useViewport();
-  const page: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant'
-  );
+
   const calendar: any = useFetch(
     'http://localhost/nrk/wp-json/wp/v2/pages/?slug=calendarmini'
   );
@@ -24,53 +22,13 @@ export default function WelcomeMobile() {
     'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant-mobile'
   );
 
-  if (!page || !pageMobile) {
+  if (!pageMobile) {
     return <div>Loading...</div>;
   }
 
   if (breakpoint) {
     return (
-      <div className="w-full flex justify-between gap-10 items-stretch">
-        <div className="card-base card-px w-full flex flex-col gap-8 pt-16 pb-9 h-full md:desktop">
-          <h1
-            dangerouslySetInnerHTML={{ __html: page[0].title.rendered }}
-            className="small"
-          />
-          <div
-            dangerouslySetInnerHTML={{ __html: page[0].content.rendered }}
-            className="mb-5 paragraph-l"
-          />
-          <Link href="/posts">
-            <ButtonOld
-              className=""
-              size={'md'}
-              icon={<IconArrowDouble className="rotate-90 h-5 w-5" />}
-            >
-              Kontakta Oss
-            </ButtonOld>
-          </Link>
-        </div>
-        <div className="card-base w-96 flex flex-col items-center justify-center">
-          <div className="h-full w-full flex justify-between items-center pt-16 pb-9 flex-col">
-            {/* <div
-              dangerouslySetInnerHTML={{ __html: calendar[0].content.rendered }}
-              className="mb-5 paragraph-l"
-            /> */}
-            <div className="calendar-small overflow-hidden w-full h-full">
-              <CalendarWidget />
-            </div>
-            <Link href="/aktiviteter/kalender">
-              <ButtonOld
-                className=""
-                size={'md'}
-                icon={<IconArrowDouble className="rotate-90 h-5 w-5" />}
-              >
-                Se hela kalendern
-              </ButtonOld>
-            </Link>
-          </div>
-        </div>
-      </div>
+      <div className="w-full flex justify-between gap-10 items-stretch"></div>
     );
   } else {
     // console.log(page);

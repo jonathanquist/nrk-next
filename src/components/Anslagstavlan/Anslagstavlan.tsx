@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { usePost } from '@/hooks/PostContext';
+import { usePost } from '@/contexts/PostContext';
 import { useViewport } from '@/hooks/useViewport';
 
 import Image from 'next/image';

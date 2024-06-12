@@ -1,31 +1,19 @@
 import useFetch from '@/hooks/useFetch';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 
-import { useViewport } from '@/hooks/useViewport';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
-import {
-  Button,
-  ButtonOld,
-  IconArrowDouble,
-  IconCall,
-  IconSocialFacebook,
-} from '../UI';
+import { ButtonOld, IconArrowDouble } from '../UI';
+import { usePost } from '@/contexts/PostContext';
 
 export default function WelcomeDesktop() {
-  const [showCalendar, setShowCalendar] = useState(false);
-  const { breakpoint } = useViewport();
-  const page: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant'
-  );
-  const calendar: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/pages/?slug=calendarmini'
-  );
-  const pageMobile: any = useFetch(
-    'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant-mobile'
-  );
+  // const page: any = useFetch(
+  //   'http://localhost/nrk/wp-json/wp/v2/pages/?slug=allmant'
+  // );
 
-  if (!page || !pageMobile) {
+  const { pages } = usePost();
+
+  if (!pages) {
     return <div>Loading...</div>;
   }
 
@@ -34,12 +22,20 @@ export default function WelcomeDesktop() {
     <div className="w-full flex justify-between gap-10 items-stretch">
       {/* Blurb */}
       <div className="card-base card-px pt-16 pb-9  w-full flex flex-col gap-8  h-full md:desktop">
-        <h1
+        {/* <h1
           dangerouslySetInnerHTML={{ __html: page[0].title.rendered }}
           className="small"
         />
         <div
           dangerouslySetInnerHTML={{ __html: page[0].content.rendered }}
+          className="mb-5 paragraph-l"
+        /> */}
+        <h1
+          dangerouslySetInnerHTML={{ __html: pages.allmant.title.rendered }}
+          className="small"
+        />
+        <div
+          dangerouslySetInnerHTML={{ __html: pages.allmant.content.rendered }}
           className="mb-5 paragraph-l"
         />
         <Link href="/posts">

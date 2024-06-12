@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import { usePost } from '@/hooks/PostContext';
+import { usePost } from '@/contexts/PostContext';
 import useFetch from '@/hooks/useFetch';
 
 import Image from 'next/image';
@@ -10,7 +10,7 @@ import { IconBack, IconNext } from '../UI';
 
 export default function PostList() {
   const [pageNumber, setPageNumber] = useState(1);
-  const { currentPage, updatePage, currentCat } = usePost();
+  const { currentPageNumber, updatePageNumber, currentCat } = usePost();
   const postsPerPage = 3; // Set the number of posts per page
   const maxPagesToShow = 5; // Maximum number of page buttons to show
 
@@ -27,7 +27,7 @@ export default function PostList() {
 
   // <  useEffect(() => {
   //     //setPageNumber(1);
-  //     updatePage(1);
+  //     updatePageNumber(1);
   //     console.log(currentTag);
   //   }, [currentTag]);>
 
@@ -37,7 +37,7 @@ export default function PostList() {
     return <div>Loading...</div>;
   }
 
-  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfLastPost = currentPageNumber * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const posts = (fetchedPosts as any[])?.slice(
     indexOfFirstPost,
@@ -48,16 +48,16 @@ export default function PostList() {
   const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   const handleNextPage = () => {
-    if (currentPage < totalPages) {
+    if (currentPageNumber < totalPages) {
       //setPageNumber(pageNumber + 1);
-      updatePage(currentPage + 1);
+      updatePageNumber(currentPageNumber + 1);
     }
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) {
+    if (currentPageNumber > 1) {
       //setPageNumber(pageNumber - 1);
-      updatePage(currentPage - 1);
+      updatePageNumber(currentPageNumber - 1);
     }
   };
 
@@ -92,22 +92,23 @@ export default function PostList() {
     const maxPagesBeforeCurrent = Math.floor(maxPagesToShow / 2);
     const maxPagesAfterCurrent = Math.ceil(maxPagesToShow / 2) - 1;
 
-    if (currentPage <= maxPagesBeforeCurrent) {
+    if (currentPageNumber <= maxPagesBeforeCurrent) {
       endPage = maxPagesToShow;
-    } else if (currentPage + maxPagesAfterCurrent >= totalPages) {
+    } else if (currentPageNumber + maxPagesAfterCurrent >= totalPages) {
       startPage = totalPages - maxPagesToShow + 1;
     } else {
-      startPage = currentPage - maxPagesBeforeCurrent;
-      endPage = currentPage + maxPagesAfterCurrent;
+      startPage = currentPageNumber - maxPagesBeforeCurrent;
+      endPage = currentPageNumber + maxPagesAfterCurrent;
     }
   }
 
   for (let i = startPage; i <= endPage; i++) {
     paginationItems.push(
-      <button key={i} onClick={() => updatePage(i)}>
+      <button key={i} onClick={() => updatePageNumber(i)}>
         <li
           className={`${
-            currentPage === i && 'bg-accent-500 rounded-lg text-primary-100'
+            currentPageNumber === i &&
+            'bg-accent-500 rounded-lg text-primary-100'
           } px-3 py-1`}
         >
           {i}
@@ -199,7 +200,7 @@ export default function PostList() {
       {/* Pagination */}
       <div className="flex justify-center items-center w-full">
         <div className="flex justify-between items-center w-96 font-medium">
-          {currentPage !== 1 ? (
+          {currentPageNumber !== 1 ? (
             <button onClick={handlePrevPage}>
               <IconBack className="w-12 h-12 text-accent-500" />
             </button>
@@ -208,7 +209,7 @@ export default function PostList() {
             // <div className="w-12 h-12 shrink-0" />
           )}
           <ul className="flex gap-4">{paginationItems}</ul>
-          {currentPage !== totalPages ? (
+          {currentPageNumber !== totalPages ? (
             <button onClick={handleNextPage}>
               <IconNext className="w-12 h-12 text-accent-500" />
             </button>

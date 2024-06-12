@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { format } from 'date-fns';
-import { usePost } from '@/hooks/PostContext';
+import { usePost } from '@/contexts/PostContext';
 import useFetch from '@/hooks/useFetch';
 
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 import StandardImg from '../../../public/images/hero_img.jpg';
 
 export default function PostListMobile() {
-  const { currentPage, updatePage, currentCat } = usePost();
+  const { currentPageNumber, updatePageNumber, currentCat } = usePost();
   const [visiblePosts, setVisiblePosts] = useState(4); // Number of initially visible posts
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -53,7 +53,7 @@ export default function PostListMobile() {
     };
   }, [visiblePosts, fetchedPosts]);
 
-  // console.log(currentPage);
+  // console.log(currentPageNumber);
 
   if (!fetchedPosts || !postCats) {
     return <div>Loading...</div>;

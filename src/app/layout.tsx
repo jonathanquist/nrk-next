@@ -3,7 +3,7 @@
 import Menu from '@/components/Menu/Menu';
 import type { Metadata } from 'next';
 import Footer from '@/components/Footer';
-import { PostProvider } from '@/hooks/PostContext';
+import { PostProvider } from '@/contexts/PostContext';
 import { useViewport } from '@/hooks/useViewport';
 import MenuMobile from '@/components/Menu/MenuMobile';
 import MenuHeader from '@/components/Menu/MenuHeader';

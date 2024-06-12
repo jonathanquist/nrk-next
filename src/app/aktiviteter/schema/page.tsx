@@ -12,11 +12,7 @@ export default function Page() {
 
   return (
     <>
-      {breakpoint && (
-        <div className="mt-8 mb-9">
-          <Breadcrumb section="Aktiviteter" current={'Schema'} />
-        </div>
-      )}
+      {breakpoint && <Breadcrumb section="Aktiviteter" current={'Schema'} />}
       <div className="card-base">
         <Schedule />
       </div>
