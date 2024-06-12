@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { usePost } from '@/contexts/PostContext';
-import { useViewport } from '@/hooks/useViewport';
+'use client';
 
+import React, { useEffect, useState } from 'react';
 import PostList from './PostList';
 import PostListMobile from './PostListMobile';
 import Header from '../Header';
+
+import { useSite } from '@/contexts/SiteContext';
 import { cn } from '@/lib/utils';
 
-export default function Anslagstavlan() {
-  const { updateCat, currentCat } = usePost();
+interface AnsalgstavlanProps {
+  posts: any;
+  cats: any;
+}
+
+export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const { updatePosts, updateCats, currentCat, updateCurrentCat } = useSite();
+
+  useEffect(() => {
+    updatePosts(posts);
+    updateCats(cats);
+  }, [updatePosts, posts, updateCats, cats]);
 
   const categories = [
     { id: '', name: 'Alla' },
@@ -18,6 +29,15 @@ export default function Anslagstavlan() {
     { id: '9', name: 'Daglig Verksamhet' },
     { id: '10', name: 'Bus' },
   ];
+
+  const handleClick = (id: string) => {
+    const filterPosts =
+      id === ''
+        ? posts
+        : posts.filter((post: any) => post.categories.includes(parseInt(id)));
+    setFilteredPosts(filterPosts);
+    updateCurrentCat(id);
+  };
 
   return (
     <div className="card-base h-full">
@@ -28,7 +48,7 @@ export default function Anslagstavlan() {
               <React.Fragment key={index}>
                 <li key={category.id}>
                   <button
-                    onClick={() => updateCat(category.id)}
+                    onClick={() => handleClick(category.id)}
                     className={cn(
                       'px-3.5',
                       currentCat === category.id &&
@@ -54,10 +74,10 @@ export default function Anslagstavlan() {
 
       <div className="card-px pt-8 pb-6 md:pb-12 md:pt-24 overflow-y-auto h-[calc(100%-3.75rem)] custom-scroll">
         <div className="hidden lg:flex">
-          <PostList />
+          <PostList filteredPosts={filteredPosts} />
         </div>
         <div className="flex lg:hidden">
-          <PostListMobile />
+          <PostListMobile filteredPosts={filteredPosts} />{' '}
         </div>
       </div>
     </div>

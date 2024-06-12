@@ -20,6 +20,10 @@ export default function CalendarLarge() {
 
   const { events } = useSite();
 
+  if (!events) {
+    return <div>Loading...</div>;
+  }
+
   const handleEventClick = (clickInfo: any) => {
     console.log('clickTest', clickInfo);
     const id = parseInt(clickInfo.event._def.publicId, 10);
@@ -60,20 +64,21 @@ export default function CalendarLarge() {
     // Now, you have an array of events for the clicked date (clickedDateEvents)
   };
 
-  const renderPost = () => {
-    const blarg = events.events.find((event: any) => event.id === eventID);
-    console.log('blarg', blarg);
+  // const renderPost = () => {
+  //   const blarg = events.events.find((event: any) => event.id === eventID);
+  //   console.log('blarg', blarg);
 
-    return (
-      <div className="flex flex-col gap-2">
-        {blarg.title}
-        <p
-          dangerouslySetInnerHTML={{ __html: blarg.description }}
-          className="line-clamp-3 paragraph-s"
-        />
-      </div>
-    );
-  };
+  //   return (
+  //     <div className="flex flex-col gap-2">
+  //       {blarg.title}
+  //       <p
+  //         dangerouslySetInnerHTML={{ __html: blarg.description }}
+  //         className="line-clamp-3 paragraph-s"
+  //       />
+  //     </div>
+  //   );
+  // };
+  // console.log(events);
 
   const filteredEvents = {
     events: events.events.filter((event: any) => {

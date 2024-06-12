@@ -14,6 +14,10 @@ export default function CalendarSmall() {
 
   const { events } = useSite();
 
+  if (!events) {
+    return <div>Loading...</div>;
+  }
+
   const handleDateClick = (clickInfo: any) => {
     console.log('hi', clickInfo);
   };

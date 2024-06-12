@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import CalendarDay from '../Calendar/CalendarDay';
@@ -8,18 +7,21 @@ import FilterMenu from '../FilterMenu';
 import EventBar from '../EventBar';
 import WeekHeader from '../WeekHeader';
 import { navButtons } from '../navButtons';
+import { useSite } from '@/contexts/SiteContext';
 
-interface LargeCalendarProps {
-  events: any;
-}
-
-export default function CalendarLarge({ events }: LargeCalendarProps) {
+export default function CalendarLarge() {
   const [eventID, setEventID] = useState<number | null>(null);
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
   const [filtered, setFiltered] = useState<string[]>([]);
 
   const scheduleRef = useRef<any>(null);
+
+  const { events } = useSite();
+
+  if (!events) {
+    return <div>Loading...</div>;
+  }
 
   const handleEventClick = (clickInfo: any) => {
     console.log('clickTest', clickInfo);

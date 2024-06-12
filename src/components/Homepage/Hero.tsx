@@ -17,6 +17,10 @@ export default function Hero() {
     }
   });
 
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
+
   if (posts.length <= 0) {
     return (
       <div className="flex items-center justify-center bg-transparent rounded-xl m-4 h-48 md:h-[calc(100vh-8.5rem)]  md:pt-16 md:pb-20  w-full">

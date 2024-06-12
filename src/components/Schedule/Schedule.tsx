@@ -19,7 +19,7 @@ export default function Schedule({ events }: ScheduleProps) {
   return (
     <div className="card-base">
       <Header variant="menu" title="Schema" />
-      <div className="schedule-big">
+      <div className="schedule-large">
         <ScheduleWidget size={'lg'} />
       </div>
     </div>

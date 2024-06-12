@@ -6,7 +6,7 @@ interface PostTagsProps {
 }
 
 export default function PostTags({ arr, cats }: PostTagsProps) {
-  const catElements = arr.map((catId: any, index: number) => {
+  return arr.map((catId: any, index: number) => {
     const catObject = cats.find(
       (cat: { id: string; url: string }) => cat.id === catId
     );
@@ -31,6 +31,4 @@ export default function PostTags({ arr, cats }: PostTagsProps) {
       </div>
     ) : null;
   });
-
-  return catElements;
 }

@@ -4,15 +4,14 @@ import { cn, getEventColor } from '@/lib/utils';
 import { getWeek, set } from 'date-fns';
 import { IconBack, IconNext } from '../../UI';
 import Filter from '../FilterMenu';
+import { useSite } from '@/contexts/SiteContext';
 
 export default function ScheduleDaily({ size = 'sm' }: { size?: string }) {
   const [week, setWeek] = useState(getWeek(new Date()));
   const [scheduleItems, setScheduleItems] = useState<any>(null);
   const [filtered, setFiltered] = useState<string[]>([]);
 
-  const events: any = useFetch(
-    'http://localhost/nrk/wp-json/tribe/events/v1/events'
-  );
+  const { events } = useSite();
 
   useEffect(() => {
     if (!events) {

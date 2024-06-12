@@ -12,7 +12,10 @@ interface CalendarProps {
 export default function Calendar({ events }: CalendarProps) {
   const { updateEvents } = useSite();
 
+  console.log('trig', events);
+
   useEffect(() => {
+    console.log('Updating events', events);
     updateEvents(events);
   }, [updateEvents, events]);
 
