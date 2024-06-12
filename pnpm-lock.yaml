@@ -9,6 +9,7 @@ specifiers:
   '@headlessui/react': ^1.7.17
   '@radix-ui/react-dialog': ^1.0.5
   '@radix-ui/react-popover': ^1.0.7
+  '@radix-ui/react-separator': ^1.0.3
   '@radix-ui/react-switch': ^1.0.3
   '@types/node': 20.4.9
   '@types/react': 18.2.20
@@ -39,6 +40,7 @@ dependencies:
   '@headlessui/react': 1.7.17_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-dialog': 1.0.5_gltvt74xzh7f5lvw2hzxriz5bu
   '@radix-ui/react-popover': 1.0.7_gltvt74xzh7f5lvw2hzxriz5bu
+  '@radix-ui/react-separator': 1.0.3_gltvt74xzh7f5lvw2hzxriz5bu
   '@radix-ui/react-switch': 1.0.3_gltvt74xzh7f5lvw2hzxriz5bu
   '@types/node': 20.4.9
   '@types/react': 18.2.20
@@ -657,6 +659,27 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.6
       '@radix-ui/react-slot': 1.0.2_j3ahe22lw6ac2w6qvqp4kjqnqy
+      '@types/react': 18.2.20
+      '@types/react-dom': 18.2.7
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-separator/1.0.3_gltvt74xzh7f5lvw2hzxriz5bu:
+    resolution: {integrity: sha512-itYmTy/kokS21aiV5+Z56MZB54KrhPgn6eHDKkFeOLR34HMN2s8PaN47qZZAGnvupcjxHaFZnW4pQEh0BvvVuw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.6
+      '@radix-ui/react-primitive': 1.0.3_gltvt74xzh7f5lvw2hzxriz5bu
       '@types/react': 18.2.20
       '@types/react-dom': 18.2.7
       react: 18.2.0

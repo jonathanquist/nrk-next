@@ -1,3 +1,5 @@
+import { Separator } from '../UI';
+
 interface MonthMarkerProps {
   date: string;
 }
@@ -15,12 +17,12 @@ export default function MonthMarker({ date }: MonthMarkerProps) {
   const monthMarker = getMonthMarker(date);
 
   return (
-    <div className="flex items-center justify-start md:w-full mb-6 md:mb-20 group-first:mt-0 md:mt-12 mt-2 md:px-0">
-      <div className="h-1 w-8 md:w-32 bg-primary-500 rounded-full mt-1 shrink-0" />
+    <div className="flex items-center justify-start md:w-full mb-6 md:mb-12 group-first:mt-0 md:mt-12 mt-2 md:px-0">
+      <Separator className="shrink-0 w-8 md:w-32 mt-1" />
       <div className="text-accent-500 text-2xl small font-cambria capitalize w-56 flex justify-center shrink-0">
         <div>{monthMarker}</div>
       </div>
-      <div className="h-1 bg-primary-500 rounded-full w-full" />
+      <Separator className="shrink" />
     </div>
   );
 }

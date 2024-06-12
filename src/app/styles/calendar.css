@@ -171,7 +171,7 @@
 }
 
 .calendar-small thead .fc-daygrid-day-number {
-  @apply text-xl text-primary-500 font-normal;
+  @apply text-xl text-primary-500 font-normal select-none;
 }
 
 .calendar-small tbody .fc-day {
@@ -204,7 +204,7 @@
 }
 
 .calendar-small tbody .fc-daygrid-day-number {
-  @apply text-xs font-fira p-0 font-bold;
+  @apply text-xs font-fira p-0 font-bold select-none;
 }
 
 /* Schedule large */

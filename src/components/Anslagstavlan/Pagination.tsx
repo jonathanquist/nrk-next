@@ -47,18 +47,18 @@ export default function Pagination({ totalPages }: PaginationProps) {
       <div className="flex justify-between items-center w-96 font-medium">
         {currentPageNumber !== 1 ? (
           <button onClick={() => updatePageNumber(currentPageNumber - 1)}>
-            <IconBack className="w-12 h-12 text-accent-500 shrink-0 mr-auto" />
+            <IconBack className="w-12 h-12 text-accent-500 shrink-0" />
           </button>
         ) : (
-          <IconBack className="w-12 h-12 text-primary-300 shrink-0 mr-auto" />
+          <IconBack className="w-12 h-12 text-primary-300 shrink-0" />
         )}
         <ul className="flex gap-4">{paginationItems}</ul>
         {currentPageNumber !== totalPages ? (
           <button onClick={() => updatePageNumber(currentPageNumber + 1)}>
-            <IconNext className="w-12 h-12 text-accent-500 shrink-0 ml-auto" />
+            <IconNext className="w-12 h-12 text-accent-500" />
           </button>
         ) : (
-          <IconNext className="w-12 h-12 text-primary-300 shrink-0 ml-auto" />
+          <IconNext className="w-12 h-12 text-primary-300" />
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ export * from './Dialog/Dialog';
 export * from './Drawer/Drawer';
 export * from './Modal/Modal';
 export * from './Popover/Popover';
+export * from './Separator/Separator';
 export * from './Switch/Switch';
 
 export * from './Icons/IconArrowDouble';

@@ -8,6 +8,7 @@ import { useSite } from '@/contexts/SiteContext';
 import WelcomeDesktop from './WelcomeDesktop';
 import WelcomeMobile from './WelcomeMobile';
 import { useEffect } from 'react';
+import { Separator } from '../UI';
 
 interface HomeProps {
   posts: any;
@@ -30,17 +31,15 @@ export default function Homepage({ posts, pages, events }: HomeProps) {
         <Hero />
         <WelcomeDesktop />
         <Posts />
-        <div className="px-44">
-          <div className="h-1 w-full my-4 bg-primary-500" />
+        <div className="px-44 py-4">
+          <Separator />
         </div>
         <Social />
-
         <Sponsors />
       </div>
       <div className="flex lg:hidden h-full">
         <div className="card-base w-full flex flex-col overflow-y-auto justify-start items-start h-full">
           <Hero />
-
           <WelcomeMobile />
         </div>
       </div>
