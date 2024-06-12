@@ -28,13 +28,13 @@ export async function getCats() {
 
 // Fetch pages by slug
 export async function getPage(slug: string) {
-  const url = `http://localhost/nrk/wp-json/wp/v2/pages/?slug=${slug}`;
+  const url = `http://localhost/nrk/wp-json/wp/v2/pages/?slug=${slug}&_embed`;
   return fetchData(url);
 }
 
 export async function getPages(slugs: string[]) {
   const urls = slugs.map(
-    (slug) => `http://localhost/nrk/wp-json/wp/v2/pages/?slug=${slug}`
+    (slug) => `http://localhost/nrk/wp-json/wp/v2/pages/?slug=${slug}&_embed`
   );
   const fetchPromises = urls.map((url) => fetchData(url));
 

@@ -101,7 +101,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const article = posts.map((post: any) => {
     if (post.slug === params.slug) {
       return (
-        <div className="mt-8" key={post.id}>
+        <div key={post.id}>
           <Breadcrumb
             section="Aktiviteter"
             subsection={{
@@ -110,10 +110,10 @@ export default function Page({ params }: { params: { slug: string } }) {
             }}
             current={post.title.rendered}
           />
-          <div className="card-base mt-9">
+          <div className="card-base">
             <div className="flex flex-col">
               {/* Image */}
-              <div className="relative h-[535px] w-full">
+              <div className="relative rounded-t-2xl overflow-hidden h-[535px] w-full">
                 <Image
                   src={
                     post._embedded['wp:featuredmedia']
