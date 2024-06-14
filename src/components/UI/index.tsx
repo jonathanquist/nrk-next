@@ -7,6 +7,7 @@ export * from './Modal/Modal';
 export * from './Popover/Popover';
 export * from './Separator/Separator';
 export * from './Switch/Switch';
+export * from './Tabs/Tabs';
 
 export * from './Icons/IconArrowDouble';
 export * from './Icons/IconArrowSimple';

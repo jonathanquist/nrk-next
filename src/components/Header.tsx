@@ -6,12 +6,14 @@ interface HeaderProps {
   variant: 'menu' | 'page';
   title: string;
   image?: string;
+  imageClass?: string;
   children?: React.ReactNode;
 }
 
 export default function Header({
   variant,
   image,
+  imageClass,
   title,
   children,
 }: HeaderProps) {
@@ -37,7 +39,7 @@ export default function Header({
           sizes="100%"
           fill
           priority
-          className="z-0 object-center object-cover"
+          className={cn('z-0 object-center object-cover', imageClass)}
         />
       </div>
 

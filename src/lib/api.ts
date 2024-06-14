@@ -1,8 +1,26 @@
 const BASE_URL = `http://localhost/nrk/wp-json`;
 
 // General fetch function
+// async function fetchData(url: string) {
+//   const res = await fetch(`${BASE_URL}${url}`);
+//   const data = await res.json();
+//   return data;
+// }'
+
+// const CACHE_VALIDITY_PERIOD = 5 * 60 * 1000;
+const CACHE_VALIDITY_PERIOD = 0;
+
 async function fetchData(url: string) {
-  const res = await fetch(`${BASE_URL}${url}`);
+  // Use Next.js's fetch to automatically cache data on the server side
+  const res = await fetch(`${BASE_URL}${url}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    next: { revalidate: CACHE_VALIDITY_PERIOD },
+
+    // Optional: Configure cache behavior here if needed
+  });
   const data = await res.json();
   return data;
 }

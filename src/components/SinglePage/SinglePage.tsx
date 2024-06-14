@@ -16,6 +16,8 @@ export default function SinglePage({ page, children }: SinglePageProps) {
     );
   }
 
+  console.log('test', page);
+
   return (
     <div className="card-base">
       <Header

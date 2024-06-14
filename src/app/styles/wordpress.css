@@ -62,6 +62,10 @@
   @apply text-xl font-medium font-fira;
 }
 
+.wordpress-content hr {
+  @apply border-primary-500 rounded-full w-full border-t-4 my-5;
+}
+
 /* Wordpress blockquote */
 
 .wordpress-content blockquote {
