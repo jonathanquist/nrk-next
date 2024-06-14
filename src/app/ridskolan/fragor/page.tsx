@@ -3,11 +3,11 @@ import SinglePage from '@/components/SinglePage/SinglePage';
 import { getPage } from '@/lib/api';
 
 export default async function Page() {
-  const page = await getPage('vision-policy');
+  const page = await getPage('fragor');
 
   return (
     <>
-      <Breadcrumb section="Föreningen" current={'Vision & Policy'} />
+      <Breadcrumb section="Ridskolan" current={'Frågor'} />
       <SinglePage page={page} />
     </>
   );

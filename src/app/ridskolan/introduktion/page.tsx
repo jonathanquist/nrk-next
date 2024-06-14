@@ -1,17 +1,14 @@
-'use client';
-
-import { useSearchParams } from 'next/navigation';
 import { Breadcrumb } from '@/components/UI';
+import SinglePage from '@/components/SinglePage/SinglePage';
+import { getPage } from '@/lib/api';
 
-export default function Page() {
-  const params = useSearchParams();
+export default async function Page() {
+  const page = await getPage('introduktion');
 
   return (
     <>
       <Breadcrumb section="Ridskolan" current={'Introduktion'} />
-      <div className="card-base">
-        <p>{params!.get('slug')}</p>
-      </div>
+      <SinglePage page={page} />
     </>
   );
 }

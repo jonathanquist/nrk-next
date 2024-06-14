@@ -51,7 +51,7 @@ export const links = [
       },
       {
         label: 'Frågor',
-        slug: 'faq',
+        slug: 'fragor',
       },
     ],
   },
@@ -62,7 +62,7 @@ export const links = [
     subLinks: [
       {
         label: 'Om Oss',
-        slug: 'about',
+        slug: 'om-oss',
       },
       {
         label: 'Vision & Policy',
