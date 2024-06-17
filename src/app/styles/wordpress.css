@@ -39,7 +39,7 @@
 }
 
 .wordpress-content figcaption {
-  @apply text-sm font-thin text-center text-primary-900;
+  @apply text-sm font-thin text-center text-primary-900 py-4 px-4;
 }
 
 .wordpress-content ul {

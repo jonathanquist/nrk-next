@@ -18,7 +18,6 @@ interface Link {
 export default function Menu() {
   const [currentPage, setCurrentPage] = useState('');
   const [showSubmenu, setShowSubmenu] = useState('');
-  //const { currentPage, updatePage } = useMenu();
 
   const path = usePathname();
 
@@ -65,17 +64,14 @@ export default function Menu() {
                 <li key={index}>
                   <button
                     onClick={() => handleClick(link.label)}
-                    className={`text-lg lg:text-xl font-bold hover:underline flex items-center gap-2 transition rounded-b-lg pb-3 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5 ${
+                    className={cn(
+                      'text-lg lg:text-xl font-bold hover:underline flex items-center gap-2 transition rounded-b-lg pb-3 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5',
                       link.subLinks.some(
                         (subLink) => subLink.slug === currentPage
-                      )
-                        ? 'text-accent-500'
-                        : ''
-                    } ${
-                      showSubmenu === link.label
-                        ? 'bg-primary-500 -translate-y-6'
-                        : ''
-                    }`}
+                      ) && 'text-accent-500',
+                      showSubmenu === link.label &&
+                        'bg-primary-500 -translate-y-6'
+                    )}
                   >
                     {link.icon}
                     <span className="pt-2 small">{link.label}</span>
@@ -102,27 +98,22 @@ export default function Menu() {
             if (link.label !== showSubmenu) {
               return null;
             }
-            //console.log(link.subLinks, currentPage);
             return link.subLinks?.map((subLink: Link, index: number) => (
               <li key={index}>
                 <Link
                   //href={subLink.url}
                   href={{
                     pathname: `/${link.slug}/${subLink.slug}`,
-                    query: { slug: subLink.label },
-                    //pathname: `/aktiviteter/anslagstavla/`,
+                    // query: { slug: subLink.label },
                   }}
                   onClick={() => handleLink(subLink.label)}
-                  // onClick={() => {
-                  //   setCurrentPage(subLink.label);
-                  //   setShowSubmenu('');
-                  // }}
                   className="font-bold text-md lg:text-xl hover:underline flex items-center"
                 >
                   <span
-                    className={`small ${
-                      currentPage === subLink.slug ? 'text-accent-500' : ''
-                    }`}
+                    className={cn(
+                      'small',
+                      currentPage === subLink.slug && 'text-accent-500'
+                    )}
                   >
                     {subLink.label}
                   </span>

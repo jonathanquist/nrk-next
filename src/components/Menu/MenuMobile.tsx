@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { links } from './links.const';
+import { mobileLinks } from './links.const';
 import { usePathname } from 'next/navigation';
 import { Modal } from '../UI';
+import { cn } from '@/lib/utils';
 
 interface Link {
   icon?: React.ReactNode;
@@ -22,15 +23,15 @@ export default function MenuMobile() {
 
   const path = usePathname();
 
-  useEffect(() => {
-    const firstObject = links.shift();
+  // useEffect(() => {
+  //   const firstObject = links.shift();
 
-    if (firstObject) {
-      // Insert the first object at the desired index
+  //   if (firstObject) {
+  //     // Insert the first object at the desired index
 
-      links.splice(1, 0, firstObject);
-    }
-  }, []);
+  //     links.splice(1, 0, firstObject);
+  //   }
+  // }, []);
 
   useEffect(() => {
     const paths = path.split('/');
@@ -62,15 +63,16 @@ export default function MenuMobile() {
   return (
     <div className="relative w-full flex flex-col items-center justify-center">
       <ul className="flex items-center justify-between px-6 pt-5 pb-11 w-full gap-6">
-        {links.map((link, index) => (
+        {mobileLinks.map((link, index) => (
           <li key={index} className="w-full">
             <button
               onClick={() => handleClick(link.label)}
-              className={`text-sm leading-none font-bold hover:underline flex flex-col items-center rounded-lg pb-2 w-full px-2 bg-primary-100 shadow-md ${
-                link.subLinks.some((subLink) => subLink.slug === currentPage)
-                  ? 'text-accent-500'
-                  : ''
-              } ${showSubmenu === link.label ? '' : ''}`}
+              className={cn(
+                'text-sm leading-none font-bold hover:underline flex flex-col items-center rounded-lg pb-2 w-full px-2 bg-primary-100 shadow-md',
+
+                link.subLinks.some((subLink) => subLink.slug === currentPage) &&
+                  'text-accent-500'
+              )}
             >
               {link.icon}
               <span className="small">{link.label}</span>
@@ -89,7 +91,7 @@ export default function MenuMobile() {
       >
         <div className="px-3.5 py-5">
           <ul className="text-accent-500 flex flex-col gap-4">
-            {links.map((link: Link, index: number) => {
+            {mobileLinks.map((link: Link, index: number) => {
               if (link.label !== showSubmenu) {
                 return null;
               }
@@ -107,11 +109,12 @@ export default function MenuMobile() {
                     className="font-bold text-xl flex items-center"
                   >
                     <span
-                      className={`small ${
+                      className={cn(
+                        'small',
                         currentPage === subLink.slug
                           ? 'text-accent-500'
                           : 'text-primary-900'
-                      }`}
+                      )}
                     >
                       {subLink.label}
                     </span>
