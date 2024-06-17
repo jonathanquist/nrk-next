@@ -1,5 +1,5 @@
 .wordpress-content {
-  @apply flex items-start flex-col gap-4;
+  @apply flex items-start flex-col gap-4 first:mt-0 last:mb-0;
 }
 
 .wordpress-content > * {
@@ -23,7 +23,15 @@
 }
 
 .wordpress-content figure {
-  @apply flex flex-col rounded-lg p-4 shadow-md mx-auto items-center gap-2;
+  @apply flex flex-col rounded-lg shadow-md gap-2;
+}
+
+.wordpress-content figure:has(table) {
+  @apply w-full my-4 max-w-3xl;
+}
+
+.wordpress-content figure.wp-block-image {
+  @apply w-full px-4 py-6;
 }
 
 .wordpress-content img {
@@ -46,6 +54,10 @@
   @apply text-base font-thin;
 }
 
+.wordpress-content li li {
+  @apply list-none;
+}
+
 .wordpress-content h1 {
   @apply text-4xl font-medium font-fira;
 }
@@ -64,6 +76,26 @@
 
 .wordpress-content hr {
   @apply border-primary-500 rounded-full w-full border-t-4 my-5;
+}
+
+.wordpress-content .has-text-align-left {
+  @apply text-left;
+}
+
+.wordpress-content .alignwide {
+  @apply w-full max-w-full;
+}
+
+.wordpress-content .is-layout-flex {
+  @apply flex gap-4;
+}
+
+.wordpress-content .wp-block-column figure.wp-block-image {
+  @apply h-full p-0 overflow-hidden;
+}
+
+.wordpress-content .wp-block-column figure.wp-block-image img {
+  @apply h-full overflow-hidden object-cover;
 }
 
 /* Wordpress blockquote */
@@ -86,6 +118,55 @@
 
 .wordpress-content cite {
   @apply text-xs md:text-base font-thin text-primary-500 text-center;
+}
+
+/* Wordpress table */
+
+.wordpress-content thead tr {
+  @apply rounded-t-lg overflow-hidden;
+}
+.wordpress-content table:not(thead) tbody tr:first-child td {
+  @apply first:rounded-tl-lg last:rounded-tr-lg;
+}
+
+.wordpress-content th {
+  @apply bg-accent-500  font-bold text-primary-100 overflow-hidden first:rounded-tl-lg last:rounded-tr-lg;
+}
+
+.wordpress-content th {
+  @apply px-4 py-2;
+}
+
+.wordpress-content tbody {
+  @apply text-sm font-normal;
+}
+
+.wordpress-content tbody tr td {
+  @apply last:border-r-0 first:border-l-0;
+}
+
+.wordpress-content tbody tr:last-child td {
+  @apply border-b-0;
+}
+
+.wordpress-content td {
+  @apply px-4 py-3 border border-primary-300;
+}
+
+.wordpress-content .has-fixed-layout {
+  @apply table-fixed w-full;
+}
+
+.wordpress-content .is-style-stripes td {
+  @apply border-0 text-base;
+}
+
+.wordpress-content .is-style-stripes tbody tr:nth-child(odd) {
+  @apply bg-primary-300;
+}
+
+.wordpress-content .is-style-stripes tbody tr:last-child td {
+  @apply first:rounded-bl-lg last:rounded-br-lg;
 }
 
 /* Wordpress details */
