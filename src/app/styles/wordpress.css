@@ -122,15 +122,20 @@
 
 /* Wordpress table */
 
+.wordpress-content table {
+  @apply bg-primary-300 rounded-lg;
+}
+
 .wordpress-content thead tr {
   @apply rounded-t-lg overflow-hidden;
 }
+
 .wordpress-content table:not(thead) tbody tr:first-child td {
-  @apply first:rounded-tl-lg last:rounded-tr-lg;
+  @apply first:rounded-tl-lg last:rounded-tr-lg overflow-hidden;
 }
 
 .wordpress-content th {
-  @apply bg-accent-500  font-bold text-primary-100 overflow-hidden first:rounded-tl-lg last:rounded-tr-lg;
+  @apply bg-accent-500 font-bold text-primary-100 overflow-hidden first:rounded-tl-lg last:rounded-tr-lg;
 }
 
 .wordpress-content th {
@@ -150,7 +155,7 @@
 }
 
 .wordpress-content td {
-  @apply px-4 py-3 border border-primary-300;
+  @apply px-4 py-3 border border-primary-100;
 }
 
 .wordpress-content .has-fixed-layout {
@@ -158,14 +163,18 @@
 }
 
 .wordpress-content .is-style-stripes td {
-  @apply border-0 text-base;
+  @apply border-0 text-base bg-primary-100;
 }
 
-.wordpress-content .is-style-stripes tbody tr:nth-child(odd) {
+.wordpress-content .is-style-stripes tbody tr:nth-child(odd) td {
   @apply bg-primary-300;
 }
 
-.wordpress-content .is-style-stripes tbody tr:last-child td {
+.wordpress-content
+  figure.is-style-stripes:not(:has(figcaption))
+  tbody
+  tr:last-child
+  td {
   @apply first:rounded-bl-lg last:rounded-br-lg;
 }
 
