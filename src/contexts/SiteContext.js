@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext, useState, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
 
