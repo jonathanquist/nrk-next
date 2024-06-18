@@ -1,31 +1,43 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: Node.js CI
+name: Deploy Next.js
 
 on:
   push:
-    branches: [ "development" ]
-  pull_request:
-    branches: [ "development" ]
+    branches:
+      - main # Change to your deployment branch if different
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16' # Specify your Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the application
+        run: npm run build
+
+      - name: Deploy to server
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+        run: |
+          echo "${SSH_PRIVATE_KEY}" > private_key.pem
+          chmod 600 private_key.pem
+          rsync -avz -e "ssh -i private_key.pem" ./build/ ${SSH_USERNAME}@${SSH_HOST}:/path/to/public_html/nrk-next
+          ssh -i private_key.pem ${SSH_USERNAME}@${SSH_HOST} <<EOF
+            cd /path/to/public_html/nrk-next
+            pm2 restart nextjs || pm2 start npm --name "nextjs" -- start
+EOF
+          rm private_key.pem
