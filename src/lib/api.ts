@@ -1,4 +1,5 @@
-const BASE_URL = `http://localhost/nrk/wp-json`;
+// const BASE_URL = `http://localhost/nrk/wp-json`;
+const BASE_URL = `http://129.151.217.120/~ozfea/wordpress/wp-json`;
 
 // General fetch function
 // async function fetchData(url: string) {
