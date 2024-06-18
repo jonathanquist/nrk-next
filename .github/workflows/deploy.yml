@@ -3,7 +3,7 @@ name: Deploy Next.js
 on:
   push:
     branches:
-      - main # Change to your deployment branch if different
+      - development # Change to your deployment branch if different
 
 jobs:
   build:
@@ -29,11 +29,18 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+          SSH_PORT: 22 # Change if your SSH port is different
+          DEPLOY_PATH: /home/ozfea/public_html/nrk-next # Change to your actual deployment path
         run: |
-          echo "${SSH_PRIVATE_KEY}" > private_key.pem
-          chmod 600 private_key.pem
-          rsync -avz -e "ssh -i private_key.pem" ./next/ ${SSH_USERNAME}@${SSH_HOST}:/public_html/nrk-next
-          ssh -i private_key.pem ${SSH_USERNAME}@${SSH_HOST} <<EOF
-            cd /public_html/nrk-next
-            pm2 restart nextjs || pm2 start npm --name "nextjs" -- start EOF
-          rm private_key.pem
+          # Setup SSH Key
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+          # Sync files
+          rsync -avz -e "ssh -p $SSH_PORT" --delete ./.next/ $SSH_USERNAME@$SSH_HOST:$DEPLOY_PATH
+
+          # Optional: Any post-deployment steps
+          # ssh -p $SSH_PORT $SSH_USERNAME@$SSH_HOST "cd $DEPLOY_PATH && any-post-deployment-command"
