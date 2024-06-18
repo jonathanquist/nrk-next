@@ -38,6 +38,5 @@ jobs:
           rsync -avz -e "ssh -i private_key.pem" ./build/ ${SSH_USERNAME}@${SSH_HOST}:/path/to/public_html/nrk-next
           ssh -i private_key.pem ${SSH_USERNAME}@${SSH_HOST} <<EOF
             cd /path/to/public_html/nrk-next
-            pm2 restart nextjs || pm2 start npm --name "nextjs" -- start
-EOF
+            pm2 restart nextjs || pm2 start npm --name "nextjs" -- start EOF
           rm private_key.pem
