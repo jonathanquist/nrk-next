@@ -24,9 +24,16 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
-      - name: Compress build output
+      - name: Prepare staging directory
         run: |
-          tar -czf build.tar.gz .
+          mkdir staging
+          cp -r $(ls | grep -v 'node_modules\|staging') staging/
+          # Adjust the grep pattern to exclude any other directories or files as necessary
+
+      - name: Compress build output from staging directory
+        run: |
+          tar -czf build.tar.gz -C staging .
+          rm -rf staging
 
       - name: Deploy to cPanel
         env:
