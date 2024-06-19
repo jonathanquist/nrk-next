@@ -37,10 +37,18 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add private_key
 
-          scp -v -r -P $CPANEL_PORT \
+          # Create an archive of the project excluding node_modules
+          tar --exclude='./node_modules' -czvf project.tar.gz .
+
+          # Transfer the archive
+          scp -v -P $CPANEL_PORT \
             -o StrictHostKeyChecking=no \
-            ./.next/* $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/.next
+            project.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/.next
+
+          # Optionally, you can run a command on the server to extract the archive
+          # ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "cd /home/ozfea/repositories/nrk-next/.next && tar -xzvf project.tar.gz && rm project.tar.gz"
 
           # Cleanup
           ssh-agent -k
           rm private_key
+          rm project.tar.gz
