@@ -25,7 +25,8 @@ jobs:
         run: npm run build
 
       - name: Compress build output
-        run: tar -czf build.tar.gz -C .next public package.json package-lock.json
+        run: |
+          tar -czf build.tar.gz .next public package.json package-lock.json
 
       - name: Deploy to cPanel
         env:
