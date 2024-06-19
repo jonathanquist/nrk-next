@@ -40,10 +40,11 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add private_key
 
-          # Deploy files to cPanel
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no -p $CPANEL_PORT" \
-            --exclude=node_modules --exclude=.next --exclude=.git \
-            ./ $CPANEL_USER@$CPANEL_HOST:/home/ozfea/public_html/nrk-next
+          # Deploy files to cPanel using scp
+          scp -r -P $CPANEL_PORT \
+            -o StrictHostKeyChecking=no \
+            ./* $CPANEL_USER@$CPANEL_HOST:/path/to/your/site/root
+
 
           # Cleanup
           ssh-agent -k
