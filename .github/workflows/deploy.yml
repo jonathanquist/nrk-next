@@ -24,9 +24,6 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
-      - name: Install rsync
-        run: sudo apt-get update && sudo apt-get install -y rsync
-
       - name: Deploy to cPanel
         env:
           CPANEL_HOST: ${{ secrets.SSH_HOST }}
