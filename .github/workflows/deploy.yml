@@ -38,7 +38,7 @@ jobs:
           ssh-add private_key
 
           # Create an archive of the project excluding node_modules
-          tar --exclude='./node_modules' -czvf project.tar.gz .
+             tar --exclude='./node_modules' --exclude='./.git' -czvf project.tar.gz .
 
           # Transfer the archive
           scp -v -P $CPANEL_PORT \
