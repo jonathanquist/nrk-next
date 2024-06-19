@@ -24,15 +24,15 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
-      - name: Ensure build completion
-        run: sleep 10 # Waits for 10 seconds
+      - name: Compress build output
+        run: tar -czf build.tar.gz -C ./out .
 
       - name: Deploy to cPanel
         env:
           CPANEL_HOST: ${{ secrets.SSH_HOST }}
-          CPANEL_PORT: 22
           CPANEL_USER: ${{ secrets.SSH_USERNAME }}
           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          CPANEL_PORT: 22
         run: |
           # Optional: Add SSH key if using key-based authentication
           echo "$CPANEL_KEY" > private_key
@@ -40,21 +40,19 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add private_key
 
-          # Ensure all file modifications are complete (e.g., wait for build to finish)
+          # scp -v -r -P $CPANEL_PORT \
+          #   -o StrictHostKeyChecking=no \
+          #   ./* $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
-          # Create an archive of the project excluding node_modules and .git directories
-          # and suppress warnings about files changing as we read them
-          tar --exclude='./node_modules' --exclude='./.git' -czvf project.tar.gz .
-
-          # Transfer the archive
+          # Transfer compressed build output
           scp -v -P $CPANEL_PORT \
             -o StrictHostKeyChecking=no \
-            project.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
+            build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
-          # Optionally, you can run a command on the server to extract the archive
-          # ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "cd /home/ozfea/repositories/nrk-next/ && tar -xzvf project.tar.gz && rm project.tar.gz"
+          # Extract the files on the server
+          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ && rm /home/ozfea/repositories/nrk-next/build.tar.gz"
+
 
           # Cleanup
           ssh-agent -k
           rm private_key
-          rm project.tar.gz
