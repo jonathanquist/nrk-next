@@ -44,7 +44,7 @@ jobs:
 
           # Create an archive of the project excluding node_modules and .git directories
           # and suppress warnings about files changing as we read them
-          tar --exclude='./node_modules' --exclude='./.git' --warning=no-file-changed -czvf project.tar.gz .
+          tar --exclude='./node_modules' --exclude='./.git' -czvf project.tar.gz .
 
           # Transfer the archive
           scp -v -P $CPANEL_PORT \
