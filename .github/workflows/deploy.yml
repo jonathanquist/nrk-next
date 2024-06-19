@@ -24,6 +24,9 @@ jobs:
       - name: Build Next.js app
         run: npm run build
 
+      - name: Ensure build completion
+        run: sleep 10 # Waits for 10 seconds
+
       - name: Deploy to cPanel
         env:
           CPANEL_HOST: ${{ secrets.SSH_HOST }}
