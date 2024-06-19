@@ -43,10 +43,10 @@ jobs:
           # Transfer the archive
           scp -v -P $CPANEL_PORT \
             -o StrictHostKeyChecking=no \
-            project.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/.next
+            project.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
           # Optionally, you can run a command on the server to extract the archive
-          # ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "cd /home/ozfea/repositories/nrk-next/.next && tar -xzvf project.tar.gz && rm project.tar.gz"
+          # ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "cd /home/ozfea/repositories/nrk-next/ && tar -xzvf project.tar.gz && rm project.tar.gz"
 
           # Cleanup
           ssh-agent -k
