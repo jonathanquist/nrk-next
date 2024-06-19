@@ -42,7 +42,7 @@ jobs:
 
           scp -v -r -P $CPANEL_PORT \
             -o StrictHostKeyChecking=no \
-            ./ $CPANEL_USER@$CPANEL_HOST:/home/ozfea/public_html/nrk-next
+            ./ $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next
 
           # Cleanup
           ssh-agent -k
