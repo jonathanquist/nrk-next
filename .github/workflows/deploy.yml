@@ -37,8 +37,11 @@ jobs:
           eval $(ssh-agent -s)
           ssh-add private_key
 
-          # Create an archive of the project excluding node_modules
-             tar --exclude='./node_modules' --exclude='./.git' -czvf project.tar.gz .
+          # Ensure all file modifications are complete (e.g., wait for build to finish)
+
+          # Create an archive of the project excluding node_modules and .git directories
+          # and suppress warnings about files changing as we read them
+          tar --exclude='./node_modules' --exclude='./.git' --warning=no-file-changed -czvf project.tar.gz .
 
           # Transfer the archive
           scp -v -P $CPANEL_PORT \
