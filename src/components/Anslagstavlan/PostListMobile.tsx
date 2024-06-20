@@ -52,7 +52,7 @@ export default function PostListMobile({ filteredPosts }: PostListMobileProps) {
   let currentMonth = '';
 
   return (
-    <div className="flex justify-between md:w-full md:gap-12 gap-6 items-stretch flex-col pb-8">
+    <div className="flex justify-between w-full md:gap-12 gap-6 items-stretch flex-col pb-8">
       {/* Post list */}
       {(filteredPosts as any[])
         ?.slice(0, visiblePosts)

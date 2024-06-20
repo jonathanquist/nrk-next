@@ -14,6 +14,10 @@
   @apply w-full;
 }
 
+.wordpress-content p {
+  @apply paragraph-md lg:paragraph-lg;
+}
+
 .wordpress-content a {
   @apply underline text-accent-500 font-medium;
 }

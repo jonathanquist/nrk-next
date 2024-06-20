@@ -46,7 +46,7 @@ export default function Posts() {
                   />
                   <p
                     dangerouslySetInnerHTML={{ __html: post.excerpt.rendered }}
-                    className="line-clamp-3 paragraph-s"
+                    className="line-clamp-3 paragraph-sm"
                   />
                   <p className="italic text-primary-500 font-medium pt-1 pb-4">
                     {format(new Date(post.date), 'dd MMMM, yyyy')}

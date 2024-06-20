@@ -65,7 +65,7 @@ export default function Post({ post, cats }: PostProps) {
             {/* Post */}
             <div
               dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-              className="paragraph-l mb-7 wordpress-content"
+              className="paragraph-lg mb-7 wordpress-content"
             />
 
             {/* Share control */}

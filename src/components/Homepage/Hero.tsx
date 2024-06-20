@@ -45,7 +45,7 @@ export default function Hero() {
                   __html: posts[0].excerpt.rendered,
                 }}
                 ref={containerRef}
-                className="hidden lg:block paragraph-m mb-5 w-full line-clamp-2 break-words"
+                className="hidden lg:block paragraph-md mb-5 w-full line-clamp-2 break-words"
               />
 
               <Link href={posts[0].link}>

@@ -73,7 +73,7 @@ export default function CalendarLarge() {
   //       {blarg.title}
   //       <p
   //         dangerouslySetInnerHTML={{ __html: blarg.description }}
-  //         className="line-clamp-3 paragraph-s"
+  //         className="line-clamp-3 paragraph-sm"
   //       />
   //     </div>
   //   );

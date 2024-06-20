@@ -79,7 +79,7 @@ export function EventDialog({ info, children }: EventDialogProps) {
 
           <div
             dangerouslySetInnerHTML={{ __html: description }}
-            className="paragraph-m mb-7 wordpress-content"
+            className="paragraph-md mb-7 wordpress-content"
           />
         </div>
         <DialogFooter>

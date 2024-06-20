@@ -18,7 +18,7 @@ export default function PageSection({ page }: PageSectionProps) {
   return (
     <div
       dangerouslySetInnerHTML={{ __html: page.content.rendered }}
-      className="paragraph-l wordpress-content"
+      className="paragraph-lg wordpress-content"
     />
   );
 }

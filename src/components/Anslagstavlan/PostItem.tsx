@@ -30,7 +30,7 @@ export default function PostItem({ post, monthMarker }: PostItemProps) {
                 className="object-center object-cover "
               />
             </div>
-            <div className="font-medium grow flex flex-col max-lg:justify-between md:headline-m lg:py-10 lg:pl-10 lg:pr-16 lg:w-96 lg:gap-3.5">
+            <div className="font-medium grow flex flex-col max-lg:justify-between md:headline-m py-5 pl-5 pr-6 lg:py-10 lg:pl-10 lg:pr-16 lg:w-96 lg:gap-3.5">
               <h2
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                 className="max-lg:truncate max-lg:w-56"
@@ -39,7 +39,7 @@ export default function PostItem({ post, monthMarker }: PostItemProps) {
                 dangerouslySetInnerHTML={{
                   __html: post.excerpt.rendered,
                 }}
-                className="line-clamp-3 break-words paragraph-l text-sm lg:text-base h-14 w-56 lg:w-auto lg:h-full lg:grow max-w-full"
+                className="line-clamp-3 break-words paragraph-lg text-sm lg:text-base h-14 w-56 lg:w-auto lg:h-full lg:grow max-w-full"
               />
               <div className="flex text-sm lg:text-xl text-primary-500 justify-start items-center">
                 <div className="italic font-medium">

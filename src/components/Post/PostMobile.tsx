@@ -54,7 +54,7 @@ export default function PostMobile({ post, cats }: PostMobileProps) {
         {/* Post */}
         <div
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-          className="paragraph-l mb-14 md:mb-7 wordpress-content"
+          className="paragraph-lg mb-14 md:mb-7 wordpress-content"
         />
 
         {/* Share control */}

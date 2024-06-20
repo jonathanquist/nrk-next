@@ -5,7 +5,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { mobileLinks } from './links.const';
 import { usePathname } from 'next/navigation';
-import { Modal } from '../UI';
+import { IconArrowDouble, Modal } from '../UI';
 import { cn } from '@/lib/utils';
 
 interface Link {
@@ -80,7 +80,10 @@ export default function MenuMobile() {
           </li>
         ))}
       </ul>
-      <div className="flex justify-center absolute inset-x-1/2 bottom-0">
+      <div className="flex justify-center absolute w-full px-20 bottom-0">
+        <div className="bg-primary-500 w-full rounded-t-full flex items-center justify-center py-2">
+          <IconArrowDouble className="w-4 h-4" />
+        </div>
         {/*Schema*/}
       </div>
       <Modal

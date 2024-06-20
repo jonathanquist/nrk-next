@@ -31,11 +31,11 @@ export function Modal({
   const getPosition = () => {
     switch (position) {
       case 'bl':
-        return 'items-end justify-start translate-x-5 -translate-y-10';
+        return 'items-end justify-start translate-x-5 -translate-y-20';
       case 'bm':
-        return 'items-end justify-center -translate-y-10';
+        return 'items-end justify-center -translate-y-20';
       case 'br':
-        return 'items-end justify-end -translate-x-5 -translate-y-10';
+        return 'items-end justify-end -translate-x-5 -translate-y-20';
       default:
         return 'items-center justify-center';
     }

@@ -60,15 +60,15 @@
     @apply font-thin;
   }
 
-  .paragraph-s {
+  .paragraph-sm {
     @apply text-sm font-thin my-0.5;
   }
 
-  .paragraph-m {
+  .paragraph-md {
     @apply text-base font-thin;
   }
 
-  .paragraph-l {
+  .paragraph-lg {
     @apply text-xl font-thin leading-8;
   }
 

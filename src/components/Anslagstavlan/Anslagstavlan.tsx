@@ -22,17 +22,20 @@ export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
     updateCats(cats);
   }, [updatePosts, posts, updateCats, cats]);
 
+  console.log(posts, cats);
+
   const categories = [
     { id: '', name: 'Alla' },
-    { id: '8', name: 'Tävlingar' },
-    { id: '7', name: 'Kurser' },
-    { id: '9', name: 'Daglig Verksamhet' },
-    { id: '10', name: 'Bus' },
+    { id: '5', name: 'Tävlingar' },
+    { id: '4', name: 'Kurser' },
+    { id: '3', name: 'Daglig Verksamhet' },
+    { id: '2', name: 'Bus' },
   ];
 
   const handleClick = (id: string) => {
+    console.log('id', id);
     const filterPosts =
-      id === ''
+      id === '' || id === '0'
         ? posts
         : posts.filter((post: any) => post.categories.includes(parseInt(id)));
     setFilteredPosts(filterPosts);
@@ -50,7 +53,7 @@ export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
                   <button
                     onClick={() => handleClick(category.id)}
                     className={cn(
-                      'px-3.5',
+                      'px-3.5 whitespace-nowrap',
                       currentCat === category.id &&
                         'underline underline-offset-4'
                     )}

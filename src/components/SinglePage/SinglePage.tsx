@@ -19,7 +19,7 @@ export default function SinglePage({ page, children }: SinglePageProps) {
   console.log('test', page);
 
   return (
-    <div className="card-base">
+    <div className="card-base min-h-full w-full">
       <Header
         variant="page"
         title={page[0].title.rendered}
@@ -28,7 +28,7 @@ export default function SinglePage({ page, children }: SinglePageProps) {
       <div className="card-px card-py">
         <div
           dangerouslySetInnerHTML={{ __html: page[0].content.rendered }}
-          className="paragraph-l wordpress-content"
+          className="paragraph-md lg:paragraph-lg wordpress-content"
         />
 
         {children && children}

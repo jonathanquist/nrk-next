@@ -31,7 +31,7 @@ export default function WelcomeMobile() {
         dangerouslySetInnerHTML={{
           __html: pages['allmant-mobile'].content.rendered,
         }}
-        className="mb-5 paragraph-l text-xl"
+        className="mb-5 paragraph-lg text-xl"
       />
       <div className="flex justify-between items-start mb-8">
         <button
@@ -56,7 +56,7 @@ export default function WelcomeMobile() {
       </div>
       {!showCalendar ? (
         <div className="w-full flex justify-between items-center flex-col">
-          <div className="paragraph-l text-xl mb-16">
+          <div className="paragraph-lg text-xl mb-16">
             <p>
               Välkommen till denna pärla i Glasrikets östra del. Nybro Ridklubb
               har lärt ut ridsportens ädla konst sedan 1958.

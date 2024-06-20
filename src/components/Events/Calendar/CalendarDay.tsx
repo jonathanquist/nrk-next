@@ -60,7 +60,7 @@ export default function CalendarDay({
               </span>
               <p
                 dangerouslySetInnerHTML={{ __html: event.description }}
-                className="line-clamp-2 paragraph-s text-left font-fira"
+                className="paragraph-sm text-left font-fira"
               />
               <div className="w-full flex justify-end">
                 <span className="font-bold text-left text-lg small font-fira text-primary-900 underline-offset-4 group-hover:underline">
