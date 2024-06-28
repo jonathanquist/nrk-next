@@ -87,14 +87,14 @@ export default function Menu() {
   }, []);
 
   const handleLink = useCallback((page: string) => {
-    // This will hide the submenu
     setShowSubmenu('');
   }, []);
 
   return (
     <div className="">
-      <div className="w-full md:bg-primary-100 flex items-center justify-center pt-6 pb-4 md:pt-8 md:pb-7 md:py-0 md:h-24">
+      <div className="w-full md:bg-primary-100 flex items-center justify-center md:h-24">
         <div className="max-w-7xl w-full flex justify-center md:justify-between items-center px-4 md:px-0 ">
+          {/* Logo and Navbar */}
           <Link
             href="/"
             onClick={() => setShowSubmenu('')}
@@ -102,19 +102,18 @@ export default function Menu() {
           >
             <Image src={Logo} alt="logo" sizes="100%" fill priority />
           </Link>
-          {/* Logo and Navbar */}
           <Navbar>
             {links.map((link) => (
-              <li key={link.slug}>
+              <li key={link.slug} className="h-14">
                 <button
                   onClick={() => handleClick(link.label)}
                   className={cn(
-                    'text-lg lg:text-xl font-bold hover:underline flex items-center gap-2 transition rounded-b-lg pb-3 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5',
+                    'text-lg lg:text-xl font-bold h-20 hover:underline flex items-end gap-2 transition rounded-b-lg pb-4 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5 -translate-y-6',
                     link.subLinks.some(
                       (subLink) => subLink.slug === currentPath
                     ) && 'text-accent-500',
                     showSubmenu === link.label &&
-                      'bg-primary-500 -translate-y-6'
+                      'bg-primary-500 -translate-y-10'
                   )}
                 >
                   {link.icon}
