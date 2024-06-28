@@ -21,9 +21,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-hidden lg:overflow-auto">
       <SiteProvider>
-        <body className="lg:min-h-screen lg:relative">
+        <body className="min-h-screen lg:relative fixed">
           <div className="hidden lg:block">
             <header className="App-header">
               <Menu />
@@ -35,10 +35,10 @@ export default function RootLayout({
           </div>
 
           <div className="block lg:hidden">
-            <header className="App-header">
+            <header className="App-header h-20 overflow-y-scroll">
               <MenuHeader />
             </header>
-            <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-13.625rem)] w-screen overflow-y-auto rounded-xl shadow-md">
+            <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] w-screen overflow-y-auto rounded-xl shadow-md">
               {children}
             </div>
 

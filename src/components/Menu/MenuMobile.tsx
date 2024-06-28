@@ -61,8 +61,8 @@ export default function MenuMobile() {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-center">
-      <ul className="flex items-center justify-between px-6 pt-5 pb-11 w-full gap-6">
+    <div className="relative w-full flex flex-col items-center justify-between overflow-y-scroll h-[122px]">
+      <ul className="flex items-center justify-between px-6 pt-5 w-full gap-6">
         {mobileLinks.map((link, index) => (
           <li key={index} className="w-full">
             <button
@@ -80,7 +80,7 @@ export default function MenuMobile() {
           </li>
         ))}
       </ul>
-      <div className="flex justify-center absolute w-full px-20 bottom-0">
+      <div className="flex justify-center w-full px-20">
         <div className="bg-primary-500 w-full rounded-t-full flex items-center justify-center py-2">
           <IconArrowDouble className="w-4 h-4" />
         </div>

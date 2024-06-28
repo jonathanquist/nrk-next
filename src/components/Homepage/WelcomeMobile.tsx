@@ -21,7 +21,7 @@ export default function WelcomeMobile() {
   // console.log(page);
   return (
     <div className="w-full flex flex-col pt-5 pb-8 px-6 h-full md:desktop">
-      <h1
+      {/* <h1
         dangerouslySetInnerHTML={{
           __html: pages['allmant-mobile'].title.rendered,
         }}
@@ -32,7 +32,7 @@ export default function WelcomeMobile() {
           __html: pages['allmant-mobile'].content.rendered,
         }}
         className="mb-5 paragraph-lg text-xl"
-      />
+      /> */}
       <div className="flex justify-between items-start mb-8">
         <button
           onClick={() => setShowCalendar(false)}
@@ -57,10 +57,12 @@ export default function WelcomeMobile() {
       {!showCalendar ? (
         <div className="w-full flex justify-between items-center flex-col">
           <div className="paragraph-lg text-xl mb-16">
-            <p>
-              Välkommen till denna pärla i Glasrikets östra del. Nybro Ridklubb
-              har lärt ut ridsportens ädla konst sedan 1958.
-            </p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: pages['allmant-mobile'].content.rendered,
+              }}
+              className="mb-5 paragraph-lg text-xl"
+            />
           </div>
           <Link href="tel:+4670882215" className="w-full">
             <ButtonOld
