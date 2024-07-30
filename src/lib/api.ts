@@ -64,6 +64,6 @@ export async function getPages(slugs: string[]) {
 }
 
 export async function getEvents() {
-  const url = `/tribe/events/v1/events`;
+  const url = `/tribe/events/v1/events?start_date=2024-06-01`;
   return fetchData(url);
 }

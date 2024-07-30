@@ -16,7 +16,7 @@ export default function SinglePage({ page, children }: SinglePageProps) {
     );
   }
 
-  console.log('test', page);
+  // console.log('test', page);
 
   return (
     <div className="card-base min-h-full w-full ">
