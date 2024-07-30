@@ -39,10 +39,10 @@ export default function PostMobile({ post, cats }: PostMobileProps) {
       </div>
       <div className="pt-12 pb-12 card-px ">
         {/* Title */}
-        <div className="headline-l flex flex-col md:gap-7 mb-9">
+        <div className="headline-l flex flex-col lg:gap-7 mb-9">
           <h1>{post.title.rendered}</h1>
           <div className="flex flex-col lg:flex-row justify-start items-start lg:items-center">
-            <div className="italic lg:font-medium text-sm lg:text-xl lg:text-primary-500 md:my-0 mb-4 mt-1">
+            <div className="italic lg:font-medium text-sm lg:text-xl lg:text-primary-500 lg:my-0 mb-4 mt-1">
               {format(new Date(post.date), 'dd MMMM, yyyy')}
             </div>
             <div className="font-light lg:ml-5 flex gap-2 lg:gap-1 lg:text-xl lg:text-primary-500">
@@ -54,19 +54,19 @@ export default function PostMobile({ post, cats }: PostMobileProps) {
         {/* Post */}
         <div
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
-          className="paragraph-lg mb-14 md:mb-7 wordpress-content"
+          className="paragraph-lg mb-14 lg:mb-7 wordpress-content"
         />
 
         {/* Share control */}
         <div className="flex flex-col gap-2.5 text-accent-500 mb-10">
-          <p className="small font-bold text-base md:text-xl">Dela anslaget:</p>
+          <p className="small font-bold text-base lg:text-xl">Dela anslaget:</p>
           <div className="flex gap-4 items-center justify-start">
             <button onClick={shareOnFacebook}>
-              <IconSocialFacebook className="w-9 h-9 md:h-12 md:w-12" />
+              <IconSocialFacebook className="w-9 h-9 lg:h-12 lg:w-12" />
             </button>
 
             <button onClick={() => shareOnTwitter(post.title.rendered)}>
-              <IconSocialTwitter className="w-9 h-9 md:h-12 md:w-12" />
+              <IconSocialTwitter className="w-9 h-9 lg:h-12 lg:w-12" />
             </button>
           </div>
         </div>

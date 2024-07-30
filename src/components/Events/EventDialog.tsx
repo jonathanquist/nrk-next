@@ -55,7 +55,7 @@ export function EventDialog({ info, children }: EventDialogProps) {
       <DialogTrigger asChild>
         <button>{children}</button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="md:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription className="capitalize">

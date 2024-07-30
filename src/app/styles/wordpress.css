@@ -14,8 +14,12 @@
   @apply w-full;
 }
 
-.wordpress-content p {
+/* .wordpress-content p {
   @apply paragraph-md lg:paragraph-lg;
+} */
+
+.wordpress-content p {
+  @apply text-base font-thin lg:text-xl lg:leading-8;
 }
 
 .wordpress-content a {
@@ -27,7 +31,7 @@
 }
 
 .wordpress-content figure {
-  @apply flex flex-col rounded-lg shadow-md gap-2;
+  @apply flex flex-col rounded-lg shadow-md gap-2 overflow-x-auto;
 }
 
 .wordpress-content figure:has(table) {
@@ -105,7 +109,7 @@
 /* Wordpress blockquote */
 
 .wordpress-content blockquote {
-  @apply flex flex-col w-full mb-4 mt-2 md:w-2/3 rounded-lg bg-primary-100 text-accent-500 pt-6 pb-4 px-4 md:px-12 shadow-md mx-auto;
+  @apply flex flex-col w-full mb-4 mt-2 lg:w-2/3 rounded-lg bg-primary-100 text-accent-500 pt-6 pb-4 px-4 lg:px-12 shadow-md mx-auto;
 }
 
 .wordpress-content blockquote p {
@@ -121,7 +125,7 @@
 }
 
 .wordpress-content cite {
-  @apply text-xs md:text-base font-thin text-primary-500 text-center;
+  @apply text-xs lg:text-base font-thin text-primary-500 text-center;
 }
 
 /* Wordpress table */

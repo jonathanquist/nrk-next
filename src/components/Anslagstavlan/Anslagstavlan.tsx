@@ -46,7 +46,7 @@ export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
     <div className="card-base h-full">
       <Header variant="menu" title="Anslagstavlan">
         <div className="w-full">
-          <ul className="overflow-x-auto custom-scroll flex w-screen md:w-full justify-between text-primary-100 py-3.5 md:py-6 px-2.5 md:px-10 font-cambria small text-2xl">
+          <ul className="overflow-x-auto custom-scroll flex w-screen h-sm:w-[calc(100vw-140px)] lg:w-full justify-between text-primary-100 py-3.5 lg:py-6 px-2.5 lg:px-10 font-cambria small text-2xl">
             {categories.map((category, index) => (
               <React.Fragment key={index}>
                 <li key={category.id}>
@@ -75,7 +75,7 @@ export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
         </div>
       </Header>
 
-      <div className="card-px pt-8 pb-6 md:pb-12 md:pt-24 overflow-y-auto h-[calc(100%-3.75rem)] custom-scroll">
+      <div className="card-px pt-8 pb-6 lg:pb-12 lg:pt-24 overflow-y-auto h-[calc(100%-3.75rem)] custom-scroll">
         <div className="hidden lg:flex">
           <PostList filteredPosts={filteredPosts} />
         </div>

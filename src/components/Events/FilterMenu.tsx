@@ -12,7 +12,7 @@ interface FilterMenuProps {
   setFiltered: (filtered: string[]) => void;
 }
 
-export default function Filter({ filtered, setFiltered }: FilterMenuProps) {
+export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
   //   const events = ['clinic', 'event', 'lektion', 'tavling', 'annat'];
   const items = [
     { id: 'clinic', name: 'Clinic' },

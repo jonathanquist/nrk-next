@@ -16,7 +16,7 @@ export default function WelcomeDesktop() {
   return (
     <div className="w-full flex justify-between gap-10 items-stretch">
       {/* Blurb */}
-      <div className="card-base card-px pt-16 pb-9  w-full flex flex-col gap-8  h-full md:desktop">
+      <div className="card-base card-px pt-16 pb-9  w-full flex flex-col gap-8  h-full lg:desktop">
         <h1
           dangerouslySetInnerHTML={{ __html: pages.allmant.title.rendered }}
           className="small"

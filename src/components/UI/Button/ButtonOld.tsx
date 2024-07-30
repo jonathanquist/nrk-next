@@ -12,7 +12,7 @@ const ButtonOld = ({ children, icon, size, className, ...props }: Props) => {
   const getButtonSize = () => {
     switch (size) {
       case 'sm':
-        return 'rounded-md text-base flex justify-center items-center h-8 px-4 pt-[2px] justify-center whitespace-nowrap';
+        return 'rounded-md text-base h-8 px-4 pt-[2px]';
 
       case 'md':
         return `rounded-lg text-lg px-8 py-3 gap-1.5 tracking-wider justify-center ${
@@ -31,7 +31,7 @@ const ButtonOld = ({ children, icon, size, className, ...props }: Props) => {
   return (
     <button
       className={cn(
-        'font-bold bg-accent-500 tracking text-primary-100 flex items-center',
+        'font-bold bg-accent-500 tracking text-primary-100 flex justify-center items-center  whitespace-nowrap',
         getButtonSize(),
         className
       )}

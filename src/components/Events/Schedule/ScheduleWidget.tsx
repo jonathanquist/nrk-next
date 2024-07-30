@@ -1,6 +1,6 @@
 import React from 'react';
 
-import useFetch from '@/hooks/useFetch';
+
 import ScheduleLarge from './ScheduleLarge';
 
 interface ScheduleProps {

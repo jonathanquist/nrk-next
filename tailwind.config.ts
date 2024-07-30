@@ -40,6 +40,8 @@ const config: Config = {
       },
       screens: {
         '3xl': '2200px',
+        'h-sm': { raw: '(max-height: 520px)' },
+        'max-lg': { raw: '(max-width: 1024px)' },
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

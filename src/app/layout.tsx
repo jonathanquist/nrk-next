@@ -34,11 +34,11 @@ export default function RootLayout({
             <Footer />
           </div>
 
-          <div className="block lg:hidden">
-            <header className="App-header h-20 overflow-y-scroll">
+          <div className=" lg:hidden flex flex-col h-sm:flex-row">
+            <header className="App-header h-20 overflow-y-scroll h-sm:hidden">
               <MenuHeader />
             </header>
-            <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] w-screen overflow-y-auto rounded-xl shadow-md">
+            <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] h-sm:h-[100dvh] w-screen h-sm:w-[calc(100vw-140px)] h-sm:grow-0 overflow-y-auto rounded-xl shadow-md">
               {children}
             </div>
 

@@ -40,7 +40,7 @@ export default function Posts() {
                     className=" object-center object-cover "
                   />
                 </div>
-                <div className="text-sm font-medium pt-4 pb-8 px-6 flex flex-col grow md:headline-s">
+                <div className="text-sm font-medium pt-4 pb-8 px-6 flex flex-col grow lg:headline-s">
                   <h2
                     dangerouslySetInnerHTML={{ __html: post.title.rendered }}
                   />

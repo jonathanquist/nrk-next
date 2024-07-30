@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useFetch from '@/hooks/useFetch';
-import { cn, getEventColor } from '@/lib/utils';
 import { getWeek, set } from 'date-fns';
 import { IconBack, IconNext } from '../../UI';
 import Filter from '../FilterMenu';

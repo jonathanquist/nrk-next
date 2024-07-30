@@ -27,13 +27,13 @@ export default function MenuHeader() {
   };
 
   return (
-    <div className="w-full flex items-center justify-center pt-6 pb-4 px-6">
+    <div className="w-full flex items-center justify-center pt-5 pb-3 px-6">
       {path === '/' ? (
         <div className="w-full flex justify-center items-center">
           <Link
             href="/"
             //   onClick={() => handleLink('')}
-            className="relative h-14 w-full shrink-0"
+            className="relative h-12 w-full shrink-0"
           >
             <Image src={Logo} alt="logo" sizes="100%" fill priority />
           </Link>

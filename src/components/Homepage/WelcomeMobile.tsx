@@ -2,12 +2,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
-import {
-  ButtonOld,
-  IconArrowDouble,
-  IconCall,
-  IconSocialFacebook,
-} from '../UI';
+import { ButtonOld, IconCall, IconSocialFacebook } from '../UI';
 import { useSite } from '@/contexts/SiteContext';
 
 export default function WelcomeMobile() {
@@ -18,21 +13,8 @@ export default function WelcomeMobile() {
     return <div>Loading...</div>;
   }
 
-  // console.log(page);
   return (
-    <div className="w-full flex flex-col pt-5 pb-8 px-6 h-full md:desktop">
-      {/* <h1
-        dangerouslySetInnerHTML={{
-          __html: pages['allmant-mobile'].title.rendered,
-        }}
-        className="small"
-      />
-      <div
-        dangerouslySetInnerHTML={{
-          __html: pages['allmant-mobile'].content.rendered,
-        }}
-        className="mb-5 paragraph-lg text-xl"
-      /> */}
+    <div className="w-full flex flex-col pt-5 pb-8 px-6 h-full lg:desktop">
       <div className="flex justify-between items-start mb-8">
         <button
           onClick={() => setShowCalendar(false)}
@@ -56,7 +38,7 @@ export default function WelcomeMobile() {
       </div>
       {!showCalendar ? (
         <div className="w-full flex justify-between items-center flex-col">
-          <div className="paragraph-lg text-xl mb-16">
+          <div className="paragraph-lg text-xl mb-8">
             <div
               dangerouslySetInnerHTML={{
                 __html: pages['allmant-mobile'].content.rendered,
@@ -84,12 +66,6 @@ export default function WelcomeMobile() {
         </div>
       ) : (
         <div className="w-full flex justify-between items-center flex-col h-full">
-          {/* <div
-              dangerouslySetInnerHTML={{
-                __html: calendar[0].content.rendered,
-              }}
-              className="flex justify-center h-full items-center"
-            /> */}
           <div className="calendar-small overflow-hidden w-full h-full">
             <CalendarWidget />
           </div>

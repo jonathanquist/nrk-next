@@ -18,10 +18,10 @@ export default function Header({
   children,
 }: HeaderProps) {
   return (
-    <div className="bg-accent-500 rounded-t-2xl flex flex-col items-center justify-center overflow-x-hidden shadow-md md:shadow-none">
+    <div className="bg-accent-500 rounded-t-2xl flex flex-col items-center justify-center overflow-x-hidden shadow-md lg:shadow-none">
       <div
         className={cn(
-          'hidden md:flex justify-center items-end relative w-full',
+          'hidden lg:flex justify-center items-end relative w-full',
           variant === 'menu' && 'h-80',
           variant === 'page' && 'h-[400px]'
         )}

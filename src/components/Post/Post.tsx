@@ -53,7 +53,7 @@ export default function Post({ post, cats }: PostProps) {
             <div className="headline-l flex flex-col lg:gap-7 mb-9">
               <h1>{post.title.rendered}</h1>
               <div className="flex flex-col lg:flex-row justify-start items-start lg:items-center">
-                <div className="italic lg:font-medium text-sm lg:text-xl lg:text-primary-500 md:my-0 mb-4 mt-1">
+                <div className="italic lg:font-medium text-sm lg:text-xl lg:text-primary-500 lg:my-0 mb-4 mt-1">
                   {format(new Date(post.date), 'dd MMMM, yyyy')}
                 </div>
                 <div className="font-light lg:ml-5 flex gap-2 lg:gap-1 lg:text-xl lg:text-primary-500">

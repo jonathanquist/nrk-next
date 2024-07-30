@@ -14,10 +14,10 @@ export default function PostItem({ post, monthMarker }: PostItemProps) {
   return (
     <>
       {monthMarker}
-      <div className="md:px-10">
+      <div className="lg:px-10">
         <Link href={`/posts/${post.slug}`} className="group">
-          <div className="w-full overflow-hidden bg-primary-300 p-0 card card-base md:h-[270px] flex">
-            <div className="relative h-36 md:h-full w-24 md:w-72 shrink-0">
+          <div className="w-full overflow-hidden bg-primary-300 p-0 card card-base lg:h-[270px] flex">
+            <div className="relative h-36 lg:h-full w-24 lg:w-72 shrink-0">
               <Image
                 src={
                   post._embedded['wp:featuredmedia']
@@ -30,10 +30,10 @@ export default function PostItem({ post, monthMarker }: PostItemProps) {
                 className="object-center object-cover "
               />
             </div>
-            <div className="font-medium grow flex flex-col max-lg:justify-between md:headline-m py-5 pl-5 pr-6 lg:py-10 lg:pl-10 lg:pr-16 lg:w-96 lg:gap-3.5">
+            <div className="font-medium grow flex flex-col max-lg:justify-between lg:headline-m py-5 pl-5 pr-6 lg:py-10 lg:pl-10 lg:pr-16 lg:w-96 lg:gap-3.5">
               <h2
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
-                className="max-lg:truncate max-lg:w-56"
+                className="max-lg:truncate w-56 lg:w-full"
               />
               <p
                 dangerouslySetInnerHTML={{

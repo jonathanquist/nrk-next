@@ -32,7 +32,7 @@ export default function PostList({ filteredPosts }: PostListProps) {
   let currentMonth = '';
 
   return (
-    <div className="flex justify-between md:w-full md:gap-12 gap-6 items-stretch flex-col">
+    <div className="flex justify-between lg:w-full lg:gap-12 gap-6 items-stretch flex-col">
       {/* Post list */}
       {currentPosts?.map((post: any, index: any) => {
         const postMonth = format(new Date(post.date), 'MMMM yyyy');
