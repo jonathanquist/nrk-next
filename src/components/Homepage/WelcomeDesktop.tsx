@@ -25,7 +25,7 @@ export default function WelcomeDesktop() {
           dangerouslySetInnerHTML={{ __html: pages.allmant.content.rendered }}
           className="mb-5 paragraph-lg"
         />
-        <Link href="/posts">
+        <Link href="/ridskolan/kontakt">
           <ButtonOld
             className=""
             size={'md'}

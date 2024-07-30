@@ -71,7 +71,7 @@ export default function Post({ post, cats }: PostProps) {
             {/* Share control */}
             <div className="flex flex-col gap-2.5 text-accent-500 mb-10">
               <p className="small font-bold text-xl">Dela anslaget:</p>
-              <div className="flex gap-0.5 items-center justify-start">
+              <div className="flex gap-3 items-center justify-start">
                 <button onClick={shareOnFacebook}>
                   <IconSocialFacebook className="h-12 w-12" />
                 </button>
