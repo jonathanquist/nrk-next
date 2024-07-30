@@ -9,11 +9,16 @@ import { useSite } from '@/contexts/SiteContext';
 import { cn } from '@/lib/utils';
 
 interface AnsalgstavlanProps {
+  page: any;
   posts: any;
   cats: any;
 }
 
-export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
+export default function Anslagstavlan({
+  page,
+  posts,
+  cats,
+}: AnsalgstavlanProps) {
   const [filteredPosts, setFilteredPosts] = useState(posts);
   const { updatePosts, updateCats, currentCat, updateCurrentCat } = useSite();
 
@@ -44,7 +49,11 @@ export default function Anslagstavlan({ posts, cats }: AnsalgstavlanProps) {
 
   return (
     <div className="card-base h-full">
-      <Header variant="menu" title="Anslagstavlan">
+      <Header
+        variant="menu"
+        title={page[0].title.rendered}
+        image={page[0]._embedded['wp:featuredmedia'][0].source_url}
+      >
         <div className="w-full">
           <ul className="overflow-x-auto custom-scroll flex w-screen h-sm:w-[calc(100vw-140px)] lg:w-full justify-between text-primary-100 py-3.5 lg:py-6 px-2.5 lg:px-10 font-cambria small text-2xl">
             {categories.map((category, index) => (

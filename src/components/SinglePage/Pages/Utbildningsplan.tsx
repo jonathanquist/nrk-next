@@ -16,6 +16,10 @@ export default function Utbildningsplan({ pages }: UtbildningsplanProps) {
       <Header
         variant="page"
         title={pages.utbildningsplan?.title.rendered || 'Utbildningsplan'}
+        image={
+          pages.utbildningsplan?._embedded['wp:featuredmedia'][0].source_url
+        }
+
         // image={null}
       />
       <div className="card-px card-py space-y-16">
