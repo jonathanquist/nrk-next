@@ -27,8 +27,11 @@ export default function Calendar({ page, events }: CalendarProps) {
         title={page[0].title.rendered}
         image={page[0]._embedded['wp:featuredmedia'][0].source_url}
       />
-      <div className="calendar-large">
+      <div className="calendar-large hidden md:block md:h-sm:block">
         <CalendarWidget size={'lg'} />
+      </div>
+      <div className="calendar-small md:hidden  ">
+        <CalendarWidget size={'sm'} />
       </div>
     </div>
   );

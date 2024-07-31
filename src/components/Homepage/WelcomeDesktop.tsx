@@ -23,7 +23,7 @@ export default function WelcomeDesktop() {
         />
         <div
           dangerouslySetInnerHTML={{ __html: pages.allmant.content.rendered }}
-          className="mb-5 paragraph-lg"
+          className="mb-5 paragraph-lg wordpress-content"
         />
         <Link href="/ridskolan/kontakt">
           <ButtonOld

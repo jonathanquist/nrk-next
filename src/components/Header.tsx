@@ -8,6 +8,7 @@ interface HeaderProps {
   image?: string;
   imageClass?: string;
   children?: React.ReactNode;
+  onMobile?: boolean;
 }
 
 export default function Header({
@@ -16,12 +17,14 @@ export default function Header({
   imageClass,
   title,
   children,
+  onMobile,
 }: HeaderProps) {
   return (
     <div className="bg-accent-500 rounded-t-2xl flex flex-col items-center justify-center overflow-x-hidden shadow-md lg:shadow-none">
       <div
         className={cn(
           'hidden lg:flex justify-center items-end relative w-full',
+          onMobile && 'flex',
           variant === 'menu' && 'h-80',
           variant === 'page' && 'h-[400px]'
         )}

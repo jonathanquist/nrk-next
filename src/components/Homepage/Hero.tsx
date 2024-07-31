@@ -28,8 +28,6 @@ export default function Hero() {
     );
   }
 
-  console.log('hero', posts[0]);
-
   return (
     <div className="flex items-center justify-center h-48 lg:h-[calc(100vh-8.5rem)] lg:pt-16 lg:pb-20 w-full">
       <div className="relative bg-transparent overflow-hidden flex justify-start items-end pb-10 lg:py-24 lg:px-16 w-full h-48 lg:h-full rounded-t-2xl rounded-b-none lg:rounded-2xl lg:shadow-md">

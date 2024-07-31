@@ -31,11 +31,11 @@ export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
   };
 
   return (
-    <div className="absolute z-30 top-2 right-2">
+    <div className="absolute z-30 top-6 right-2 sm:right-6">
       <Popover>
         <PopoverTrigger asChild>
           <button>
-            <IconSettings className="w-16 h-16 text-primary-100" />
+            <IconSettings className="w-8 h-8 text-primary-100" />
           </button>
         </PopoverTrigger>
         <PopoverContent align="end" className="w-80 py-8 px-5">

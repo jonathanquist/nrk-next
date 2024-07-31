@@ -30,7 +30,7 @@ export default function PostMobile({ post, cats }: PostMobileProps) {
               ? post._embedded['wp:featuredmedia'][0].source_url
               : StandardImg
           }
-          alt="featured"
+          alt={post.title.rendered}
           sizes="100%"
           fill
           priority

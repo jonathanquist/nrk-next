@@ -56,7 +56,7 @@ export default function MenuMobile() {
       <ul className="flex items-center h-sm:flex-col justify-between px-6 pt-5 h-sm:pb-5 w-full gap-6 h-sm:h-[100dvh]">
         {mobileLinks.map((link, index) => (
           <li key={index} className="w-full">
-            <Popover>
+            <Popover open={showSubmenu === link.label}>
               <PopoverTrigger asChild>
                 <button
                   onClick={() => handleClick(link.label)}
