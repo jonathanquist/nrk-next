@@ -21,7 +21,7 @@ export default function Calendar({ page, events }: CalendarProps) {
   }, [updateEvents, events]);
 
   return (
-    <div className="card-base">
+    <div className="card-base h-full">
       <Header
         variant="menu"
         title={page[0].title.rendered}
@@ -30,8 +30,8 @@ export default function Calendar({ page, events }: CalendarProps) {
       <div className="calendar-large hidden md:block md:h-sm:block">
         <CalendarWidget size={'lg'} />
       </div>
-      <div className="calendar-small md:hidden  ">
-        <CalendarWidget size={'sm'} />
+      <div className="calendar-small md:hidden h-full pt-8">
+        <CalendarWidget />
       </div>
     </div>
   );

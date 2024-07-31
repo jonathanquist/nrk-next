@@ -164,6 +164,11 @@
 .calendar-small .fc-header-toolbar {
   @apply hidden;
 }
+
+.calendar-small .fc-col-header-cell-cushion {
+  @apply lg:mb-4 mb-4;
+}
+
 .calendar-small .fc-theme-standard td,
 .calendar-small .fc-theme-standard th,
 .calendar-small .fc-scrollgrid {
@@ -175,15 +180,22 @@
 }
 
 .calendar-small tbody .fc-day {
-  @apply h-10 p-1;
+  @apply h-2 p-1;
 }
 
 .calendar-small .fc-day-today {
   @apply rounded-md text-primary-100 shadow-sm;
 }
 
-.calendar-small .fc-daygrid-body-natural .fc-daygrid-day-events {
+/* .calendar-small .fc-daygrid-day-events {
   @apply mb-0 min-h-0;
+} */
+
+.calendar-small .fc-daygrid-body-natural .fc-daygrid-day-events {
+  @apply mb-0;
+}
+.calendar-small .fc-daygrid-body-unbalanced .fc-daygrid-day-events {
+  @apply min-h-0;
 }
 
 .calendar-small .fc-daygrid-event {
@@ -205,6 +217,17 @@
 
 .calendar-small tbody .fc-daygrid-day-number {
   @apply text-xs font-fira p-0 font-bold select-none;
+}
+
+.calendar-small .fc-view,
+.calendar-small .fc-scrollgrid,
+.calendar-small tbody,
+.calendar-small .fc-scrollgrid-section,
+.calendar-small .fc-scroller-harness,
+.calendar-small .fc-scroller,
+.calendar-small .fc-daygrid-body,
+.calendar-small .fc-scrollgrid-section table {
+  @apply h-full;
 }
 
 /* Schedule large */

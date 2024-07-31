@@ -56,7 +56,10 @@ export default function WelcomeMobile() {
               </div>
             </ButtonOld>
           </Link>
-          <Link href="https://www.facebook.com/profile.php?id=100080281802868">
+          <Link
+            href="https://www.facebook.com/profile.php?id=100080281802868"
+            className="w-full"
+          >
             <ButtonOld
               className="justify-start rounded-xl text-base px-5 py-4 gap-5 w-full"
               icon={<IconSocialFacebook className=" h-9 w-9" />}
