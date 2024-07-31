@@ -56,18 +56,21 @@ export default function WelcomeMobile() {
               </div>
             </ButtonOld>
           </Link>
-
-          <ButtonOld
-            className="justify-start rounded-xl text-base px-5 py-4 gap-5 w-full"
-            icon={<IconSocialFacebook className=" h-9 w-9" />}
-          >
-            Följ oss på Facebook
-          </ButtonOld>
+          <Link href="https://www.facebook.com/profile.php?id=100080281802868">
+            <ButtonOld
+              className="justify-start rounded-xl text-base px-5 py-4 gap-5 w-full"
+              icon={<IconSocialFacebook className=" h-9 w-9" />}
+            >
+              Följ oss på Facebook
+            </ButtonOld>
+          </Link>
         </div>
       ) : (
         <div className="w-full flex justify-between items-center flex-col h-full">
           <div className="calendar-small overflow-hidden w-full h-full">
-            <CalendarWidget />
+            <Link href="/aktiviteter/kalender">
+              <CalendarWidget />
+            </Link>
           </div>
         </div>
       )}

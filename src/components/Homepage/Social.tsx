@@ -12,7 +12,7 @@ export default function Social() {
       <div className="rounded-xl flex flex-col bg-primary-100 gap-8 py-10 max-w-xl items-center w-full desktop card-base">
         <h2>Följ oss på sociala medier</h2>
         <div className="flex items-center gap-10">
-          <Link href="https://www.facebook.com">
+          <Link href="https://www.facebook.com/profile.php?id=100080281802868">
             <ButtonOld
               className=""
               size={'md'}
@@ -21,7 +21,7 @@ export default function Social() {
               Facebook
             </ButtonOld>
           </Link>
-          <Link href="https://www.instagram.com">
+          <Link href="https://www.instagram.com/nybroridklubb/?hl=sv">
             <ButtonOld
               className=""
               size={'md'}

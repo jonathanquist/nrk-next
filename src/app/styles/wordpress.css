@@ -99,7 +99,7 @@
 }
 
 .wordpress-content .wp-block-column figure.wp-block-image {
-  @apply h-full p-0 overflow-hidden;
+  @apply h-full p-0 overflow-hidden flex items-center justify-start;
 }
 
 .wordpress-content .wp-block-column figure.wp-block-image img {
