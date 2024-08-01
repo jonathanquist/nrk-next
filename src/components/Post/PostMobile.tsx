@@ -9,7 +9,7 @@ import {
 } from '../UI';
 
 import Image from 'next/image';
-import StandardImg from '../../../public/images/hero_img.jpg';
+import StandardImg from '../../../public/images/standard_image.jpg';
 import { shareOnFacebook, shareOnTwitter } from './post.utils';
 import Link from 'next/link';
 import PostTags from './PostTags';

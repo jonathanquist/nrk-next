@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import StandardImg from '../../public/images/hero_img.jpg';
+import StandardImg from '../../public/images/standard_image.jpg';
 import { cn } from '@/lib/utils';
 
 interface HeaderProps {

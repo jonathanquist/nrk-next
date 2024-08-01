@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { format } from 'date-fns';
-import StandardImg from '../../../public/images/hero_img.jpg';
+import StandardImg from '../../../public/images/standard_image.jpg';
 
 import ListTags from './ListTags';
 

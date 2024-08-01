@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
-import StandardImg from '../../../public/images/hero_img.jpg';
+import StandardImg from '../../../public/images/standard_image.jpg';
 import Link from 'next/link';
 import { ButtonOld } from '../UI';
 import { useSite } from '@/contexts/SiteContext';

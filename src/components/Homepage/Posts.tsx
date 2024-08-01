@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useSite } from '@/contexts/SiteContext';
 import React, { useState } from 'react';
-import StandardImg from '../../../public/images/hero_img.jpg';
+import StandardImg from '../../../public/images/standard_image.jpg';
 import { format } from 'date-fns';
 
 import { ButtonOld, IconArrowDouble } from '../UI';
