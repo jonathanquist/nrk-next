@@ -13,7 +13,7 @@ interface PostListProps {
 export default function PostList({ filteredPosts }: PostListProps) {
   const { cats, currentPageNumber } = useSite();
 
-  const postsPerPage = 3; // Set the number of posts per page
+  const postsPerPage = 10; // Set the number of posts per page
 
   if (!filteredPosts || !cats) {
     return <div>Loading...</div>;
