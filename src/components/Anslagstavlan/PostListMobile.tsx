@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { format } from 'date-fns';
 import { useSite } from '@/contexts/SiteContext';
 import PostItem from './PostItem';
@@ -10,40 +10,47 @@ interface PostListMobileProps {
 
 export default function PostListMobile({ filteredPosts }: PostListMobileProps) {
   const { cats } = useSite();
-  const [visiblePosts, setVisiblePosts] = useState(4); // Number of initially visible posts
   const observer = useRef<IntersectionObserver | null>(null);
+  const [visiblePosts, setVisiblePosts] = useState(4); // Number of initially visible posts
+  const lastPostRef = useRef<HTMLDivElement | null>(null);
 
-  const loadMorePosts = (entries: IntersectionObserverEntry[]) => {
+  const loadMorePosts = useCallback((entries: IntersectionObserverEntry[]) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
+        console.log('Entry is intersecting:', entry);
         // Increase the number of visible posts when user reaches the end
         setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + 4);
       }
     });
-  };
+  }, []);
+
+  const setLastPostRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (observer.current) {
+        observer.current.disconnect();
+      }
+
+      if (node) {
+        observer.current = new IntersectionObserver(loadMorePosts, {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0.5,
+        });
+        observer.current.observe(node);
+      }
+
+      lastPostRef.current = node;
+    },
+    [loadMorePosts]
+  );
 
   useEffect(() => {
-    observer.current = new IntersectionObserver(loadMorePosts, {
-      root: null,
-      rootMargin: '0px',
-      threshold: 0.5,
-    });
-
-    if (observer.current && filteredPosts) {
-      const lastPostRef = document.getElementById(`post-${visiblePosts - 1}`);
-      if (lastPostRef) {
-        observer.current.observe(lastPostRef);
-      }
-    }
-
     return () => {
       if (observer.current) {
         observer.current.disconnect();
       }
     };
-  }, [visiblePosts, filteredPosts]);
-
-  // console.log(currentPageNumber);
+  }, []);
 
   if (!filteredPosts || !cats) {
     return <div>Loading...</div>;
@@ -67,7 +74,14 @@ export default function PostListMobile({ filteredPosts }: PostListMobileProps) {
             currentMonth = postMonth;
           }
 
-          return <PostItem key={index} post={post} monthMarker={monthMarker} />;
+          // Attach ref to the last post element
+          const isLastPost = index === visiblePosts - 1;
+
+          return (
+            <div key={index} ref={isLastPost ? setLastPostRef : null}>
+              <PostItem post={post} monthMarker={monthMarker} />
+            </div>
+          );
         })}
     </div>
   );
