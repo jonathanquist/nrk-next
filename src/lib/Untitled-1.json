@@ -1,0 +1,918 @@
+{
+  "events": [
+    {
+      "id": 285,
+      "global_id": "wordpress.nybroridklubb.se?id=285",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=285"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-07-05 18:26:49",
+      "date_utc": "2024-07-05 16:26:49",
+      "modified": "2024-07-05 18:26:49",
+      "modified_utc": "2024-07-05 16:26:49",
+      "url": "https://wordpress.nybroridklubb.se/event/hem-fran-betet/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/285",
+      "title": "Hem fr\u00e5n betet",
+      "description": "<p>H\u00e4starna h\u00e4mtas hem fr\u00e5n betet.</p>",
+      "excerpt": "",
+      "slug": "hem-fran-betet",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-07-30 09:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "07",
+        "day": "30",
+        "hour": "09",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-07-30 11:00:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "07",
+        "day": "30",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-07-30 07:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "07",
+        "day": "30",
+        "hour": "07",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-07-30 09:00:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "07",
+        "day": "30",
+        "hour": "09",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Annat",
+          "slug": "annat",
+          "term_group": 0,
+          "term_taxonomy_id": 12,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 4,
+          "filter": "raw",
+          "id": 12,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/12",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 505,
+      "global_id": "wordpress.nybroridklubb.se?id=505",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=505"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-07 18:41:11",
+      "date_utc": "2024-08-07 16:41:11",
+      "modified": "2024-08-09 13:27:40",
+      "modified_utc": "2024-08-09 11:27:40",
+      "url": "https://wordpress.nybroridklubb.se/event/dressyr-och-hoppkurs/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/505",
+      "title": "Dressyr och hoppkurs",
+      "description": "<p>Dressyrtr\u00e4ning paddock vid fint v\u00e4der eller stora ridhuset kl 9.00-12.00 b\u00e5da dagarna.<br />\nHopptr\u00e4ning 15.00 &#8211; 16.30 s\u00f6ndag p\u00e5 t\u00e4vlingsbanan.</p>",
+      "excerpt": "",
+      "slug": "dressyr-och-hoppkurs",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-08-10 09:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "10",
+        "hour": "09",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-11 13:00:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "11",
+        "hour": "13",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-08-10 07:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "10",
+        "hour": "07",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-11 11:00:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "11",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Lektion",
+          "slug": "lektion",
+          "term_group": 0,
+          "term_taxonomy_id": 15,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 7,
+          "filter": "raw",
+          "id": 15,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/15",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 586,
+      "global_id": "wordpress.nybroridklubb.se?id=586",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=586"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-10 12:37:14",
+      "date_utc": "2024-08-10 10:37:14",
+      "modified": "2024-08-10 12:38:04",
+      "modified_utc": "2024-08-10 10:38:04",
+      "url": "https://wordpress.nybroridklubb.se/event/selektering-elitfolauktion/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/586",
+      "title": "selektering elitf\u00f6lauktion",
+      "description": "",
+      "excerpt": "",
+      "slug": "selektering-elitfolauktion",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-08-10 13:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "10",
+        "hour": "13",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-10 15:00:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "10",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-08-10 11:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "10",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-10 13:00:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "10",
+        "hour": "13",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": false,
+      "show_map_link": false,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Annat",
+          "slug": "annat",
+          "term_group": 0,
+          "term_taxonomy_id": 12,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 4,
+          "filter": "raw",
+          "id": 12,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/12",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 527,
+      "global_id": "wordpress.nybroridklubb.se?id=527",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=527"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-07 22:09:35",
+      "date_utc": "2024-08-07 20:09:35",
+      "modified": "2024-08-08 15:07:57",
+      "modified_utc": "2024-08-08 13:07:57",
+      "url": "https://wordpress.nybroridklubb.se/event/ridlager/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/527",
+      "title": "Ridl\u00e4ger",
+      "description": "<p>Dagridl\u00e4ger M\u00e5ndag &#8211; fredag</p>\n<p>kl 9.00 &#8211; 13.00</p>",
+      "excerpt": "",
+      "slug": "ridlager",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-08-12 09:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "12",
+        "hour": "09",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-16 13:00:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "16",
+        "hour": "13",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-08-12 07:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "12",
+        "hour": "07",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-16 11:00:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "16",
+        "hour": "11",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Lektion",
+          "slug": "lektion",
+          "term_group": 0,
+          "term_taxonomy_id": 15,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 7,
+          "filter": "raw",
+          "id": 15,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/15",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 523,
+      "global_id": "wordpress.nybroridklubb.se?id=523",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=523"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-07 22:06:52",
+      "date_utc": "2024-08-07 20:06:52",
+      "modified": "2024-08-14 19:13:05",
+      "modified_utc": "2024-08-14 17:13:05",
+      "url": "https://wordpress.nybroridklubb.se/event/hopptavling/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/523",
+      "title": "Hoppt\u00e4vling",
+      "description": "<p>Hoppt\u00e4vling stora banan. L\u00f6rdag f\u00f6r ponnyer och s\u00f6ndag f\u00f6r h\u00e4star.<br />\nInst\u00e4lld och pay and jump s\u00f6ndag ist\u00e4llet<br />\nT\u00e4vlingsledare Pia Skanhed.</p>",
+      "excerpt": "",
+      "slug": "hopptavling",
+      "image": false,
+      "all_day": true,
+      "start_date": "2024-08-17 00:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "17",
+        "hour": "00",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-18 23:59:59",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "18",
+        "hour": "23",
+        "minutes": "59",
+        "seconds": "59"
+      },
+      "utc_start_date": "2024-08-16 22:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "16",
+        "hour": "22",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-18 21:59:59",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "18",
+        "hour": "21",
+        "minutes": "59",
+        "seconds": "59"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "T\u00e4vling",
+          "slug": "tavling",
+          "term_group": 0,
+          "term_taxonomy_id": 16,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 3,
+          "filter": "raw",
+          "id": 16,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/16",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 287,
+      "global_id": "wordpress.nybroridklubb.se?id=287",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=287"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-07-05 18:28:13",
+      "date_utc": "2024-07-05 16:28:13",
+      "modified": "2024-07-05 18:28:13",
+      "modified_utc": "2024-07-05 16:28:13",
+      "url": "https://wordpress.nybroridklubb.se/event/ridskolan-startar/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/287",
+      "title": "Ridskolan startar",
+      "description": "<p>H\u00f6stterminens start</p>",
+      "excerpt": "",
+      "slug": "ridskolan-startar",
+      "image": false,
+      "all_day": true,
+      "start_date": "2024-08-19 00:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "19",
+        "hour": "00",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-19 23:59:59",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "19",
+        "hour": "23",
+        "minutes": "59",
+        "seconds": "59"
+      },
+      "utc_start_date": "2024-08-18 22:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "18",
+        "hour": "22",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-19 21:59:59",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "19",
+        "hour": "21",
+        "minutes": "59",
+        "seconds": "59"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Lektion",
+          "slug": "lektion",
+          "term_group": 0,
+          "term_taxonomy_id": 15,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 7,
+          "filter": "raw",
+          "id": 15,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/15",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 652,
+      "global_id": "wordpress.nybroridklubb.se?id=652",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=652"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-24 08:26:26",
+      "date_utc": "2024-08-24 06:26:26",
+      "modified": "2024-08-24 08:26:26",
+      "modified_utc": "2024-08-24 06:26:26",
+      "url": "https://wordpress.nybroridklubb.se/event/stora-ridhuset-uthyrt/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/652",
+      "title": "Stora ridhuset uthyrt",
+      "description": "",
+      "excerpt": "",
+      "slug": "stora-ridhuset-uthyrt",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-08-24 17:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "24",
+        "hour": "17",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-24 18:00:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "24",
+        "hour": "18",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-08-24 15:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "24",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-24 16:00:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "24",
+        "hour": "16",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Annat",
+          "slug": "annat",
+          "term_group": 0,
+          "term_taxonomy_id": 12,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 4,
+          "filter": "raw",
+          "id": 12,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/12",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 507,
+      "global_id": "wordpress.nybroridklubb.se?id=507",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=507"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-07 21:26:34",
+      "date_utc": "2024-08-07 19:26:34",
+      "modified": "2024-08-29 09:43:47",
+      "modified_utc": "2024-08-29 07:43:47",
+      "url": "https://wordpress.nybroridklubb.se/event/swb-uttagning-elit-folauktion/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/507",
+      "title": "Kvalitetsbed\u00f6mning ponnier",
+      "description": "<p>Syd\u00f6stra Sveriges ponnyf\u00f6rening g\u00f6r iordning stora ridhuset efter kl 18.00</p>",
+      "excerpt": "",
+      "slug": "swb-uttagning-elit-folauktion",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-08-31 16:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "31",
+        "hour": "16",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-08-31 23:59:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "31",
+        "hour": "23",
+        "minutes": "59",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-08-31 14:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "31",
+        "hour": "14",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-08-31 21:59:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "08",
+        "day": "31",
+        "hour": "21",
+        "minutes": "59",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Annat",
+          "slug": "annat",
+          "term_group": 0,
+          "term_taxonomy_id": 12,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 4,
+          "filter": "raw",
+          "id": 12,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/12",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 512,
+      "global_id": "wordpress.nybroridklubb.se?id=512",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=512"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-01 18:30:40",
+      "date_utc": "2024-08-01 16:30:40",
+      "modified": "2024-09-01 08:48:00",
+      "modified_utc": "2024-09-01 06:48:00",
+      "url": "https://wordpress.nybroridklubb.se/event/kvalitetsbedomning-ponnier/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/512",
+      "title": "Kvalitetsbed\u00f6mning ponnier",
+      "description": "<p>Syd\u00f6stra Sveriges ponnyf\u00f6rening anordnar kvalitetsbed\u00f6mning och ungh\u00e4sttest f\u00f6r ponnier.</p>",
+      "excerpt": "",
+      "slug": "kvalitetsbedomning-ponnier",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-09-01 08:00:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "01",
+        "hour": "08",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "end_date": "2024-09-01 18:30:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "01",
+        "hour": "18",
+        "minutes": "30",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-09-01 06:00:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "01",
+        "hour": "06",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-09-01 16:30:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "01",
+        "hour": "16",
+        "minutes": "30",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Event",
+          "slug": "event",
+          "term_group": 0,
+          "term_taxonomy_id": 14,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 1,
+          "filter": "raw",
+          "id": 14,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/14",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    },
+    {
+      "id": 514,
+      "global_id": "wordpress.nybroridklubb.se?id=514",
+      "global_id_lineage": ["wordpress.nybroridklubb.se?id=514"],
+      "author": "1",
+      "status": "publish",
+      "date": "2024-08-07 21:44:25",
+      "date_utc": "2024-08-07 19:44:25",
+      "modified": "2024-08-07 21:55:43",
+      "modified_utc": "2024-08-07 19:55:43",
+      "url": "https://wordpress.nybroridklubb.se/event/dressyrtraning-for-bea-quist/",
+      "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/514",
+      "title": "Dressyrtr\u00e4ning f\u00f6r Bea Quist",
+      "description": "<p>Bea Quist fr\u00e5n Cheval Entier kommer och h\u00e5ller en tv\u00e5 dagars kurs i dressyr.</p>\n<p>Start l\u00f6rdag 13.10 &#8212;&gt; S\u00f6ndag 8.00&#8212;-&gt; ca 15.00<br />\nAnm\u00e4l till Ingrid p\u00e5 kansli@nybroridklubb.se</p>",
+      "excerpt": "",
+      "slug": "dressyrtraning-for-bea-quist",
+      "image": false,
+      "all_day": false,
+      "start_date": "2024-09-07 13:10:00",
+      "start_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "07",
+        "hour": "13",
+        "minutes": "10",
+        "seconds": "00"
+      },
+      "end_date": "2024-09-08 15:00:00",
+      "end_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "08",
+        "hour": "15",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "utc_start_date": "2024-09-07 11:10:00",
+      "utc_start_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "07",
+        "hour": "11",
+        "minutes": "10",
+        "seconds": "00"
+      },
+      "utc_end_date": "2024-09-08 13:00:00",
+      "utc_end_date_details": {
+        "year": "2024",
+        "month": "09",
+        "day": "08",
+        "hour": "13",
+        "minutes": "00",
+        "seconds": "00"
+      },
+      "timezone": "Europe/Stockholm",
+      "timezone_abbr": "CEST",
+      "cost": "",
+      "cost_details": {
+        "currency_symbol": "$",
+        "currency_code": "USD",
+        "currency_position": "prefix",
+        "values": []
+      },
+      "website": "",
+      "show_map": true,
+      "show_map_link": true,
+      "hide_from_listings": false,
+      "sticky": false,
+      "featured": false,
+      "categories": [
+        {
+          "name": "Lektion",
+          "slug": "lektion",
+          "term_group": 0,
+          "term_taxonomy_id": 15,
+          "taxonomy": "tribe_events_cat",
+          "description": "",
+          "parent": 0,
+          "count": 7,
+          "filter": "raw",
+          "id": 15,
+          "urls": {
+            "self": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories/15",
+            "collection": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/categories"
+          }
+        }
+      ],
+      "tags": [],
+      "venue": [],
+      "organizer": []
+    }
+  ],
+  "rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/?page=1&per_page=10&start_date=2024-06-01 00:00:00&end_date=2026-09-05 23:59:59&status=publish",
+  "next_rest_url": "https://wordpress.nybroridklubb.se/wp-json/tribe/events/v1/events/?per_page=10&start_date=2024-06-01+00%3A00%3A00&end_date=2026-09-05+23%3A59%3A59&status=publish&page=2",
+  "total": 15,
+  "total_pages": 2
+}

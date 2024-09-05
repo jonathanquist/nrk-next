@@ -65,6 +65,22 @@ export async function getPages(slugs: string[]) {
 }
 
 export async function getEvents() {
-  const url = `/tribe/events/v1/events?start_date=2024-06-01`;
-  return fetchData(url);
+  let allEvents: any[] = [];
+  let page = 1;
+  let totalPages = 1;
+
+  while (page <= totalPages) {
+    const url = `/tribe/events/v1/events?start_date=2024-01-01&page=${page}`;
+    const response = await fetchData(url);
+
+    if (response && response.events) {
+      allEvents = allEvents.concat(response.events);
+      totalPages = response.total_pages || 1;
+      page++;
+    } else {
+      break;
+    }
+  }
+
+  return { events: allEvents };
 }
