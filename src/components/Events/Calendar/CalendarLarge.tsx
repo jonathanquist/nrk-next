@@ -17,6 +17,7 @@ export default function CalendarLarge() {
   const [filtered, setFiltered] = useState<string[]>([]);
 
   const calendarRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { events } = useSite();
 
@@ -87,7 +88,7 @@ export default function CalendarLarge() {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <FullCalendar
         ref={calendarRef}
         contentHeight="auto"
@@ -128,6 +129,7 @@ export default function CalendarLarge() {
           currentDayEvents={currentDayEvents}
           setCurrentDayEvents={setCurrentDayEvents}
           dayInfo={dayInfo}
+          containerRef={containerRef}
         />
       )}
       <FilterMenu filtered={filtered} setFiltered={setFiltered} />

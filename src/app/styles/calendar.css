@@ -103,7 +103,7 @@
 }
 
 .calendar-large .fc-daygrid-day.fc-day-today {
-  @apply text-primary-100 hover:underline;
+  @apply text-primary-100 hover:text-primary-900 hover:underline;
 }
 
 .calendar-large .fc-event-main .schedule-large .fc-event-main {

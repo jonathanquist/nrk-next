@@ -14,12 +14,14 @@ interface CalendarDayProps {
     y: number;
     date: number;
   };
+  containerRef: React.RefObject<HTMLDivElement>;
 }
 
 export default function CalendarDay({
   currentDayEvents,
   setCurrentDayEvents,
   dayInfo,
+  containerRef,
 }: CalendarDayProps) {
   // console.log('1', currentDayEvents, '2', setCurrentDayEvents, '4', dayInfo);
   console.log('dayInfo', dayInfo);

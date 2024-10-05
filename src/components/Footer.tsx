@@ -6,7 +6,7 @@ import Logo from '../../public/images/logo.svg';
 
 export default function Footer() {
   return (
-    <div className="bg-primary-100 w-full flex flex-col gap-3 h-72 items-center pb-2 pt-10">
+    <div className="bg-primary-100 w-full flex flex-col gap-3 h-72 items-center pb-2 pt-10 card-px">
       {/* <div className="bg-primary-100 w-full mb-0 flex items-center justify-center absolute bottom-0 flex-col gap-3 pt-10 h-72 h pb-2"> */}
       <div className="flex justify-between w-full max-w-7xl">
         <div className="flex justify-center flex-col items-center gap-6">
