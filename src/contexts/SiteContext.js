@@ -15,27 +15,27 @@ export const SiteProvider = ({ children }) => {
   const [currentPageNumber, setCurrentPageNumber] = useState(1);
 
   const updatePosts = (posts) => {
-    console.log('sc-posts', posts);
+    // console.log('sc-posts', posts);
     setPosts(posts);
   };
 
   const updatePages = (pages) => {
-    console.log('sc-pages', pages);
+    // console.log('sc-pages', pages);
     setPages(pages);
   };
 
   const updateEvents = (events) => {
-    console.log('sc-events', events);
+    // console.log('sc-events', events);
     setEvents(events);
   };
 
   const updateCats = (cats) => {
-    console.log('sc-cat', cats);
+    // console.log('sc-cat', cats);
     setCats(cats);
   };
 
   const updateCurrentCat = (cat) => {
-    console.log('sc-current-cat', cat);
+    // console.log('sc-current-cat', cat);
     setCurrentCat(cat);
     setCurrentPageNumber(1);
   };
