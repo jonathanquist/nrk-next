@@ -20,6 +20,12 @@ export function getEventColor(category: string): string {
   }
 }
 
+export function decodeHtmlEntities(text: string): string {
+  const textArea = document.createElement('textarea');
+  textArea.innerHTML = text;
+  return textArea.value;
+}
+
 // export function getWeek(date: Date) {
 //   const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
 //   const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;

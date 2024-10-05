@@ -1,22 +1,13 @@
 import { cn, decodeHtmlEntities, getEventColor } from '@/lib/utils';
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '../UI';
 import Image from 'next/image';
+import { IconArrowSimple } from '../UI';
 
-interface EventDialogProps {
+interface EventMobileProps {
   info: any;
-  children: React.ReactNode;
+  action: (event: any) => void; // Update the type to accept an argument
 }
 
-export function EventDialog({ info, children }: EventDialogProps) {
+export function EventMobile({ info, action }: EventMobileProps) {
   if (!info) return null;
 
   const {
@@ -51,20 +42,25 @@ export function EventDialog({ info, children }: EventDialogProps) {
   const startMonthName = startDate.toLocaleString('sv-SE', { month: 'long' });
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <button>{children}</button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>{decodeHtmlEntities(title)}</DialogTitle>
-          <DialogDescription className="capitalize">
+    <div className="flex gap-2 h-full pl-1.5">
+      <button
+        onClick={() => action(null)}
+        className="w-9 py-6 h-full flex justify-center items-center"
+      >
+        <div className="h-full flex justify-center items-center rounded-l-xl font-semibold text-primary-100 bg-accent-500">
+          <IconArrowSimple className="w-8 h-8 transform rotate-180" />
+        </div>
+      </button>
+      <div className="grid h-fit w-full max-w-lg gap-4 border bg-primary-300 p-6 duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg">
+        <div>
+          <div>{decodeHtmlEntities(title)}</div>
+          <div className="capitalize">
             <p className="italic">
               {`${startDayName} ${start.day} ${startMonthName} ${start.hour}:${start.minutes} - ${end.hour}:${end.minutes}, `}
             </p>
             <p className="">{venue.venue}</p>
-          </DialogDescription>
-        </DialogHeader>
+          </div>
+        </div>
         <div className="flex gap-4">
           {image && (
             <div className="w-16 h-full relative rounded-lg overflow-hidden">
@@ -82,7 +78,7 @@ export function EventDialog({ info, children }: EventDialogProps) {
             className="paragraph-md mb-7 wordpress-content"
           />
         </div>
-        <DialogFooter>
+        <div>
           {info.categories.map((category: any) => (
             <span
               key={category.slug}
@@ -99,8 +95,8 @@ export function EventDialog({ info, children }: EventDialogProps) {
               {category.name}
             </span>
           ))}
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+        </div>
+      </div>
+    </div>
   );
 }

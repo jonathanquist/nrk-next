@@ -52,7 +52,7 @@ export default function MenuMobile() {
   };
 
   return (
-    <div className="relative w-full flex flex-col items-center justify-between overflow-y-scroll h-[122px] h-sm:h-[100dvh] h-sm:w-[140px] shrink-0">
+    <div className="relative w-full flex flex-col items-center justify-between overflow-y-none h-[122px] h-sm:h-[100dvh] h-sm:w-[140px] shrink-0">
       <ul className="flex items-center h-sm:flex-col justify-between px-6 pt-5 h-sm:pb-5 w-full gap-6 h-sm:h-[100dvh]">
         {mobileLinks.map((link, index) => (
           <li key={index} className="w-full">

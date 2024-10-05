@@ -2,15 +2,8 @@
 // const BASE_URL = `http://129.151.217.120/~ozfea/wordpress/wp-json`;
 const BASE_URL = `https://wordpress.nybroridklubb.se/wp-json`;
 
-// General fetch function
-// async function fetchData(url: string) {
-//   const res = await fetch(`${BASE_URL}${url}`);
-//   const data = await res.json();
-//   return data;
-// }'
-
-// const CACHE_VALIDITY_PERIOD = 5 * 60 * 1000;
-const CACHE_VALIDITY_PERIOD = 0;
+const CACHE_VALIDITY_PERIOD = 5 * 60 * 1000;
+// const CACHE_VALIDITY_PERIOD = 0;
 
 async function fetchData(url: string) {
   // Use Next.js's fetch to automatically cache data on the server side

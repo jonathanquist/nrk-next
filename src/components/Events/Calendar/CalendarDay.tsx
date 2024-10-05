@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { cn, getEventColor } from '@/lib/utils';
+import { cn, decodeHtmlEntities, getEventColor } from '@/lib/utils';
 import { IconClose } from '../../UI';
 import { useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
@@ -22,6 +22,7 @@ export default function CalendarDay({
   dayInfo,
 }: CalendarDayProps) {
   // console.log('1', currentDayEvents, '2', setCurrentDayEvents, '4', dayInfo);
+  console.log('dayInfo', dayInfo);
 
   return (
     <div
@@ -56,7 +57,7 @@ export default function CalendarDay({
             </div>
             <div className="flex flex-col w-full pr-2">
               <span className="font-bold text-left font-fira small text-lg line-clamp-2 ">
-                {event.title}
+                {decodeHtmlEntities(event.title)}
               </span>
               <p
                 dangerouslySetInnerHTML={{ __html: event.description }}
