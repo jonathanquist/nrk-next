@@ -39,6 +39,11 @@
   @apply py-3 select-none cursor-default;
 }
 
+.calendar-large .fc .fc-daygrid-day-number,
+.schedule-large .fc .fc-daygrid-day-number {
+  @apply select-none cursor-default;
+}
+
 .calendar-large .fc-daygrid-body-natural .fc-daygrid-day-events {
   @apply mb-1;
 }
@@ -65,6 +70,11 @@
 .calendar-large .fc-daygrid-day-frame:has(.fc-event),
 .schedule-large .fc-daygrid-day-frame:has(.fc-event) {
   @apply cursor-pointer hover:bg-primary-300;
+}
+
+.calendar-large .fc-day-today .fc-daygrid-day-frame,
+.schedule-large .fc-day-today .fc-daygrid-day-frame:has(.fc-event) {
+  @apply hover:bg-accent-500;
 }
 
 .calendar-large .fc-daygrid-event-harness {
@@ -103,7 +113,7 @@
 }
 
 .calendar-large .fc-daygrid-day.fc-day-today {
-  @apply text-primary-100 hover:text-primary-900 hover:underline;
+  @apply text-primary-100  hover:underline;
 }
 
 .calendar-large .fc-event-main .schedule-large .fc-event-main {
@@ -176,7 +186,7 @@
 }
 
 .calendar-small thead .fc-daygrid-day-number {
-  @apply text-xl text-primary-500 font-normal select-none;
+  @apply text-xl text-primary-500 font-normal select-none cursor-default;
 }
 
 .calendar-small tbody .fc-day {

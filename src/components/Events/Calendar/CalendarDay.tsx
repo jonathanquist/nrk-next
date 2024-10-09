@@ -57,13 +57,13 @@ export default function CalendarDay({
             >
               {event.categories[0].slug.charAt(0).toUpperCase()}
             </div>
-            <div className="flex flex-col w-full pr-2">
-              <span className="font-bold text-left font-fira small text-lg line-clamp-2 ">
+            <div className="flex flex-col w-full pr-2 py-1">
+              <span className="font-bold text-left font-fira small text-lg line-clamp-2 leading-tight">
                 {decodeHtmlEntities(event.title)}
               </span>
               <p
                 dangerouslySetInnerHTML={{ __html: event.description }}
-                className="paragraph-sm text-left font-fira"
+                className="paragraph-sm text-left font-fira line-clamp-2"
               />
               <div className="w-full flex justify-end">
                 <span className="font-bold text-left text-lg small font-fira text-primary-900 underline-offset-4 group-hover:underline">
