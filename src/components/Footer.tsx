@@ -20,11 +20,9 @@ export default function Footer() {
         <div className="flex flex-col gap-6 font-light">
           <h3>Du hittar oss</h3>
           <p className="text-sm">
-            Rismåla 5017
+            Rismåla Gård 1
             <br />
-            Box 149
-            <br />
-            38222 Nybro
+            382 46 Nybro
           </p>
         </div>
         <div className="flex flex-col gap-6 font-light">
@@ -56,7 +54,7 @@ export default function Footer() {
       </div>
       <div className="flex items-center justify-center">
         <span className="text-[10px] font-fira font-light">
-          © 2022 All rights reserved
+          © 2025 All rights reserved
         </span>
       </div>
     </div>
