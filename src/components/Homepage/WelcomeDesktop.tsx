@@ -39,7 +39,7 @@ export default function WelcomeDesktop() {
       {/* Calendar */}
       <div className="card-base card-px w-96 pt-16 pb-9 shrink-0 flex flex-col items-center justify-center">
         <div className="h-full w-full flex justify-between items-center gap-8 flex-col">
-          <div className="calendar-small overflow-hidden w-full h-full">
+          <div className="calendar-small calendar-no-toolbar overflow-hidden w-full h-full">
             <CalendarWidget />
           </div>
           <Link href="/aktiviteter/kalender">

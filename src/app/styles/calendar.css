@@ -99,11 +99,11 @@
   @apply mr-0;
 }
 
-.calendar-large tbody tr {
+.calendar-large .fc-scrollgrid-section-body tr {
   @apply h-[160px];
 }
 
-.schedule-large tbody tr {
+.schedule-large .fc-scrollgrid-section-body tr {
   @apply h-[40px] relative;
 }
 
@@ -142,6 +142,8 @@
 .calendar-large .fc-customPrevButton-button,
 .calendar-large .fc-customNextButton-button,
 .calendar-large .fc-customSettingsButton-button,
+.calendar-small .fc-customPrevButton-button,
+.calendar-small .fc-customNextButton-button,
 .schedule-large .fc-customPrevButton-button,
 .schedule-large .fc-customNextButton-button,
 .schedule-large .fc-customSettingsButton-button {
@@ -172,7 +174,28 @@
 }
 
 .calendar-small .fc-header-toolbar {
+  @apply bg-accent-500 text-primary-100 py-2.5;
+}
+
+.calendar-no-toolbar .fc-header-toolbar {
   @apply hidden;
+}
+
+.calendar-small .fc-toolbar-chunk {
+  @apply flex items-center justify-between first:mr-auto last:ml-auto;
+  /* font-variant: small-caps; */
+}
+
+.calendar-small .fc-toolbar-chunk .fc-toolbar-title {
+  @apply w-48 text-center;
+}
+
+.calendar-small .fc-customPrevButton-button .fc-icon-custom {
+  @apply w-12 h-12 bg-[url(/images/icon_back.svg)];
+}
+
+.calendar-small .fc-customNextButton-button .fc-icon-custom {
+  @apply w-12 h-12 bg-[url(/images/icon_next.svg)];
 }
 
 .calendar-small .fc-col-header-cell-cushion {
@@ -189,8 +212,19 @@
   @apply text-xl text-primary-500 font-normal select-none cursor-default;
 }
 
-.calendar-small tbody .fc-day {
+.calendar-small .fc-scrollgrid-section-body .fc-day {
   @apply h-2 p-1;
+}
+.calendar-small .fc-day a {
+  @apply pointer-events-none;
+}
+
+.calendar-small .fc-day:has(.fc-daygrid-event-harness) {
+  @apply cursor-pointer rounded-md hover:bg-primary-300;
+}
+
+.calendar-small .fc-daygrid-body tbody tr .fc-day-today {
+  @apply hover:bg-accent-500;
 }
 
 .calendar-small .fc-day-today {
@@ -225,14 +259,13 @@
   @apply justify-center items-center;
 }
 
-.calendar-small tbody .fc-daygrid-day-number {
+.calendar-small .fc-scrollgrid-section-body .fc-daygrid-day-number {
   @apply text-xs font-fira p-0 font-bold select-none;
 }
 
 .calendar-small .fc-view,
 .calendar-small .fc-scrollgrid,
-.calendar-small tbody,
-.calendar-small .fc-scrollgrid-section,
+.calendar-small .fc-scrollgrid-section-body,
 .calendar-small .fc-scroller-harness,
 .calendar-small .fc-scroller,
 .calendar-small .fc-daygrid-body,

@@ -70,7 +70,7 @@ export default function WelcomeMobile() {
         </div>
       ) : (
         <div className="w-full flex justify-between items-center flex-col h-full">
-          <div className="calendar-small overflow-hidden w-full h-full">
+          <div className="calendar-small calendar-no-toolbar overflow-hidden w-full h-full">
             <CalendarWidget />
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -9,12 +9,14 @@ import WeekHeader from '../WeekHeader';
 import { useSite } from '@/contexts/SiteContext';
 
 import CalendarDayMobile from './CalendarDayMobile';
+import { navButtons } from '../navButtons';
 
 export default function CalendarSmall() {
   // const [currentDay, setCurrentDay] = useState<any[]>([])
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
 
+  const calendarRef = useRef<any>(null);
   const { events } = useSite();
 
   if (!events) {
@@ -49,6 +51,7 @@ export default function CalendarSmall() {
   return (
     <>
       <FullCalendar
+        ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         contentHeight="auto"
         initialView="dayGridMonth"
@@ -61,9 +64,10 @@ export default function CalendarSmall() {
         locale={'sv'}
         headerToolbar={{
           left: '',
-          center: '',
+          center: 'customPrevButton title customNextButton',
           right: '',
         }}
+        customButtons={navButtons(calendarRef)}
         eventContent={(info) => EventBar({ info, size: 'sm' })}
         dayHeaderContent={(info) => WeekHeader(info)}
         events={events.events.map((event: any) => ({
