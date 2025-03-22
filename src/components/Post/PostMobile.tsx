@@ -13,13 +13,15 @@ import StandardImg from '../../../public/images/standard_image.jpg';
 import { shareOnFacebook, shareOnTwitter } from './post.utils';
 import Link from 'next/link';
 import PostTags from './PostTags';
+import { useSite } from '@/contexts/SiteContext';
 
 interface PostMobileProps {
   post: any;
-  cats: any;
 }
 
-export default function PostMobile({ post, cats }: PostMobileProps) {
+export default function PostMobile({ post }: PostMobileProps) {
+  const { cats } = useSite();
+
   return (
     <div className="flex flex-col bg-primary-100 w-full">
       {/* Image */}

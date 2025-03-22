@@ -8,6 +8,7 @@ import EventBar from '../EventBar';
 import WeekHeader from '../WeekHeader';
 import { navButtons } from '../navButtons';
 import { useSite } from '@/contexts/SiteContext';
+import Loader from '@/components/Loader/Loader';
 
 export default function CalendarLarge() {
   const [eventID, setEventID] = useState<number | null>(null);
@@ -20,9 +21,7 @@ export default function CalendarLarge() {
 
   const { events } = useSite();
 
-  if (!events) {
-    return <div>Loading...</div>;
-  }
+  if (!events) return <Loader />;
 
   const handleEventClick = (clickInfo: any) => {
     console.log('clickTest', clickInfo);

@@ -1,17 +1,19 @@
-import Schedule from '@/components/Schedule/Schedule';
-import SinglePage from '@/components/SinglePage/SinglePage';
-import { Breadcrumb } from '@/components/UI';
-import { getEvents, getPage } from '@/lib/api';
+'use client';
 
-export default async function Page() {
-  const events = await getEvents();
-  const page = await getPage('schema');
+import Schedule from '@/components/Schedule/Schedule';
+import { Breadcrumb } from '@/components/UI';
+import SinglePage from '@/components/SinglePage/SinglePage';
+import { usePage } from '@/hooks/useFetch';
+import { API } from '@/lib/const';
+
+export default function Page() {
+  const { data: page, isLoading } = usePage(API.SCHEMA);
 
   return (
     <>
       <Breadcrumb section="Aktiviteter" current={'Schema'} />
       {/* <Schedule events={events} /> */}
-      <SinglePage page={page} />
+      <SinglePage page={page} isLoading={isLoading} />
     </>
   );
 }

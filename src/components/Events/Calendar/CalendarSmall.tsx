@@ -10,6 +10,8 @@ import { useSite } from '@/contexts/SiteContext';
 
 import CalendarDayMobile from './CalendarDayMobile';
 import { navButtons } from '../navButtons';
+import Loader from '@/components/Loader/Loader';
+import { getDayEvents, getDayInfo } from '@/lib/utils';
 
 export default function CalendarSmall() {
   // const [currentDay, setCurrentDay] = useState<any[]>([])
@@ -19,33 +21,11 @@ export default function CalendarSmall() {
   const calendarRef = useRef<any>(null);
   const { events } = useSite();
 
-  if (!events) {
-    return <div>Loading...</div>;
-  }
+  if (!events) return <Loader />;
 
   const handleDateClick = (clickInfo: any) => {
-    const clickedDateStart = new Date(clickInfo.date);
-    clickedDateStart.setHours(0, 0, 0, 0);
-
-    // Set the time of the clicked date to the end of the day
-    const clickedDateEnd = new Date(clickInfo.date);
-    clickedDateEnd.setHours(23, 59, 59, 999);
-
-    const clickedDateEvents = events.events.filter((event: any) => {
-      const eventStartDate = new Date(event.start_date);
-      const eventEndDate = new Date(event.end_date);
-
-      // Check if the clicked date is within the entire day of the event
-      return (
-        eventStartDate <= clickedDateEnd && clickedDateStart <= eventEndDate
-      );
-    });
-    setDayInfo({
-      y: clickInfo.dayEl.offsetTop + 132,
-      x: clickInfo.dayEl.offsetLeft + clickInfo.dayEl.offsetWidth / 2,
-      date: clickInfo.date.getDate(),
-    });
-    setCurrentDayEvents(clickedDateEvents);
+    setDayInfo(getDayInfo(clickInfo));
+    setCurrentDayEvents(getDayEvents(clickInfo, events));
   };
 
   return (

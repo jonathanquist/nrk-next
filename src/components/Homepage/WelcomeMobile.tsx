@@ -1,17 +1,16 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
-
+import Link from 'next/link';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
 import { ButtonOld, IconCall, IconSocialFacebook } from '../UI';
-import { useSite } from '@/contexts/SiteContext';
+import Loader from '../Loader/Loader';
+import { API } from '@/lib/const';
+import { usePage } from '@/hooks/useFetch';
 
 export default function WelcomeMobile() {
   const [showCalendar, setShowCalendar] = useState(false);
-  const { pages } = useSite();
+  const { data: page, isLoading } = usePage(API.ALLMANT_MOBILE);
 
-  if (!pages) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <Loader />;
 
   return (
     <div className="w-full flex flex-col pt-5 pb-8 px-6 h-full lg:desktop">
@@ -41,7 +40,7 @@ export default function WelcomeMobile() {
           <div className="paragraph-lg text-xl mb-8">
             <div
               dangerouslySetInnerHTML={{
-                __html: pages['allmant-mobile'].content.rendered,
+                __html: page.content.rendered,
               }}
               className="mb-5 paragraph-lg text-xl"
             />

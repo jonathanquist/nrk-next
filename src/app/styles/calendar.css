@@ -16,12 +16,22 @@
 
 .calendar-large .fc-toolbar-chunk .fc-toolbar-title,
 .schedule-large .fc-toolbar-chunk .fc-toolbar-title {
-  @apply w-64 text-center;
+  @apply w-64 text-center capitalize;
 }
 
 .calendar-large .fc-toolbar-chunk > *,
 .schedule-large .fc-toolbar-chunk > * {
   @apply ml-0;
+}
+.calendar-large .fc-button-primary:hover,
+.schedule-large .fc-button-primary:hover,
+.calendar-large .fc-button-primary:focus,
+.schedule-large .fc-button-primary:focus,
+.calendar-large .fc-button-primary:not(:disabled):active,
+.schedule-large .fc-button-primary:not(:disabled):active,
+.calendar-large .fc-button-primary:not(:disabled):active:focus,
+.schedule-large .fc-button-primary:not(:disabled):active:focus {
+  @apply bg-accent-500 border-accent-500 rounded-sm shadow-none;
 }
 
 .calendar-large .fc-scrollgrid,

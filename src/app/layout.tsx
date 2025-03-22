@@ -1,5 +1,8 @@
+'use client';
+
 import type { Metadata } from 'next';
 import { SiteProvider } from '@/contexts/SiteContext';
+import QueryProvider from '@/contexts/QueryProvider';
 
 import Menu from '@/components/Menu/Menu';
 import MenuMobile from '@/components/Menu/MenuMobile';
@@ -26,30 +29,32 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="overflow-hidden lg:overflow-auto">
-      <SiteProvider>
-        <body className="min-h-screen lg:relative fixed">
-          <div className="hidden lg:block">
-            <header className="App-header">
-              <Menu />
-            </header>
-            <div className="flex justify-center items-center pb-48">
-              <div className="max-w-7xl w-full">{children}</div>
-            </div>
-            <Footer />
-          </div>
-
-          <div className=" lg:hidden flex flex-col h-sm:flex-row">
-            <header className="App-header h-20 overflow-y-none h-sm:hidden">
-              <MenuHeader />
-            </header>
-            <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] h-sm:h-[100dvh] w-screen h-sm:w-[calc(100vw-140px)] h-sm:grow-0 overflow-y-auto rounded-xl shadow-md">
-              {children}
+      <body className="min-h-screen lg:relative fixed">
+        <QueryProvider>
+          <SiteProvider>
+            <div className="hidden lg:block">
+              <header className="App-header">
+                <Menu />
+              </header>
+              <div className="flex justify-center items-center pb-48">
+                <div className="max-w-7xl w-full">{children}</div>
+              </div>
+              <Footer />
             </div>
 
-            <MenuMobile />
-          </div>
-        </body>
-      </SiteProvider>
+            <div className=" lg:hidden flex flex-col h-sm:flex-row">
+              <header className="App-header h-20 overflow-y-none h-sm:hidden">
+                <MenuHeader />
+              </header>
+              <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] h-sm:h-[100dvh] w-screen h-sm:w-[calc(100vw-140px)] h-sm:grow-0 overflow-y-auto rounded-xl shadow-md">
+                {children}
+              </div>
+
+              <MenuMobile />
+            </div>
+          </SiteProvider>
+        </QueryProvider>
+      </body>
     </html>
   );
 }

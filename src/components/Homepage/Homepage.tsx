@@ -9,28 +9,26 @@ import WelcomeDesktop from './WelcomeDesktop';
 import WelcomeMobile from './WelcomeMobile';
 import { useEffect } from 'react';
 import { Separator } from '../UI';
+import { usePosts } from '@/hooks/useFetch';
 
-interface HomeProps {
-  posts: any;
-  pages: any;
-  events: any;
-}
+export default function Homepage() {
+  // const pages = await getPages(['allmant', 'allmant-mobile', 'calendarmini']);
+  const { data: posts = [], isLoading } = usePosts(undefined, 1, 5);
+  // const { updatePosts, updatePages, updateEvents } = useSite();
 
-export default function Homepage({ posts, pages, events }: HomeProps) {
-  const { updatePosts, updatePages, updateEvents } = useSite();
+  // useEffect(() => {
+  //   updatePosts(posts);
+  //   updatePages(pages);
+  //   updateEvents(events);
+  // }, [updatePages, updatePosts, updateEvents, posts, pages, events]);
 
-  useEffect(() => {
-    updatePosts(posts);
-    updatePages(pages);
-    updateEvents(events);
-  }, [updatePages, updatePosts, updateEvents, posts, pages, events]);
-
+  // console.log('cj');
   return (
     <>
       <div className="hidden lg:block h-full">
-        <Hero />
+        <Hero posts={posts} isLoading={isLoading} />
         <WelcomeDesktop />
-        <Posts />
+        <Posts posts={posts} isLoading={isLoading} />
         <div className="px-44 py-4">
           <Separator />
         </div>
@@ -39,7 +37,7 @@ export default function Homepage({ posts, pages, events }: HomeProps) {
       </div>
       <div className="flex lg:hidden h-full">
         <div className="card-base w-full flex flex-col overflow-y-auto justify-start items-start h-full">
-          <Hero />
+          <Hero posts={posts} isLoading={isLoading} />
           <WelcomeMobile />
         </div>
       </div>

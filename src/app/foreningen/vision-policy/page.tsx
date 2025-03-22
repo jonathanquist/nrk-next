@@ -1,14 +1,17 @@
+'use client';
+
 import { Breadcrumb } from '@/components/UI';
 import SinglePage from '@/components/SinglePage/SinglePage';
-import { getPage } from '@/lib/api';
+import { usePage } from '@/hooks/useFetch';
+import { API } from '@/lib/const';
 
-export default async function Page() {
-  const page = await getPage('vision-policy');
+export default function Page() {
+  const { data: page, isLoading } = usePage(API.VISION_POLICY);
 
   return (
     <>
       <Breadcrumb section="Föreningen" current={'Vision & Policy'} />
-      <SinglePage page={page} />
+      <SinglePage page={page} isLoading={isLoading} />
     </>
   );
 }

@@ -1,9 +1,8 @@
-import Link from 'next/link';
-
-import { cn, decodeHtmlEntities, getEventColor } from '@/lib/utils';
+import { cn, decodeHtmlEntities, getDay, getEventColor } from '@/lib/utils';
 
 import {
   Dialog,
+  DialogDescription,
   DialogContent,
   DialogHeader,
   DialogTitle,
@@ -18,7 +17,7 @@ interface CalendarDayMobileProps {
   dayInfo: {
     x: number;
     y: number;
-    date: number;
+    date: string;
   };
 }
 
@@ -42,8 +41,13 @@ export default function CalendarDayMobile({
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>{dayInfo.date}</DialogTitle>
+          <DialogTitle className="text-center capitalize">
+            {getDay(dayInfo.date)}
+          </DialogTitle>
         </DialogHeader>
+        <DialogDescription className="hidden">
+          Events for {getDay(dayInfo.date)}
+        </DialogDescription>
         <div className="h-96 overflow-y-auto custom-scroll">
           {!focusedEvent &&
             currentDayEvents.map((event: any, index: number) => (

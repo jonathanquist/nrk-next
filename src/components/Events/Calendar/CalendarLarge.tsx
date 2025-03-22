@@ -9,6 +9,8 @@ import EventBar from '../EventBar';
 import WeekHeader from '../WeekHeader';
 import { navButtons } from '../navButtons';
 import { useSite } from '@/contexts/SiteContext';
+import Loader from '@/components/Loader/Loader';
+import { getDayEvents, getDayInfo } from '@/lib/utils';
 
 export default function CalendarLarge() {
   const [eventID, setEventID] = useState<number | null>(null);
@@ -21,9 +23,7 @@ export default function CalendarLarge() {
 
   const { events } = useSite();
 
-  if (!events) {
-    return <div>Loading...</div>;
-  }
+  if (!events) return <Loader />;
 
   const handleEventClick = (clickInfo: any) => {
     console.log('clickTest', clickInfo);
@@ -32,54 +32,9 @@ export default function CalendarLarge() {
   };
 
   const handleDateClick = (clickInfo: any) => {
-    const clickedDateStart = new Date(clickInfo.date);
-    clickedDateStart.setHours(0, 0, 0, 0);
-
-    // Set the time of the clicked date to the end of the day
-    const clickedDateEnd = new Date(clickInfo.date);
-    clickedDateEnd.setHours(23, 59, 59, 999);
-
-    const clickedDateEvents = events.events.filter((event: any) => {
-      const eventStartDate = new Date(event.start_date);
-      const eventEndDate = new Date(event.end_date);
-
-      // Check if the clicked date is within the entire day of the event
-      return (
-        eventStartDate <= clickedDateEnd && clickedDateStart <= eventEndDate
-      );
-    });
-    console.log(
-      'Events for the clicked date:',
-      clickedDateEvents,
-      clickInfo.date.getDate(),
-      clickInfo.dayEl.offsetTop,
-      clickInfo.dayEl.offsetLeft
-    );
-    setDayInfo({
-      y: clickInfo.dayEl.offsetTop + 132,
-      x: clickInfo.dayEl.offsetLeft + clickInfo.dayEl.offsetWidth / 2,
-      date: clickInfo.date.getDate(),
-    });
-    setCurrentDayEvents(clickedDateEvents);
-    // return clickedDateEvents;
-    // Now, you have an array of events for the clicked date (clickedDateEvents)
+    setDayInfo(getDayInfo(clickInfo));
+    setCurrentDayEvents(getDayEvents(clickInfo, events));
   };
-
-  // const renderPost = () => {
-  //   const blarg = events.events.find((event: any) => event.id === eventID);
-  //   console.log('blarg', blarg);
-
-  //   return (
-  //     <div className="flex flex-col gap-2">
-  //       {blarg.title}
-  //       <p
-  //         dangerouslySetInnerHTML={{ __html: blarg.description }}
-  //         className="line-clamp-3 paragraph-sm"
-  //       />
-  //     </div>
-  //   );
-  // };
-  // console.log(events);
 
   const filteredEvents = {
     events: events.events.filter((event: any) => {

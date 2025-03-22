@@ -14,13 +14,17 @@ import StandardImg from '../../../public/images/standard_image.jpg';
 import { shareOnFacebook, shareOnTwitter } from './post.utils';
 import Link from 'next/link';
 import PostTags from './PostTags';
+import { useSite } from '@/contexts/SiteContext';
 
 interface PostProps {
   post: any;
-  cats: any;
 }
 
-export default function Post({ post, cats }: PostProps) {
+export default function Post({ post }: PostProps) {
+  const { cats } = useSite();
+
+  console.log('ldsf', post);
+
   return (
     <div>
       <Breadcrumb

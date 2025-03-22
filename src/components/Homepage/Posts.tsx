@@ -1,27 +1,27 @@
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useSite } from '@/contexts/SiteContext';
-import React, { useState } from 'react';
 import StandardImg from '../../../public/images/standard_image.jpg';
 import { format } from 'date-fns';
 
 import { ButtonOld, IconArrowDouble } from '../UI';
+import Loader from '../Loader/Loader';
 
-export default function Posts() {
-  const [postLimit, setPostLimit] = useState(4);
+interface HeroProps {
+  posts: any[];
+  isLoading: boolean;
+}
 
-  const { posts } = useSite();
+const POST_LIMIT = 4;
 
-  if (!posts) {
-    return <div>Loading...</div>;
-  }
+export default function Posts({ posts, isLoading }: HeroProps) {
+  if (isLoading) return <Loader />;
 
   return (
     <div className="flex flex-col w-full gap-20 py-20 items-center">
       <div className="flex justify-between w-full gap-10 items-stretch">
         {posts?.map((post: any, index: any) => {
-          if (index !== 0 && index <= postLimit) {
-            // console.log('hi', post);
+          if (index !== 0 && index <= POST_LIMIT) {
             return (
               <div
                 key={index}
@@ -51,13 +51,7 @@ export default function Posts() {
                   <p className="italic text-primary-500 font-medium pt-1 pb-4">
                     {format(new Date(post.date), 'dd MMMM, yyyy')}
                   </p>
-                  {/* <Link href={`/post/${post.slug}`}> */}
-                  <Link
-                    //href={post.link}
-                    href={`/posts/${post.slug}`}
-                    className="mt-auto"
-                    //onClick={() => handleLink('Anslagstavlan')}
-                  >
+                  <Link href={`/posts/${post.slug}`} className="mt-auto">
                     <ButtonOld className="" size="sm">
                       Läs mer
                     </ButtonOld>

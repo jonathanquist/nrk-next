@@ -4,13 +4,20 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/UI';
 import React from 'react';
 import PageSection from '../PageSection';
 import Header from '@/components/Header';
+import { usePages } from '@/hooks/useFetch';
+import Loader from '@/components/Loader/Loader';
 
-interface UtbildningsplanProps {
-  pages: any;
-}
+export default function Utbildningsplan() {
+  const { data: pages, isLoading } = usePages([
+    'utbildningsplan',
+    'utbildningsplan-lek-och-lar',
+    'utbildningsplan-junior',
+    'utbildningsplan-vuxen',
+    'utbildningsplan-special',
+  ]);
 
-export default function Utbildningsplan({ pages }: UtbildningsplanProps) {
-  console.log(pages);
+  if (isLoading || !pages) return <Loader />;
+
   return (
     <div className="card-base">
       <Header

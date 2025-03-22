@@ -4,9 +4,15 @@ import StandardImg from '../../../public/images/standard_image.jpg';
 import Link from 'next/link';
 import { ButtonOld } from '../UI';
 import { useSite } from '@/contexts/SiteContext';
+import Loader from '../Loader/Loader';
 
-export default function Hero() {
-  const { posts } = useSite();
+interface HeroProps {
+  posts: any[];
+  isLoading: boolean;
+}
+
+export default function Hero({ posts, isLoading }: HeroProps) {
+  // const { posts } = useSite();
 
   const containerRef = useRef<HTMLParagraphElement>(null);
 
@@ -16,9 +22,7 @@ export default function Hero() {
     }
   });
 
-  if (!posts) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <Loader />;
 
   if (posts.length <= 0) {
     return (

@@ -93,12 +93,12 @@ export default function Menu() {
   return (
     <div className="">
       <div className="w-full md:bg-primary-100 flex items-center justify-center md:h-24">
-        <div className="max-w-7xl w-full flex justify-center md:justify-between items-center px-4 md:px-0 ">
+        <div className="max-w-7xl w-full flex justify-center md:justify-between items-center px-4 md:px-16 ">
           {/* Logo and Navbar */}
           <Link
             href="/"
             onClick={() => setShowSubmenu('')}
-            className="relative h-14 w-full md:w-72 lg:w-96 shrink-0"
+            className="relative h-14 w-full md:w-72 lg:w-[327px] shrink-0"
           >
             <Image src={Logo} alt="logo" sizes="100%" fill priority />
           </Link>
@@ -113,7 +113,7 @@ export default function Menu() {
                       (subLink) => subLink.slug === currentPath
                     ) && 'text-accent-500',
                     showSubmenu === link.label &&
-                      'bg-primary-500 -translate-y-10'
+                      'bg-primary-500 -translate-y-10 text-primary-900'
                   )}
                 >
                   {link.icon}

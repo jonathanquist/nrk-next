@@ -1,3 +1,4 @@
+import { getMonth } from '@/lib/utils';
 import { Separator } from '../UI';
 
 interface MonthMarkerProps {
@@ -5,16 +6,16 @@ interface MonthMarkerProps {
 }
 
 export default function MonthMarker({ date }: MonthMarkerProps) {
-  const getMonthMarker = (postDate: string) => {
-    const date = new Date(postDate);
-    const monthYear = new Intl.DateTimeFormat('default', {
-      year: 'numeric',
-      month: 'long',
-    }).format(date);
-    return monthYear;
-  };
+  // const getMonthMarker = (postDate: string) => {
+  //   const date = new Date(postDate);
+  //   const monthYear = new Intl.DateTimeFormat('default', {
+  //     year: 'numeric',
+  //     month: 'long',
+  //   }).format(date);
+  //   return monthYear;
+  // };
 
-  const monthMarker = getMonthMarker(date);
+  const monthMarker = getMonth(date);
 
   return (
     <div className="flex items-center justify-start lg:w-full mb-6 lg:mb-12 group-first:mt-0 lg:mt-12 mt-2 lg:px-0">

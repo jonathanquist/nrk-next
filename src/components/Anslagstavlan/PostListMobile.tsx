@@ -3,86 +3,90 @@ import { format } from 'date-fns';
 import { useSite } from '@/contexts/SiteContext';
 import PostItem from './PostItem';
 import MonthMarker from './MonthMarker';
+import Loader from '../Loader/Loader';
+import { getPosts } from '@/lib/api';
+import { usePosts } from '@/hooks/useFetch';
 
-interface PostListMobileProps {
-  filteredPosts: any;
-}
+export default function PostListMobile() {
+  const {
+    // posts,
+    // updatePosts,
+    // cats,
+    currentCat,
+    currentPagination,
+    updateCurrentPagination,
+    totalPagination,
+  } = useSite();
 
-export default function PostListMobile({ filteredPosts }: PostListMobileProps) {
-  const { cats } = useSite();
+  const [visiblePosts, setVisiblePosts] = useState<any[]>([]);
+  const {
+    data: posts = [],
+    isLoading,
+    isFetching,
+  } = usePosts(currentCat, currentPagination);
   const observer = useRef<IntersectionObserver | null>(null);
-  const [visiblePosts, setVisiblePosts] = useState(4); // Number of initially visible posts
-  const lastPostRef = useRef<HTMLDivElement | null>(null);
 
-  const loadMorePosts = useCallback((entries: IntersectionObserverEntry[]) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        console.log('Entry is intersecting:', entry);
-        // Increase the number of visible posts when user reaches the end
-        setVisiblePosts((prevVisiblePosts) => prevVisiblePosts + 4);
-      }
-    });
-  }, []);
+  const fetchMorePosts = useCallback(() => {
+    if (currentPagination < totalPagination) {
+      updateCurrentPagination(currentPagination + 1);
+    }
+  }, [currentPagination, totalPagination, updateCurrentPagination]);
 
   const setLastPostRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
+    (node: HTMLElement | null) => {
+      if (isFetching) return;
+      if (observer.current) observer.current.disconnect();
 
-      if (node) {
-        observer.current = new IntersectionObserver(loadMorePosts, {
-          root: null,
-          rootMargin: '0px',
-          threshold: 0.5,
-        });
-        observer.current.observe(node);
-      }
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && currentPagination < totalPagination) {
+          fetchMorePosts();
+        }
+      });
 
-      lastPostRef.current = node;
+      if (node) observer.current.observe(node);
     },
-    [loadMorePosts]
+    [isFetching, currentPagination, totalPagination, fetchMorePosts]
   );
 
   useEffect(() => {
-    return () => {
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-    };
-  }, []);
+    if (posts.length > 0) {
+      setVisiblePosts((prevPosts) => [...prevPosts, ...posts]);
+    }
+  }, [posts]);
+  useEffect(() => {
+    if (posts.length > 0) {
+      setVisiblePosts(posts);
+    }
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentCat]);
 
-  if (!filteredPosts || !cats) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading && visiblePosts.length === 0) return <Loader />;
 
   let currentMonth = '';
 
   return (
     <div className="flex justify-between w-full lg:gap-12 gap-6 items-stretch flex-col pb-8">
       {/* Post list */}
-      {(filteredPosts as any[])
-        ?.slice(0, visiblePosts)
-        .map((post: any, index: any) => {
-          const postMonth = format(new Date(post.date), 'MMMM yyyy'); // Fetch the month of the post
-          let monthMarker = null;
+      {visiblePosts.map((post: any, index: any) => {
+        const postMonth = format(new Date(post.date), 'MMMM yyyy'); // Fetch the month of the post
+        let monthMarker = null;
 
-          // Display month marker if the month changes
-          if (postMonth !== currentMonth) {
-            monthMarker = <MonthMarker date={post.date} />;
+        // Display month marker if the month changes
+        if (postMonth !== currentMonth) {
+          monthMarker = <MonthMarker date={post.date} />;
+          currentMonth = postMonth;
+        }
 
-            currentMonth = postMonth;
-          }
+        // Attach ref to the last post element
+        const isLastPost = index === visiblePosts.length - 1;
 
-          // Attach ref to the last post element
-          const isLastPost = index === visiblePosts - 1;
-
-          return (
-            <div key={index} ref={isLastPost ? setLastPostRef : null}>
-              <PostItem post={post} monthMarker={monthMarker} />
-            </div>
-          );
-        })}
+        return (
+          <div key={index} ref={isLastPost ? setLastPostRef : null}>
+            <PostItem post={post} monthMarker={monthMarker} />
+          </div>
+        );
+      })}
+      {isFetching && <Loader />}
     </div>
   );
 }

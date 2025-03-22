@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { cn, decodeHtmlEntities, getEventColor } from '@/lib/utils';
+import { cn, decodeHtmlEntities, getDay, getEventColor } from '@/lib/utils';
 import { IconClose } from '../../UI';
 import { useEffect, useState } from 'react';
 import { Transition } from '@headlessui/react';
@@ -12,7 +12,7 @@ interface CalendarDayProps {
   dayInfo: {
     x: number;
     y: number;
-    date: number;
+    date: string;
   };
   containerRef: React.RefObject<HTMLDivElement>;
 }
@@ -23,9 +23,6 @@ export default function CalendarDay({
   dayInfo,
   containerRef,
 }: CalendarDayProps) {
-  // console.log('1', currentDayEvents, '2', setCurrentDayEvents, '4', dayInfo);
-  console.log('dayInfo', dayInfo);
-
   return (
     <div
       className={cn(
@@ -38,8 +35,8 @@ export default function CalendarDay({
           <IconClose className="w-4 h-4" />
         </button>
       </div>
-      <span className="bold uppercase font-fira mt-[3px] pl-0.5 mb-2 text-xl">
-        {dayInfo.date}
+      <span className="bold capitalize font-fira mt-[3px] pl-0.5 mb-2 text-xl">
+        {getDay(dayInfo.date)}
       </span>
       {currentDayEvents.map((event: any, index: number) => (
         <EventDialog key={index} info={event}>

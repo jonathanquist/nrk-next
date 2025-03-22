@@ -97,6 +97,10 @@
   li::marker {
     @apply text-accent-500;
   }
+
+  html:has(#overlay) {
+    overflow: hidden;
+  }
 }
 
 html,

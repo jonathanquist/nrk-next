@@ -1,40 +1,24 @@
-import { getPosts, getCats } from '@/lib/api';
+'use client';
+
 import Post from '@/components/Post/Post';
 import PostMobile from '@/components/Post/PostMobile';
+import Loader from '@/components/Loader/Loader';
+import { usePost } from '@/hooks/useFetch';
+import { useViewport } from '@/hooks/useViewport';
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const posts = await getPosts();
-  const cats = await getCats();
+export default function Page({ params }: { params: { slug: string } }) {
+  const { data: post, isLoading } = usePost(params.slug);
+  const { width } = useViewport();
 
-  if (!posts || !cats) {
-    return <div>Loading...</div>;
-  }
-
-  const selectedPost = posts.find((post: any) => post.slug === params.slug);
-
-  // const handleBack = () => {
-  //   updatePage('Anslagstavlan');
-  //   router.back();
-  // };
-
-  // const getTags = (tagArr: any) => {
-  //   return tagArr.map((tagId: any) => {
-  //     const tagObject = tags.find((tag: { id: string }) => tag.id === tagId);
-  //     return tagObject ? (
-  //       <div className="capitalize">
-  //         {tagObject.name === 'tavling' ? 'tävling' : tagObject.name}
-  //       </div>
-  //     ) : null;
-  //   });
-  // };
+  if (isLoading) return <Loader />;
 
   return (
     <div className="w-full">
       <div className="hidden lg:block">
-        {selectedPost && <Post post={selectedPost} cats={cats} />}
+        {width > 1040 && <Post post={post} />}
       </div>
       <div className="block lg:hidden">
-        {selectedPost && <PostMobile post={selectedPost} cats={cats} />}
+        {width > 1040 && <PostMobile post={post} />}
       </div>
     </div>
   );

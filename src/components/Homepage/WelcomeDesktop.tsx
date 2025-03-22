@@ -4,25 +4,27 @@ import React from 'react';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
 import { ButtonOld, IconArrowDouble } from '../UI';
 import { useSite } from '@/contexts/SiteContext';
+import Loader from '../Loader/Loader';
+import { usePage } from '@/hooks/useFetch';
+import { API } from '@/lib/const';
 
 export default function WelcomeDesktop() {
-  const { pages } = useSite();
+  const { data: page, isLoading } = usePage(API.ALLMANT);
 
-  if (!pages) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <Loader />;
 
-  // console.log(page);
   return (
     <div className="w-full flex justify-between gap-10 items-stretch">
       {/* Blurb */}
       <div className="card-base card-px pt-16 pb-9  w-full flex flex-col gap-8  h-full lg:desktop">
         <h1
-          dangerouslySetInnerHTML={{ __html: pages.allmant.title.rendered }}
+          dangerouslySetInnerHTML={{ __html: page.title.rendered }}
           className="small"
         />
         <div
-          dangerouslySetInnerHTML={{ __html: pages.allmant.content.rendered }}
+          dangerouslySetInnerHTML={{
+            __html: page.content.rendered,
+          }}
           className="mb-5 paragraph-lg wordpress-content"
         />
         <Link href="/ridskolan/kontakt">

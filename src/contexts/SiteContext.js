@@ -1,7 +1,10 @@
 'use client';
 
-import { createContext, useContext, useState, useMemo } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+// import { getCats, getPagination, getPosts } from '../lib/api';
+// import { API } from '@/lib/const';
+import { useCats, useEvents } from '@/hooks/useFetch';
 
 const SiteContext = createContext();
 
@@ -9,40 +12,54 @@ export const SiteProvider = ({ children }) => {
   const params = useSearchParams();
   const [posts, setPosts] = useState();
   const [pages, setPages] = useState();
-  const [events, setEvents] = useState();
-  const [cats, setCats] = useState();
+  // const [events, setEvents] = useState();
+  // const [cats, setCats] = useState();
   const [currentCat, setCurrentCat] = useState(params.get('cat') || '');
-  const [currentPageNumber, setCurrentPageNumber] = useState(1);
+  const [totalPagination, setTotalPagination] = useState();
+  const [currentPagination, setCurrentPagination] = useState(1);
 
   const updatePosts = (posts) => {
-    // console.log('sc-posts', posts);
-    setPosts(posts);
+    console.log('trig posts');
+    // setPosts(posts);
   };
 
   const updatePages = (pages) => {
-    // console.log('sc-pages', pages);
     setPages(pages);
   };
 
   const updateEvents = (events) => {
-    // console.log('sc-events', events);
-    setEvents(events);
+    console.log('trig events');
+    // setEvents(events);
   };
 
   const updateCats = (cats) => {
-    // console.log('sc-cat', cats);
-    setCats(cats);
+    console.log('trig cats');
+  };
+
+  const updatePagination = (pagination) => {
+    setTotalPagination(pagination);
   };
 
   const updateCurrentCat = (cat) => {
-    // console.log('sc-current-cat', cat);
     setCurrentCat(cat);
-    setCurrentPageNumber(1);
+    setCurrentPagination(1);
   };
 
-  const updatePageNumber = (pageNumber) => {
-    setCurrentPageNumber(pageNumber);
+  const updateCurrentPagination = (pagination) => {
+    setCurrentPagination(pagination);
   };
+
+  // useEffect(() => {
+  //   const setPagination = async () => {
+  //     const pagination = await getPagination(10, currentCat);
+  //     // console.log(pagination);
+  //     updatePagination(pagination);
+  //   };
+  //   setPagination();
+  // }, [currentCat]);
+
+  const { data: cats } = useCats();
+  const { data: events } = useEvents();
 
   const providerValue = useMemo(
     () => ({
@@ -54,12 +71,14 @@ export const SiteProvider = ({ children }) => {
       updateEvents,
       cats,
       updateCats,
+      totalPagination,
+      updatePagination,
       currentCat,
       updateCurrentCat,
-      currentPageNumber,
-      updatePageNumber,
+      currentPagination,
+      updateCurrentPagination,
     }),
-    [posts, pages, events, cats, currentCat, currentPageNumber]
+    [posts, pages, events, cats, currentCat, totalPagination, currentPagination]
   );
 
   return (
