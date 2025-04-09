@@ -30,7 +30,15 @@
 .calendar-large .fc-button-primary:not(:disabled):active,
 .schedule-large .fc-button-primary:not(:disabled):active,
 .calendar-large .fc-button-primary:not(:disabled):active:focus,
-.schedule-large .fc-button-primary:not(:disabled):active:focus {
+.schedule-large .fc-button-primary:not(:disabled):active:focus,
+.calendar-small .fc-button-primary:hover,
+.schedule-small .fc-button-primary:hover,
+.calendar-small .fc-button-primary:focus,
+.schedule-small .fc-button-primary:focus,
+.calendar-small .fc-button-primary:not(:disabled):active,
+.schedule-small .fc-button-primary:not(:disabled):active,
+.calendar-small .fc-button-primary:not(:disabled):active:focus,
+.schedule-small .fc-button-primary:not(:disabled):active:focus {
   @apply bg-accent-500 border-accent-500 rounded-sm shadow-none;
 }
 
@@ -91,10 +99,6 @@
   @apply px-2 py-1;
 }
 
-.calendar-small .fc-daygrid-dot-event {
-  @apply p-0;
-}
-
 .calendar-large .fc-direction-ltr .fc-daygrid-event.fc-event-start,
 .calendar-large .fc-direction-rtl .fc-daygrid-event.fc-event-end,
 .calendar-small .fc-direction-ltr .fc-daygrid-event.fc-event-start,
@@ -123,7 +127,11 @@
 }
 
 .calendar-large .fc-daygrid-day.fc-day-today {
-  @apply text-primary-100  hover:underline;
+  @apply text-primary-100;
+}
+
+.calendar-large .fc-daygrid-day.fc-day-today:hover .fc-daygrid-day-number {
+  @apply underline;
 }
 
 .calendar-large .fc-event-main .schedule-large .fc-event-main {
@@ -146,7 +154,7 @@
 }
 
 .calendar-large .fc-daygrid-week-number {
-  @apply px-2 bg-primary-500 text-primary-100 rounded-ee-md select-none;
+  @apply px-2 bg-primary-500 text-primary-100 rounded-ee-md select-none text-sm;
 }
 
 .calendar-large .fc-customPrevButton-button,
@@ -197,7 +205,7 @@
 }
 
 .calendar-small .fc-toolbar-chunk .fc-toolbar-title {
-  @apply w-48 text-center;
+  @apply w-48 text-center capitalize;
 }
 
 .calendar-small .fc-customPrevButton-button .fc-icon-custom {
@@ -257,7 +265,11 @@
 }
 
 .calendar-small .fc-daygrid-dot-event {
-  @apply p-0 mt-1;
+  @apply p-0 mt-1 sm:mt-2;
+}
+
+.calendar-small .fc-day-today .fc-daygrid-dot-event .fc-event-title {
+  @apply border-[1px] border-primary-500;
 }
 
 .calendar-small .fc-h-event,

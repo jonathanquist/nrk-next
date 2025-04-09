@@ -46,7 +46,7 @@ export default function CalendarDayMobile({
           </DialogTitle>
         </DialogHeader>
         <DialogDescription className="hidden">
-          Events for {getDay(dayInfo.date)}
+          Vad händer {getDay(dayInfo.date)}
         </DialogDescription>
         <div className="h-96 overflow-y-auto custom-scroll">
           {!focusedEvent &&

@@ -6,22 +6,29 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 import EventBar from '../EventBar';
 import WeekHeader from '../WeekHeader';
-import { useSite } from '@/contexts/SiteContext';
 
 import CalendarDayMobile from './CalendarDayMobile';
 import { navButtons } from '../navButtons';
-import Loader from '@/components/Loader/Loader';
 import { getDayEvents, getDayInfo } from '@/lib/utils';
+import { format } from 'date-fns';
+import { useMonthEvents } from '@/hooks/useFetch';
 
 export default function CalendarSmall() {
-  // const [currentDay, setCurrentDay] = useState<any[]>([])
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
+  const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
+    start: format(new Date(), 'yyyy-MM-01'),
+    end: format(new Date(), 'yyyy-MM-31'),
+  });
 
   const calendarRef = useRef<any>(null);
-  const { events } = useSite();
 
-  if (!events) return <Loader />;
+  const { data: eventsData, isLoading } = useMonthEvents(
+    dateRange.start,
+    dateRange.end
+  );
+
+  const events = eventsData?.events || [];
 
   const handleDateClick = (clickInfo: any) => {
     setDayInfo(getDayInfo(clickInfo));
@@ -47,10 +54,10 @@ export default function CalendarSmall() {
           center: 'customPrevButton title customNextButton',
           right: '',
         }}
-        customButtons={navButtons(calendarRef)}
-        eventContent={(info) => EventBar({ info, size: 'sm' })}
+        customButtons={navButtons(calendarRef, setDayInfo, setCurrentDayEvents)}
+        eventContent={(info) => EventBar({ info, size: 'sm', isLoading })}
         dayHeaderContent={(info) => WeekHeader(info)}
-        events={events.events.map((event: any) => ({
+        events={events.map((event: any) => ({
           title: event.title,
           start: new Date(event.start_date),
           end: new Date(event.end_date),
@@ -58,6 +65,12 @@ export default function CalendarSmall() {
           category: event.categories[0].slug,
         }))}
         dateClick={(info) => handleDateClick(info)}
+        datesSet={(info) => {
+          setDateRange({
+            start: format(info.start, 'yyyy-MM-dd'),
+            end: format(info.end, 'yyyy-MM-dd'),
+          });
+        }}
       />
       {currentDayEvents.length > 0 && (
         <CalendarDayMobile

@@ -22,7 +22,7 @@ export default function SinglePage({
     return <div className="card-base min-h-full w-full ">Sidan finns inte</div>;
 
   return (
-    <div className="card-base min-h-full w-full ">
+    <div className="h-full w-full card-base overflow-y-auto custom-scroll">
       <div className="hidden lg:block">
         <Header
           variant="page"
@@ -38,7 +38,7 @@ export default function SinglePage({
           image={page._embedded['wp:featuredmedia'][0].source_url}
         />
       </div>
-      <div className="card-px card-py">
+      <div className="card-px card-py h-full space-y-16">
         <div
           dangerouslySetInnerHTML={{ __html: page.content.rendered }}
           className="paragraph-md lg:paragraph-lg wordpress-content"

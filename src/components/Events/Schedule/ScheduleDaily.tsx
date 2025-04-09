@@ -52,7 +52,7 @@ export default function ScheduleDaily({ size = 'sm' }: { size?: string }) {
               <IconNext />
             </div>
           </div>
-          <div className="">
+          <div>
             <Filter filtered={filtered} setFiltered={setFiltered} />
           </div>
         </div>

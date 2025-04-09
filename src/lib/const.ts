@@ -40,5 +40,5 @@ export const categories = [
   { id: '5', name: 'Tävlingar' },
   { id: '4', name: 'Kurser' },
   { id: '3', name: 'Daglig Verksamhet' },
-  { id: '2', name: 'Bus' },
+  { id: '2', name: 'BUS' },
 ];

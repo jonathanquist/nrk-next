@@ -23,12 +23,36 @@ export default function CalendarDay({
   dayInfo,
   containerRef,
 }: CalendarDayProps) {
+  // Calculate adjusted left position
+  const calculateLeftPosition = () => {
+    const container = containerRef.current;
+    if (!container) return dayInfo.x;
+
+    const containerRect = container.getBoundingClientRect();
+    const modalWidth = 288; // Width of the modal (w-64 in Tailwind = 16rem = 256px)
+    const padding = 6; // Add some padding to avoid touching the edges
+
+    let left = dayInfo.x;
+
+    // Prevent overflow on the left
+    if (left - modalWidth / 2 < containerRect.left + padding) {
+      left = containerRect.left + padding + modalWidth / 2;
+    }
+
+    // Prevent overflow on the right
+    if (left + modalWidth / 2 > containerRect.right - padding) {
+      left = containerRect.right - padding - modalWidth / 2;
+    }
+
+    return left;
+  };
+
   return (
     <div
       className={cn(
-        'absolute rounded-xl font-cambria text-center z-50 overflow-hidden pt-2.5 w-64 px-6 pb-11 bg-primary-500 -translate-x-1/2 shadow-md flex flex-col'
+        'absolute rounded-xl font-cambria text-center z-50 overflow-hidden pt-2.5 w-72 px-6 pb-11 bg-primary-500 -translate-x-1/2 shadow-md flex flex-col'
       )}
-      style={{ top: dayInfo.y, left: dayInfo.x }}
+      style={{ top: dayInfo.y + 6, left: calculateLeftPosition() }}
     >
       <div className="w-full flex justify-end">
         <button onClick={() => setCurrentDayEvents([])}>

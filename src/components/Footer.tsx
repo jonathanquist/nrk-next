@@ -35,7 +35,9 @@ export default function Footer() {
           <p className="text-sm">
             <span className="font-bold">E-post</span>
             <br />
-            ridskolan@nybroridklubb.se
+            <a href="mailto:ridskolan@nybroridklubb.se">
+              ridskolan@nybroridklubb.se
+            </a>
           </p>
         </div>
         <div className="flex flex-col gap-6 font-light">
@@ -48,7 +50,9 @@ export default function Footer() {
           <p className="text-sm">
             <span className="font-bold">E-post</span>
             <br />
-            ridskolan@nybroridklubb.se
+            <a href="mailto:ridskolan@nybroridklubb.se">
+              ridskolan@nybroridklubb.se
+            </a>
           </p>
         </div>
       </div>

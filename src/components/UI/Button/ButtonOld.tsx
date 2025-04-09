@@ -37,7 +37,7 @@ const ButtonOld = ({ children, icon, size, className, ...props }: Props) => {
       )}
       {...props}
     >
-      {icon && <span className="">{icon}</span>}
+      {icon && <span>{icon}</span>}
       <span className="small">{children}</span>
     </button>
   );

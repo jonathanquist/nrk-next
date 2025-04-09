@@ -2,39 +2,16 @@
 
 import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-// import { getCats, getPagination, getPosts } from '../lib/api';
-// import { API } from '@/lib/const';
-import { useCats, useEvents } from '@/hooks/useFetch';
+import { useCats, useEvents, usePagination } from '@/hooks/useFetch';
 
 const SiteContext = createContext();
 
 export const SiteProvider = ({ children }) => {
   const params = useSearchParams();
-  const [posts, setPosts] = useState();
-  const [pages, setPages] = useState();
-  // const [events, setEvents] = useState();
-  // const [cats, setCats] = useState();
+  const [events, setEvents] = useState();
   const [currentCat, setCurrentCat] = useState(params.get('cat') || '');
-  const [totalPagination, setTotalPagination] = useState();
+  const [totalPagination, setTotalPagination] = useState(2);
   const [currentPagination, setCurrentPagination] = useState(1);
-
-  const updatePosts = (posts) => {
-    console.log('trig posts');
-    // setPosts(posts);
-  };
-
-  const updatePages = (pages) => {
-    setPages(pages);
-  };
-
-  const updateEvents = (events) => {
-    console.log('trig events');
-    // setEvents(events);
-  };
-
-  const updateCats = (cats) => {
-    console.log('trig cats');
-  };
 
   const updatePagination = (pagination) => {
     setTotalPagination(pagination);
@@ -49,28 +26,33 @@ export const SiteProvider = ({ children }) => {
     setCurrentPagination(pagination);
   };
 
-  // useEffect(() => {
-  //   const setPagination = async () => {
-  //     const pagination = await getPagination(10, currentCat);
-  //     // console.log(pagination);
-  //     updatePagination(pagination);
-  //   };
-  //   setPagination();
-  // }, [currentCat]);
-
   const { data: cats } = useCats();
-  const { data: events } = useEvents();
+  const { data: eventsObj } = useEvents();
+  const { data: totalPages } = usePagination(5, currentCat);
+
+  useEffect(() => {
+    if (totalPages) {
+      setTotalPagination(totalPages);
+    }
+  }, [totalPages]);
+
+  useEffect(() => {
+    if (eventsObj) {
+      const eventsWithCategories = eventsObj.events.map((event) => {
+        event.categories.length <= 0
+          ? (event.categories = [{ slug: 'Annat' }])
+          : event.categories;
+        return event;
+      });
+
+      setEvents(eventsWithCategories);
+    }
+  }, [eventsObj]);
 
   const providerValue = useMemo(
     () => ({
-      posts,
-      updatePosts,
-      pages,
-      updatePages,
       events,
-      updateEvents,
       cats,
-      updateCats,
       totalPagination,
       updatePagination,
       currentCat,
@@ -78,7 +60,7 @@ export const SiteProvider = ({ children }) => {
       currentPagination,
       updateCurrentPagination,
     }),
-    [posts, pages, events, cats, currentCat, totalPagination, currentPagination]
+    [events, cats, currentCat, totalPagination, currentPagination]
   );
 
   return (

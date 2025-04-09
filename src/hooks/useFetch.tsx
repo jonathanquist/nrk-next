@@ -66,7 +66,7 @@ export function usePost(slug: string) {
 export function usePosts(
   currentCat?: number,
   page: number = 1,
-  perPage: number = 10
+  perPage: number = 5
 ) {
   const url =
     `/wp/v2/posts?_embed&per_page=${perPage}&page=${page}` +
@@ -137,5 +137,42 @@ export function useEvents() {
       return { events: allEvents };
     },
     staleTime: 1000 * 60 * 5,
+  });
+}
+
+export function useMonthEvents(start_date: string, end_date: string) {
+  const url = `/tribe/events/v1/events?start_date=${start_date}&end_date=${end_date}`;
+
+  return useQuery({
+    queryKey: ['EVENTS', start_date, end_date],
+    queryFn: async () => {
+      let allEvents: any[] = [];
+      let page = 1;
+      let totalPages = 1;
+
+      while (page <= totalPages) {
+        const paginatedUrl = `${url}&page=${page}`;
+        const response = await fetchData(paginatedUrl);
+
+        if (response && response.events) {
+          // Fix missing categories
+          const eventsWithCategories = response.events.map((event: any) => {
+            if (!event.categories || event.categories.length === 0) {
+              event.categories = [{ slug: 'annat' }]; // Default category
+            }
+            return event;
+          });
+
+          allEvents = allEvents.concat(eventsWithCategories);
+          totalPages = response.total_pages || 1;
+          page++;
+        } else {
+          break;
+        }
+      }
+
+      return { events: allEvents };
+    },
+    staleTime: 1000 * 60 * 10, // Cache for 10 minutes
   });
 }

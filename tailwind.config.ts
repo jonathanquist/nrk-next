@@ -37,6 +37,8 @@ const config: Config = {
       },
       boxShadow: {
         card: '0px 30px 80px rgba(0, 0, 0, 0.1)',
+        'md-lift':
+          '0 8px 8px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
       },
       screens: {
         '3xl': '2200px',

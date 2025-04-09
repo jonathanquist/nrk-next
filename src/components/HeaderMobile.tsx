@@ -20,7 +20,7 @@ export default function HeaderMobile({
   onMobile,
 }: HeaderProps) {
   return (
-    <div className="">
+    <div>
       <div className="relative h-72 w-full">
         <Image
           src={image ? image : StandardImg}

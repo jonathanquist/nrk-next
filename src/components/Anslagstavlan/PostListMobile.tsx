@@ -9,9 +9,6 @@ import { usePosts } from '@/hooks/useFetch';
 
 export default function PostListMobile() {
   const {
-    // posts,
-    // updatePosts,
-    // cats,
     currentCat,
     currentPagination,
     updateCurrentPagination,
@@ -49,16 +46,19 @@ export default function PostListMobile() {
   );
 
   useEffect(() => {
-    if (posts.length > 0) {
-      setVisiblePosts((prevPosts) => [...prevPosts, ...posts]);
-    }
-  }, [posts]);
-  useEffect(() => {
+    setVisiblePosts([]); // Clear the visible posts
+    updateCurrentPagination(1); // Reset pagination to the first page
     if (posts.length > 0) {
       setVisiblePosts(posts);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCat]);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      setVisiblePosts((prevPosts) => [...prevPosts, ...posts]);
+    }
+  }, [posts]);
 
   if (isLoading && visiblePosts.length === 0) return <Loader />;
 

@@ -13,6 +13,8 @@ export function getEventColor(category: string): string {
       return 'rgb(78 58 167)';
     case 'lektion':
       return 'rgb(195 38 220)';
+    case 'kurs':
+      return 'rgb(195 38 220)';
     case 'tavling':
       return 'rgb(100 143 255)';
     default:
@@ -60,7 +62,7 @@ export function getDayEvents(clickInfo: any, events: any): any {
   const clickedDateEnd = new Date(clickInfo.date);
   clickedDateEnd.setHours(23, 59, 59, 999);
 
-  const clickedDateEvents = events.events.filter((event: any) => {
+  const clickedDateEvents = events.filter((event: any) => {
     const eventStartDate = new Date(event.start_date);
     const eventEndDate = new Date(event.end_date);
 
@@ -76,3 +78,24 @@ export function getDayEvents(clickInfo: any, events: any): any {
 //   const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
 //   return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
 // }
+
+export function cleanAndTruncateText(text: string, maxLength?: number): string {
+  // Remove HTML tags
+  let cleanedText = text.replace(/<\/?[^>]+(>|$)/g, '');
+
+  // Decode HTML entities
+  const textArea = document.createElement('textarea');
+  textArea.innerHTML = cleanedText;
+  cleanedText = textArea.value;
+
+  // Ensure that [...] at the end is replaced with ...
+  cleanedText = cleanedText.replace(/\[?&hellip;\]?|…/g, '...');
+  cleanedText = cleanedText.replace(/\s*\[\.\.\.\]\s*$/, '...');
+
+  // If maxLength is provided, truncate the text
+  if (maxLength && cleanedText.length > maxLength) {
+    return `${cleanedText.substring(0, maxLength)}...`;
+  }
+
+  return cleanedText;
+}

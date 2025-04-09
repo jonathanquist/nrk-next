@@ -13,7 +13,6 @@ interface FilterMenuProps {
 }
 
 export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
-  //   const events = ['clinic', 'event', 'lektion', 'tavling', 'annat'];
   const items = [
     { id: 'clinic', name: 'Clinic' },
     { id: 'event', name: 'Event' },
@@ -22,11 +21,29 @@ export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
     { id: 'annat', name: 'Annat' },
   ];
 
+  // const handleToggle = (id: string) => {
+  //   if (filtered.includes(id)) {
+  //     setFiltered(filtered.filter((item) => item !== id));
+  //   } else {
+  //     setFiltered([...filtered, id]);
+  //   }
+  // };
+
   const handleToggle = (id: string) => {
-    if (filtered.includes(id)) {
-      setFiltered(filtered.filter((item) => item !== id));
+    if (id === 'lektion') {
+      if (filtered.includes('lektion')) {
+        setFiltered(
+          filtered.filter((item) => item !== 'lektion' && item !== 'kurs')
+        );
+      } else {
+        setFiltered([...filtered, 'lektion', 'kurs']);
+      }
     } else {
-      setFiltered([...filtered, id]);
+      if (filtered.includes(id)) {
+        setFiltered(filtered.filter((item) => item !== id));
+      } else {
+        setFiltered([...filtered, id]);
+      }
     }
   };
 

@@ -6,6 +6,7 @@ import PageSection from '../PageSection';
 import Header from '@/components/Header';
 import { usePages } from '@/hooks/useFetch';
 import Loader from '@/components/Loader/Loader';
+import HeaderMobile from '@/components/HeaderMobile';
 
 export default function Utbildningsplan() {
   const { data: pages, isLoading } = usePages([
@@ -19,19 +20,26 @@ export default function Utbildningsplan() {
   if (isLoading || !pages) return <Loader />;
 
   return (
-    <div className="card-base">
+    <div className="h-full w-full card-base overflow-y-auto custom-scroll">
       <Header
         variant="page"
         title={pages.utbildningsplan?.title.rendered || 'Utbildningsplan'}
         image={
           pages.utbildningsplan?._embedded['wp:featuredmedia'][0].source_url
         }
-
-        // image={null}
       />
-      <div className="card-px card-py space-y-16">
+      <div className="block lg:hidden">
+        <HeaderMobile
+          variant="page"
+          title={pages.utbildningsplan?.title.rendered || 'Utbildningsplan'}
+          image={
+            pages.utbildningsplan?._embedded['wp:featuredmedia'][0].source_url
+          }
+        />
+      </div>
+      <div className="card-px card-py h-full space-y-16">
         <PageSection page={pages.utbildningsplan} />
-        <Tabs defaultValue="junior" className="">
+        <Tabs defaultValue="junior">
           <TabsList className="w-full justify-between   ">
             <TabsTrigger value="lek-och-lar">Lek & Lär</TabsTrigger>
             <TabsTrigger value="junior">Junior</TabsTrigger>

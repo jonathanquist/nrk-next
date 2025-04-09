@@ -20,11 +20,11 @@ export default function Calendar({ page }: CalendarProps) {
         title={page.title.rendered}
         image={page._embedded['wp:featuredmedia'][0].source_url}
       />
-      <div className="calendar-large hidden md:block md:h-sm:block">
-        {width > 768 && <CalendarWidget size={'lg'} />}
+      <div className="calendar-large hidden lg:block  lg:h-sm:block">
+        {width > 1025 && <CalendarWidget size={'lg'} />}
       </div>
-      <div className="calendar-small md:hidden h-full">
-        {width < 768 && <CalendarWidget />}
+      <div className="calendar-small lg:hidden h-full">
+        {width < 1024 && <CalendarWidget />}
       </div>
     </div>
   );

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import CalendarWidget from '../Events/Calendar/CalendarWidget';
-import { ButtonOld, IconCall, IconSocialFacebook } from '../UI';
+import { Button, IconCall, IconSocialFacebook } from '../UI';
 import Loader from '../Loader/Loader';
 import { API } from '@/lib/const';
 import { usePage } from '@/hooks/useFetch';
+import { sv } from 'date-fns/locale';
+import { format } from 'date-fns';
 
 export default function WelcomeMobile() {
   const [showCalendar, setShowCalendar] = useState(false);
@@ -12,8 +14,11 @@ export default function WelcomeMobile() {
 
   if (isLoading) return <Loader />;
 
+  const currentMonthName = format(new Date(), 'MMMM', { locale: sv });
+
   return (
     <div className="w-full flex flex-col pt-5 pb-8 px-6 h-full lg:desktop">
+      {/* Header */}
       <div className="flex justify-between items-start mb-8">
         <button
           onClick={() => setShowCalendar(false)}
@@ -29,12 +34,17 @@ export default function WelcomeMobile() {
           onClick={() => setShowCalendar(true)}
           className="w-full py-1 flex flex-col items-center"
         >
-          <h1 className="small text-center pt-1.5">Kalender</h1>
+          {/* <h1 className="small text-center pt-1.5">Kalender</h1> */}
+          <h1 className="small text-center pt-1.5 capitalize">
+            {currentMonthName}
+          </h1>
           {showCalendar && (
             <div className="h-0.5 bg-primary-900 rounded-full w-5/6" />
           )}
         </button>
       </div>
+
+      {/* Welcome text */}
       {!showCalendar ? (
         <div className="w-full flex justify-between items-center flex-col">
           <div className="paragraph-lg text-xl mb-8">
@@ -46,28 +56,31 @@ export default function WelcomeMobile() {
             />
           </div>
           <Link href="tel:+4670882215" className="w-full">
-            <ButtonOld
+            <Button
               className="justify-start rounded-xl text-base px-5 py-4 gap-5 mb-7 w-full"
-              icon={<IconCall className="h-9 w-9" />}
+              Icon={IconCall}
+              iconClassName="h-9 w-9"
             >
               <div className="flex flex-col items-start leading-none">
                 <span className="font-light">Telefon</span>0481-162 48
               </div>
-            </ButtonOld>
+            </Button>
           </Link>
           <Link
             href="https://www.facebook.com/profile.php?id=100080281802868"
             className="w-full"
           >
-            <ButtonOld
+            <Button
               className="justify-start rounded-xl text-base px-5 py-4 gap-5 w-full"
-              icon={<IconSocialFacebook className=" h-9 w-9" />}
+              Icon={IconSocialFacebook}
+              iconClassName="h-9 w-9"
             >
               Följ oss på Facebook
-            </ButtonOld>
+            </Button>
           </Link>
         </div>
       ) : (
+        // Calendar
         <div className="w-full flex justify-between items-center flex-col h-full">
           <div className="calendar-small calendar-no-toolbar overflow-hidden w-full h-full">
             <CalendarWidget />

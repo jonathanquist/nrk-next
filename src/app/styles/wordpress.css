@@ -39,8 +39,11 @@
 }
 
 .wordpress-content figure.wp-block-image {
-  @apply w-full px-4 py-6;
+  @apply h-full p-0 overflow-hidden flex items-center justify-start;
 }
+/* .wordpress-content figure.wp-block-image {
+  @apply w-full px-4 py-6;
+} */
 
 .wordpress-content img {
   @apply object-cover overflow-hidden;

@@ -58,7 +58,7 @@ export function EventMobile({ info, action }: EventMobileProps) {
             <p className="italic">
               {`${startDayName} ${start.day} ${startMonthName} ${start.hour}:${start.minutes} - ${end.hour}:${end.minutes}, `}
             </p>
-            <p className="">{venue.venue}</p>
+            <p>{venue.venue}</p>
           </div>
         </div>
         <div className="flex gap-4">

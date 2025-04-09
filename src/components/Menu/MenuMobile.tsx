@@ -16,6 +16,7 @@ import {
 import { cn } from '@/lib/utils';
 
 interface Link {
+  Icon: React.ReactNode;
   icon?: React.ReactNode;
   label: string;
   slug: string;
@@ -54,61 +55,66 @@ export default function MenuMobile() {
   return (
     <div className="relative w-full flex flex-col items-center justify-between overflow-y-none h-[122px] h-sm:h-[100dvh] h-sm:w-[140px] shrink-0">
       <ul className="flex items-center h-sm:flex-col justify-between px-6 pt-5 h-sm:pb-5 w-full gap-6 h-sm:h-[100dvh]">
-        {mobileLinks.map((link, index) => (
-          <li key={index} className="w-full">
-            <Popover open={showSubmenu === link.label}>
-              <PopoverTrigger asChild>
-                <button
-                  onClick={() => handleClick(link.label)}
-                  className={cn(
-                    'text-sm leading-none font-bold hover:underline flex flex-col items-center rounded-lg pb-2 w-full px-2 bg-primary-100 shadow-md',
+        {mobileLinks.map((link) => {
+          const { Icon, label, subLinks, slug } = link;
+          const isActive = subLinks?.some(
+            (subLink) => subLink.slug === currentPage
+          );
 
-                    link.subLinks.some(
-                      (subLink) => subLink.slug === currentPage
-                    ) && 'text-accent-500'
-                  )}
+          return (
+            <li key={slug} className="w-full">
+              <Popover open={showSubmenu === label}>
+                <PopoverTrigger asChild>
+                  <button
+                    onClick={() => handleClick(label)}
+                    className={cn(
+                      'text-sm leading-none font-bold hover:underline flex flex-col items-center rounded-lg pb-2 w-full px-2 bg-primary-100 shadow-md',
+
+                      isActive && 'text-accent-500'
+                    )}
+                  >
+                    <Icon className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />
+                    <span className="small">{label}</span>
+                  </button>
+                </PopoverTrigger>
+                <PopoverContent
+                  sideOffset={12}
+                  side={height <= 520 ? 'left' : 'top'}
+                  asChild
                 >
-                  {link.icon}
-                  <span className="small">{link.label}</span>
-                </button>
-              </PopoverTrigger>
-              <PopoverContent
-                sideOffset={12}
-                side={height <= 520 ? 'left' : 'top'}
-                asChild
-              >
-                <div className="px-3.5 py-5 max-h-[100dvh] overflow-y-scroll">
-                  <ul className="text-accent-500 flex flex-col gap-4">
-                    {link.subLinks?.map((subLink, index) => (
-                      <li key={index} className="py-0.5 flex items-center">
-                        <div className="shrink-0 mx-3 w-1.5 h-1.5 rounded-full bg-accent-500" />
-                        <Link
-                          href={{
-                            pathname: `/${link.slug}/${subLink.slug}`,
-                            query: { slug: subLink.label },
-                          }}
-                          onClick={() => handleLink(subLink.label)}
-                          className="font-bold text-xl flex items-center"
-                        >
-                          <span
-                            className={cn(
-                              'small',
-                              currentPage === subLink.slug
-                                ? 'text-accent-500'
-                                : 'text-primary-900'
-                            )}
+                  <div className="px-3.5 py-5 max-h-[100dvh] overflow-y-none">
+                    <ul className="text-accent-500 flex flex-col gap-4">
+                      {link.subLinks?.map((subLink, index) => (
+                        <li key={index} className="py-0.5 flex items-center">
+                          <div className="shrink-0 mx-3 w-1.5 h-1.5 rounded-full bg-accent-500" />
+                          <Link
+                            href={{
+                              pathname: `/${link.slug}/${subLink.slug}`,
+                              query: { slug: subLink.label },
+                            }}
+                            onClick={() => handleLink(subLink.label)}
+                            className="font-bold text-xl flex items-center"
                           >
-                            {subLink.label}
-                          </span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </PopoverContent>
-            </Popover>
-          </li>
-        ))}
+                            <span
+                              className={cn(
+                                'small',
+                                currentPage === subLink.slug
+                                  ? 'text-accent-500'
+                                  : 'text-primary-900'
+                              )}
+                            >
+                              {subLink.label}
+                            </span>
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </li>
+          );
+        })}
       </ul>
       <div className="flex justify-center w-full px-20">
         <div className="bg-primary-500 opacity-50 w-full rounded-t-full flex items-center justify-center py-2 text-xs h-sm:hidden">

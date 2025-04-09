@@ -18,7 +18,7 @@ export default function Page({ params }: { params: { slug: string } }) {
         {width > 1040 && <Post post={post} />}
       </div>
       <div className="block lg:hidden">
-        {width > 1040 && <PostMobile post={post} />}
+        {width < 1040 && <PostMobile post={post} />}
       </div>
     </div>
   );

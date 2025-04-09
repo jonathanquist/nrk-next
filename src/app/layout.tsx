@@ -46,7 +46,7 @@ export default function RootLayout({
               <header className="App-header h-20 overflow-y-none h-sm:hidden">
                 <MenuHeader />
               </header>
-              <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] h-sm:h-[100dvh] w-screen h-sm:w-[calc(100vw-140px)] h-sm:grow-0 overflow-y-auto rounded-xl shadow-md">
+              <div className="flex lg:hidden justify-center items-start h-[calc(100dvh-202px)] h-sm:h-[100dvh] w-screen h-sm:w-[calc(100vw-140px)] h-sm:grow-0 rounded-xl  overflow-hidden shadow-md">
                 {children}
               </div>
 

@@ -62,7 +62,7 @@ export function EventDialog({ info, children }: EventDialogProps) {
             <p className="italic">
               {`${startDayName} ${start.day} ${startMonthName} ${start.hour}:${start.minutes} - ${end.hour}:${end.minutes}, `}
             </p>
-            <p className="">{venue.venue}</p>
+            <p>{venue.venue}</p>
           </DialogDescription>
         </DialogHeader>
         <div className="flex gap-4">

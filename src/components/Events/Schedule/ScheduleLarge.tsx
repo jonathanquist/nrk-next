@@ -9,19 +9,28 @@ import WeekHeader from '../WeekHeader';
 import { navButtons } from '../navButtons';
 import { useSite } from '@/contexts/SiteContext';
 import Loader from '@/components/Loader/Loader';
+import { format } from 'date-fns';
+import { useMonthEvents } from '@/hooks/useFetch';
 
-export default function CalendarLarge() {
+export default function ScheduleLarge() {
   const [eventID, setEventID] = useState<number | null>(null);
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
   const [filtered, setFiltered] = useState<string[]>([]);
+  const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
+    start: format(new Date(), 'yyyy-MM-01'),
+    end: format(new Date(), 'yyyy-MM-31'),
+  });
 
   const scheduleRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { events } = useSite();
+  const { data: eventsData, isLoading } = useMonthEvents(
+    dateRange.start,
+    dateRange.end
+  );
 
-  if (!events) return <Loader />;
+  const events = eventsData?.events || [];
 
   const handleEventClick = (clickInfo: any) => {
     console.log('clickTest', clickInfo);
@@ -37,7 +46,7 @@ export default function CalendarLarge() {
     const clickedDateEnd = new Date(clickInfo.date);
     clickedDateEnd.setHours(23, 59, 59, 999);
 
-    const clickedDateEvents = events.events.filter((event: any) => {
+    const clickedDateEvents = events.filter((event: any) => {
       const eventStartDate = new Date(event.start_date);
       const eventEndDate = new Date(event.end_date);
 
@@ -64,7 +73,7 @@ export default function CalendarLarge() {
   };
 
   const filteredEvents = {
-    events: events.events.filter((event: any) => {
+    events: events.filter((event: any) => {
       return !filtered.includes(event.categories[0].slug);
     }),
   };
@@ -95,14 +104,14 @@ export default function CalendarLarge() {
           center: 'customPrevButton title customNextButton',
           right: '',
         }}
-        customButtons={navButtons(scheduleRef)}
+        customButtons={navButtons(scheduleRef, setDayInfo, setCurrentDayEvents)}
         eventTimeFormat={{
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
         }}
         locale={'sv'}
-        eventContent={(info) => EventBar({ info, size: 'lg' })}
+        eventContent={(info) => EventBar({ info, size: 'lg', isLoading })}
         dayHeaderContent={(info) => WeekHeader(info)}
         events={filteredEvents.events.map((event: any) =>
           // console.log('event', event),

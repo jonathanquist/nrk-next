@@ -12,17 +12,7 @@ import { Separator } from '../UI';
 import { usePosts } from '@/hooks/useFetch';
 
 export default function Homepage() {
-  // const pages = await getPages(['allmant', 'allmant-mobile', 'calendarmini']);
   const { data: posts = [], isLoading } = usePosts(undefined, 1, 5);
-  // const { updatePosts, updatePages, updateEvents } = useSite();
-
-  // useEffect(() => {
-  //   updatePosts(posts);
-  //   updatePages(pages);
-  //   updateEvents(events);
-  // }, [updatePages, updatePosts, updateEvents, posts, pages, events]);
-
-  // console.log('cj');
   return (
     <>
       <div className="hidden lg:block h-full">

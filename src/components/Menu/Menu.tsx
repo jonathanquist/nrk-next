@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
 interface Link {
-  icon?: React.ReactNode;
+  Icon: React.ReactNode;
   label: string;
   slug: string;
   subLinks?: Link[];
@@ -47,7 +47,7 @@ const SubMenu = ({ showSubmenu, currentPage, handleLink }: SubMenuProps) => (
       {links
         .filter((link) => link.label === showSubmenu)
         .flatMap((link) =>
-          link.subLinks?.map((subLink, index) => (
+          link.subLinks?.map((subLink) => (
             <li key={subLink.slug}>
               <Link
                 href={`/${link.slug}/${subLink.slug}`}
@@ -91,7 +91,7 @@ export default function Menu() {
   }, []);
 
   return (
-    <div className="">
+    <div>
       <div className="w-full md:bg-primary-100 flex items-center justify-center md:h-24">
         <div className="max-w-7xl w-full flex justify-center md:justify-between items-center px-4 md:px-16 ">
           {/* Logo and Navbar */}
@@ -103,24 +103,31 @@ export default function Menu() {
             <Image src={Logo} alt="logo" sizes="100%" fill priority />
           </Link>
           <Navbar>
-            {links.map((link) => (
-              <li key={link.slug} className="h-14">
-                <button
-                  onClick={() => handleClick(link.label)}
-                  className={cn(
-                    'text-lg lg:text-xl font-bold h-20 hover:underline flex items-end gap-2 transition rounded-b-lg pb-4 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5 -translate-y-6',
-                    link.subLinks.some(
-                      (subLink) => subLink.slug === currentPath
-                    ) && 'text-accent-500',
-                    showSubmenu === link.label &&
-                      'bg-primary-500 -translate-y-10 text-primary-900'
-                  )}
-                >
-                  {link.icon}
-                  <span className="pt-2 small">{link.label}</span>
-                </button>
-              </li>
-            ))}
+            {links.map((link) => {
+              const { Icon, label, subLinks, slug } = link;
+              const isActive = subLinks?.some(
+                (subLink) => subLink.slug === currentPath
+              );
+
+              return (
+                <li key={slug} className="h-14">
+                  <button
+                    onClick={() => handleClick(label)}
+                    className={cn(
+                      'text-lg lg:text-xl text-accent-500 font-bold h-20 hover:underline flex items-end gap-2 transition rounded-b-lg pb-4 pt-2 pr-4 pl-2 lg:pr-6 lg:pl-3.5 -translate-y-6',
+                      isActive && 'text-accent-500',
+                      showSubmenu === label &&
+                        'bg-primary-500 -translate-y-10 text-primary-900'
+                    )}
+                  >
+                    <Icon className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9 text-primary-900" />
+                    <span className="pt-2 small text-primary-900 ">
+                      {label}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
           </Navbar>
         </div>
       </div>

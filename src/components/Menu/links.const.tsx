@@ -2,7 +2,7 @@ import { IconShoe, IconHorse, IconHouse } from '../UI';
 
 export const links = [
   {
-    icon: <IconShoe className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
+    Icon: IconShoe,
     label: 'Aktiviteter',
     slug: 'aktiviteter',
     subLinks: [
@@ -21,7 +21,7 @@ export const links = [
     ],
   },
   {
-    icon: <IconHorse className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
+    Icon: IconHorse,
     label: 'Ridskolan',
     slug: 'ridskolan',
     subLinks: [
@@ -56,7 +56,7 @@ export const links = [
     ],
   },
   {
-    icon: <IconHouse className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
+    Icon: IconHouse,
     label: 'Föreningen',
     slug: 'foreningen',
     subLinks: [
@@ -86,6 +86,7 @@ export const links = [
 
 export const mobileLinks = [
   {
+    Icon: IconHorse,
     icon: <IconHorse className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
     label: 'Ridskolan',
     slug: 'ridskolan',
@@ -121,6 +122,7 @@ export const mobileLinks = [
     ],
   },
   {
+    Icon: IconShoe,
     icon: <IconShoe className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
     label: 'Aktiviteter',
     slug: 'aktiviteter',
@@ -140,6 +142,7 @@ export const mobileLinks = [
     ],
   },
   {
+    Icon: IconHouse,
     icon: <IconHouse className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />,
     label: 'Föreningen',
     slug: 'foreningen',
