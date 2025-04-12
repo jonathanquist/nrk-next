@@ -140,7 +140,7 @@ export function useEvents() {
   });
 }
 
-export function useMonthEvents(start_date: string, end_date: string) {
+export function useEventSpan(start_date: string, end_date: string) {
   const url = `/tribe/events/v1/events?start_date=${start_date}&end_date=${end_date}`;
 
   return useQuery({

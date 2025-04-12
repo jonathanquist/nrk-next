@@ -28,7 +28,7 @@ export default function Kontakt() {
   }
 
   return (
-    <div className="h-full w-full card-base overflow-y-auto custom-scroll ">
+    <div className="h-full w-full card-base overflow-y-auto custom-scroll">
       <Header
         variant="page"
         title={page.title.rendered || 'Kontakt'}
@@ -43,12 +43,12 @@ export default function Kontakt() {
       </div>
       <div className="card-px card-py h-full space-y-16">
         {/* <PageSection page={page} /> */}
-        <div className="flex justify-between gap-4 flex-col lg:flex-row">
+        <div className="flex justify-between gap-8 flex-col lg:flex-row">
           <PageSection page={page} />
 
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2186.721455069235!2d15.867948756840628!3d56.76491955357067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4657b127d3f1c865%3A0xd854eae537c57d4b!2sNybro%20Ridklubb!5e0!3m2!1ssv!2sse!4v1744046332356!5m2!1ssv!2sse"
-            width="650"
+            width="765"
             height="430"
             style={{ border: 0 }}
             allowFullScreen={true}

@@ -8,17 +8,15 @@ import FilterMenu from '../FilterMenu';
 import EventBar from '../EventBar';
 import WeekHeader from '../WeekHeader';
 import { navButtons } from '../navButtons';
-import { useSite } from '@/contexts/SiteContext';
-import Loader from '@/components/Loader/Loader';
 import { getDayEvents, getDayInfo } from '@/lib/utils';
 import { format } from 'date-fns';
-import { useMonthEvents } from '@/hooks/useFetch';
+import { useEventSpan } from '@/hooks/useFetch';
 
 export default function CalendarLarge() {
-  const [eventID, setEventID] = useState<number | null>(null);
+  // const [eventID, setEventID] = useState<number | null>(null);
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
-  const [filtered, setFiltered] = useState<string[]>([]);
+  const [filtered, setFiltered] = useState<string[]>(['bokning']);
   const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
     start: format(new Date(), 'yyyy-MM-01'),
     end: format(new Date(), 'yyyy-MM-31'),
@@ -27,7 +25,7 @@ export default function CalendarLarge() {
   const calendarRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { data: eventsData, isLoading } = useMonthEvents(
+  const { data: eventsData, isLoading } = useEventSpan(
     dateRange.start,
     dateRange.end
   );
@@ -36,7 +34,7 @@ export default function CalendarLarge() {
 
   const handleEventClick = (clickInfo: any) => {
     const id = parseInt(clickInfo.event._def.publicId, 10);
-    setEventID(id);
+    // setEventID(id);
   };
 
   const handleDateClick = (clickInfo: any) => {

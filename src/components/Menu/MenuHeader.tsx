@@ -2,39 +2,33 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Logo from '../../../public/images/logo_text.svg';
 import LogoSimple from '../../../public/images/logo.svg';
 import { IconArrowSimple } from '../UI';
 
 export default function MenuHeader() {
-  const [currentPage, setCurrentPage] = useState<string>('');
+  const [title, setTitle] = useState<string>('Home');
   const path = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const paths = path.split('/');
-    const currentPath =
-      paths[paths.length - 2] === 'posts'
-        ? 'anslagstavlan'
-        : paths[paths.length - 1];
-
-    setCurrentPage(currentPath);
-  }, [path]);
-
-  const getTitle = (title: string) => {
-    return title.charAt(0).toUpperCase() + title.slice(1);
-  };
+    const slug = searchParams.get('slug');
+    if (slug) {
+      setTitle(slug);
+    } else {
+      const paths = path.split('/');
+      const fallbackSlug = paths[paths.length - 1] || 'Home';
+      setTitle(fallbackSlug);
+    }
+  }, [path, searchParams]);
 
   return (
     <div className="w-full flex items-center justify-center pt-5 pb-3 px-6">
       {path === '/' ? (
         <div className="w-full flex justify-center items-center">
-          <Link
-            href="/"
-            //   onClick={() => handleLink('')}
-            className="relative h-12 w-full shrink-0"
-          >
+          <Link href="/" className="relative h-12 w-full shrink-0">
             <Image src={Logo} alt="logo" sizes="100%" fill priority />
           </Link>
         </div>
@@ -47,9 +41,7 @@ export default function MenuHeader() {
             <IconArrowSimple className="w-6 h-6 text-primary-700" />
           </div>
           <div className="pr-12 w-full text-center">
-            <h1 className="text-4xl text small">
-              {currentPage.charAt(0).toUpperCase() + currentPage.slice(1)}
-            </h1>
+            <h1 className="text-4xl text small">{title}</h1>
           </div>
         </div>
       )}

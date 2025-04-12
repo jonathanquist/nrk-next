@@ -1,66 +1,93 @@
-import React, { useEffect, useState } from 'react';
-import { getWeek, set } from 'date-fns';
-import { IconBack, IconNext } from '../../UI';
-import Filter from '../FilterMenu';
-import { useSite } from '@/contexts/SiteContext';
+import { useState, useRef } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import EventBar from '../EventBar';
+import WeekHeader from '../WeekHeader';
+import Loader from '@/components/Loader/Loader';
+import { format } from 'date-fns';
+import { useEventSpan } from '@/hooks/useFetch';
 
-export default function ScheduleDaily({ size = 'sm' }: { size?: string }) {
-  const [week, setWeek] = useState(getWeek(new Date()));
-  const [scheduleItems, setScheduleItems] = useState<any>(null);
-  const [filtered, setFiltered] = useState<string[]>([]);
+export default function ScheduleDaily() {
+  const [date, setDate] = useState<string>(format(new Date(), 'yyyy-MM-dd'));
 
-  const { events } = useSite();
+  const scheduleRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!events) {
-      return;
-    }
+  const { data: eventsData, isLoading } = useEventSpan(date, date);
 
-    const eventsInWeek = events.events.filter((event: any) => {
-      const start_date = new Date(event.start_date);
-      return getWeek(start_date) === week;
-    });
+  const events = eventsData?.events || [];
 
-    setScheduleItems(eventsInWeek);
-  }, [week, events]);
+  if (isLoading) return <Loader />;
 
-  if (!events) {
-    return (
-      <div className="w-full bg-primary-300 rounded-xl h-16 animate-pulse m-4" />
-    );
-  }
+  const filteredEvents = {
+    events: events.filter((event: any) => {
+      return event.categories.some(
+        (category: any) => category.slug === 'bokning'
+      );
+    }),
+  };
 
-  console.log(scheduleItems);
-
-  events.events.map((event: any) => {
-    const start_date = new Date(event.start_date);
-    const weekNumber = getWeek(start_date);
-    console.log(`Event ${event.title} is in week ${weekNumber}`);
-  });
-
-  if (size === 'lg') {
-    return (
-      <div className="relative">
-        <div className="w-full bg-accent-500 text-primary-100 justify-between items-center flex">
-          <div />
-          <div className="flex items-center">
-            <div>
-              <IconBack />
-            </div>
-            <div>{'v.' + week}</div>
-            <div>
-              <IconNext />
-            </div>
-          </div>
-          <div>
-            <Filter filtered={filtered} setFiltered={setFiltered} />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (size === 'sm') {
-    return <>Hej</>;
-  }
+  return (
+    <div className="relative card-base schedule-daily" ref={containerRef}>
+      <FullCalendar
+        ref={scheduleRef}
+        contentHeight="auto"
+        plugins={[timeGridPlugin, interactionPlugin]}
+        initialView="timeGridDay"
+        slotMinTime="06:00:00"
+        slotMaxTime="23:00:00"
+        slotLabelFormat={{
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false, // Use 24-hour format for time labels
+        }}
+        allDaySlot={false}
+        // eventClick={(info) => handleEventClick(info)}
+        // weekNumbers={true}
+        // firstDay={1}
+        headerToolbar={{
+          left: '',
+          center: 'title',
+          right: '',
+        }}
+        // customButtons={navButtons(scheduleRef, setDayInfo, setCurrentDayEvents)}
+        // eventTimeFormat={{
+        //   hour: '2-digit',
+        //   minute: '2-digit',
+        //   hour12: false,
+        // }}
+        locale={'sv'}
+        eventContent={(info) => EventBar({ info, size: 'lg', isLoading })}
+        dayHeaderContent={(info) => WeekHeader(info)}
+        events={filteredEvents.events.map((event: any) => ({
+          title: event.title,
+          start: new Date(event.start_date),
+          end: new Date(event.end_date),
+          id: event.id,
+          category: event.categories[0].slug,
+        }))}
+        // dateClick={(info) => handleDateClick(info)}
+        // slotLabelContent={(arg) => {
+        //   console.log(arg);
+        //   if (arg.view.currentStart.getDay() === 1) {
+        //     return {
+        //       html: `<div>${arg.date.getHours()}</div>`,
+        //     };
+        //   } else {
+        //     return null;
+        //   }
+        // }}
+      />
+      {/* {eventID && renderPost()} */}
+      {/* {currentDayEvents.length > 0 && (
+        <CalendarDay
+          currentDayEvents={currentDayEvents}
+          setCurrentDayEvents={setCurrentDayEvents}
+          dayInfo={dayInfo}
+          containerRef={scheduleRef}
+        />
+      )} */}
+    </div>
+  );
 }

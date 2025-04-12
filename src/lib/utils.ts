@@ -17,8 +17,10 @@ export function getEventColor(category: string): string {
       return 'rgb(195 38 220)';
     case 'tavling':
       return 'rgb(100 143 255)';
-    default:
+    case 'annat':
       return 'rgb(253 193 60)';
+    default:
+      return 'rgb(204 68 75)';
   }
 }
 

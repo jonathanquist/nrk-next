@@ -14,6 +14,7 @@ import {
   PopoverTrigger,
 } from '../UI';
 import { cn } from '@/lib/utils';
+import ScheduleDaily from '../Events/Schedule/ScheduleDaily';
 
 interface Link {
   Icon: React.ReactNode;
@@ -26,6 +27,7 @@ interface Link {
 export default function MenuMobile() {
   const [currentPage, setCurrentPage] = useState('');
   const [showSubmenu, setShowSubmenu] = useState('');
+  const [showSchema, setShowSchema] = useState(false);
 
   const path = usePathname();
   const { height } = useViewport();
@@ -116,11 +118,24 @@ export default function MenuMobile() {
           );
         })}
       </ul>
-      <div className="flex justify-center w-full px-20">
-        <div className="bg-primary-500 opacity-50 w-full rounded-t-full flex items-center justify-center py-2 text-xs h-sm:hidden">
-          <IconArrowDouble className="w-4 h-4" /> Kommer snart
+      <div
+        className={cn(
+          'fixed top-0 w-full  h-[100dvh] transition flex-col z-50',
+          !showSchema && 'translate-y-full -m-8'
+        )}
+      >
+        <div className="flex justify-center px-20 w-full">
+          <button
+            onClick={() => setShowSchema(!showSchema)}
+            className="bg-primary-500 opacity-50 w-full rounded-t-full flex items-center justify-center py-2 text-xs h-sm:hidden"
+          >
+            <IconArrowDouble className="w-4 h-4" /> Kommer snart
+          </button>
         </div>
         {/*Schema*/}
+        <div className="h-full w-full bg-primary-500">
+          <ScheduleDaily />
+        </div>
       </div>
     </div>
   );

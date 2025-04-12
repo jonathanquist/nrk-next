@@ -11,7 +11,7 @@ import CalendarDayMobile from './CalendarDayMobile';
 import { navButtons } from '../navButtons';
 import { getDayEvents, getDayInfo } from '@/lib/utils';
 import { format } from 'date-fns';
-import { useMonthEvents } from '@/hooks/useFetch';
+import { useEventSpan } from '@/hooks/useFetch';
 
 export default function CalendarSmall() {
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
@@ -23,7 +23,7 @@ export default function CalendarSmall() {
 
   const calendarRef = useRef<any>(null);
 
-  const { data: eventsData, isLoading } = useMonthEvents(
+  const { data: eventsData, isLoading } = useEventSpan(
     dateRange.start,
     dateRange.end
   );

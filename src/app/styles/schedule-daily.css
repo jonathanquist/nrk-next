@@ -1,0 +1,75 @@
+/* schedule-daily.css */
+
+/* Schedule daily Root Variables */
+.schedule-daily {
+  --fc-border-color: var(--primary-color);
+  --fc-today-bg-color: theme('colors.primary.300');
+}
+
+/* Scrollgrid Customization */
+.schedule-daily .fc-scrollgrid {
+  @apply border-t-0;
+}
+
+/* Hide Unused Elements */
+.schedule-daily colgroup,
+.schedule-daily .fc-timegrid-axis,
+.schedule-daily .fc-timegrid-slot-lane,
+.schedule-daily tr:has(.fc-timegrid-divider) {
+  @apply hidden;
+}
+
+.schedule-daily .fc-timegrid-slot-label-frame {
+  @apply text-left;
+}
+
+/* Table Borders */
+.schedule-daily .fc-theme-standard td {
+  @apply border-[2px] first:border-l-0 last:border-r-0 font-fira;
+}
+
+/* Timegrid Slot Labels */
+.schedule-daily .fc-timegrid-slot-label {
+  @apply border-dashed border-primary-500/60;
+}
+
+.schedule-daily .fc-timegrid-slots tr:nth-child(odd) .fc-timegrid-slot-label {
+  @apply border-primary-500/20;
+}
+
+/* Column Frames */
+.schedule-daily .fc-day-mon .fc-timegrid-col-frame {
+  @apply w-[150px] ml-auto;
+}
+
+/* Event and Overlap */
+.schedule-daily .fc-event-title {
+  @apply h-full;
+}
+
+.schedule-daily .fc-event-overlap {
+  @apply w-1/2;
+}
+
+.schedule-daily .fc-timegrid-slots tr {
+  @apply border-none;
+}
+
+/* Slot Label Cushion */
+.schedule-daily .fc-timegrid-slot-label-cushion {
+  @apply px-2 bg-primary-500 text-primary-100 rounded-ee-md;
+}
+
+/* Overlapping Events */
+.schedule-daily .fc-timegrid-event-harness.overlapping {
+  width: 50% !important;
+}
+
+.schedule-daily .fc-timegrid-event-harness + .fc-timegrid-event-harness {
+  left: 50% !important;
+}
+
+/* Column Events Margin */
+.schedule-daily .fc-direction-ltr .fc-timegrid-col-events {
+  @apply mx-1;
+}

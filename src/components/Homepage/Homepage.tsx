@@ -25,7 +25,7 @@ export default function Homepage() {
         <Social />
         <Sponsors />
       </div>
-      <div className="flex lg:hidden h-full">
+      <div className="flex lg:hidden h-full w-full">
         <div className="card-base w-full flex flex-col overflow-y-auto justify-start items-start h-full">
           <Hero posts={posts} isLoading={isLoading} />
           <WelcomeMobile />

@@ -1,0 +1,8 @@
+/* variables.css */
+:root {
+  --primary-color: theme('colors.primary.500');
+  --accent-color: theme('colors.accent.500');
+  --primary-today-bg: theme(
+    'colors.accent.500'
+  ); /* Used in calendar-large and calendar-small */
+}

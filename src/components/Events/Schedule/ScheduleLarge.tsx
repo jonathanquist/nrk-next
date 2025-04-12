@@ -10,7 +10,7 @@ import { navButtons } from '../navButtons';
 import { useSite } from '@/contexts/SiteContext';
 import Loader from '@/components/Loader/Loader';
 import { format } from 'date-fns';
-import { useMonthEvents } from '@/hooks/useFetch';
+import { useEventSpan } from '@/hooks/useFetch';
 
 export default function ScheduleLarge() {
   const [eventID, setEventID] = useState<number | null>(null);
@@ -25,7 +25,7 @@ export default function ScheduleLarge() {
   const scheduleRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const { data: eventsData, isLoading } = useMonthEvents(
+  const { data: eventsData, isLoading } = useEventSpan(
     dateRange.start,
     dateRange.end
   );
@@ -88,7 +88,7 @@ export default function ScheduleLarge() {
   });
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className="relative schedule-large" ref={containerRef}>
       <FullCalendar
         ref={scheduleRef}
         contentHeight="auto"
