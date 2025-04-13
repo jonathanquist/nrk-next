@@ -86,18 +86,19 @@ jobs:
 
       - name: Build Next.js app (no npm install!)
         run: |
-          # No 'npm install' here to avoid creating node_modules
-          npm run build || echo "Build may fail without dependencies — safe to ignore if handled server-side"
+          # Skipping 'npm install' to avoid creating node_modules
+          npm run build || echo "Build may fail without deps — safe if handled server-side"
 
-      - name: Prepare staging directory (excluding node_modules)
+      - name: Ensure no node_modules exists
         run: |
-          mkdir staging
-          rsync -av --exclude=node_modules --exclude=staging ./ staging/
+          if [ -d "node_modules" ]; then
+            echo "Removing existing node_modules folder..."
+            rm -rf node_modules
+          fi
 
-      - name: Compress build output
+      - name: Compress build output (excluding node_modules safely)
         run: |
-          tar -czf build.tar.gz -C staging .
-          rm -rf staging
+          tar --exclude='./node_modules' --exclude='./staging' -czf build.tar.gz .
 
       - name: Deploy to cPanel
         env:
@@ -106,34 +107,25 @@ jobs:
           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           CPANEL_PORT: 22
         run: |
-          # Set up SSH key
           echo "$CPANEL_KEY" > private_key
           chmod 600 private_key
           eval $(ssh-agent -s)
           ssh-add private_key
 
-          # Upload compressed archive
+          echo "Uploading archive..."
           scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
             build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
-          # Extract archive on the server
+          echo "Extracting and installing on server..."
           ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
             tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ &&
-            rm /home/ozfea/repositories/nrk-next/build.tar.gz
-          "
-
-          # Optional: Run npm install inside Node.js virtual environment
-          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
+            rm /home/ozfea/repositories/nrk-next/build.tar.gz &&
             source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate &&
             cd /home/ozfea/repositories/nrk-next &&
-            npm install
+            npm install &&
+            nohup npm run start &
           "
 
-          # Restart the app after deployment (optional if your script does this already)
-          source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate &&
-          cd /home/ozfea/repositories/nrk-next &&
-          nohup npm run start &
-
-          # Clean up
+          echo "Cleaning up..."
           ssh-agent -k
           rm private_key
