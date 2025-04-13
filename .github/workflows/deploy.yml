@@ -79,26 +79,39 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Remove .npmrc file to avoid config issues
+        run: |
+          if [ -f ".npmrc" ]; then
+            echo "Removing .npmrc to avoid prefix config issues."
+            rm .npmrc
+          fi
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Build Next.js app (no npm install!)
+      - name: Install dependencies and build Next.js app
         run: |
-          # Skipping 'npm install' to avoid creating node_modules
-          npm run build || echo "Build may fail without deps — safe if handled server-side"
+          npm install
+          npm run build
 
-      - name: Ensure no node_modules exists
+      - name: Remove node_modules to comply with CloudLinux NodeJS Selector
         run: |
           if [ -d "node_modules" ]; then
-            echo "Removing existing node_modules folder..."
+            echo "Removing node_modules folder..."
             rm -rf node_modules
           fi
 
-      - name: Compress build output (excluding node_modules safely)
+      - name: Prepare staging directory (excluding node_modules)
         run: |
-          tar --exclude='./node_modules' --exclude='./staging' -czf build.tar.gz .
+          mkdir staging
+          rsync -av --exclude=node_modules --exclude=staging ./ staging/
+
+      - name: Compress build output from staging directory
+        run: |
+          tar -czf build.tar.gz -C staging .
+          rm -rf staging
 
       - name: Deploy to cPanel
         env:
@@ -107,6 +120,7 @@ jobs:
           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           CPANEL_PORT: 22
         run: |
+          # Set up SSH key
           echo "$CPANEL_KEY" > private_key
           chmod 600 private_key
           eval $(ssh-agent -s)
@@ -116,7 +130,7 @@ jobs:
           scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
             build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
-          echo "Extracting and installing on server..."
+          echo "Extracting archive on server and installing dependencies..."
           ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
             tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ &&
             rm /home/ozfea/repositories/nrk-next/build.tar.gz &&
