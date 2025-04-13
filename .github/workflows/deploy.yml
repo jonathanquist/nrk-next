@@ -124,10 +124,15 @@ jobs:
 
           # Optional: Run npm install inside Node.js virtual environment
           ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
-            source /home/ozfea/nodevenv/nrk-next/20/bin/activate &&
+            source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate &&
             cd /home/ozfea/repositories/nrk-next &&
             npm install
           "
+
+          # Restart the app after deployment (optional if your script does this already)
+          source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate &&
+          cd /home/ozfea/repositories/nrk-next &&
+          nohup npm run start &
 
           # Clean up
           ssh-agent -k
