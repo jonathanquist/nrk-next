@@ -1,9 +1,75 @@
+# name: Deploy Next.js to cPanel
+
+# on:
+#   push:
+#     branches:
+#       - development # Trigger deployment on push to the correspondent branch
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: "20"
+
+#       # - name: Install dependencies
+#       #   run: npm install
+
+#       - name: Build Next.js app
+#         run: npm run build
+
+#       - name: Prepare staging directory
+#         run: |
+#           mkdir staging
+#           cp -r $(ls | grep -v 'node_modules\|staging') staging/
+#           # Adjust the grep pattern to exclude any other directories or files as necessary
+
+#       - name: Compress build output from staging directory
+#         run: |
+#           tar -czf build.tar.gz -C staging .
+#           rm -rf staging
+
+#       - name: Deploy to cPanel
+#         env:
+#           CPANEL_HOST: ${{ secrets.SSH_HOST }}
+#           CPANEL_USER: ${{ secrets.SSH_USERNAME }}
+#           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+#           CPANEL_PORT: 22
+#         run: |
+#           # Optional: Add SSH key if using key-based authentication
+#           echo "$CPANEL_KEY" > private_key
+#           chmod 600 private_key
+#           eval $(ssh-agent -s)
+#           ssh-add private_key
+
+#           # scp -v -r -P $CPANEL_PORT \
+#           #   -o StrictHostKeyChecking=no \
+#           #   ./* $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
+
+#           # Transfer compressed build output
+#           scp -v -P $CPANEL_PORT \
+#             -o StrictHostKeyChecking=no \
+#             build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
+
+#           # Extract the files on the server
+#           ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ && rm /home/ozfea/repositories/nrk-next/build.tar.gz"
+
+#           # Cleanup
+#           ssh-agent -k
+#           rm private_key
+
 name: Deploy Next.js to cPanel
 
 on:
   push:
     branches:
-      - development # Trigger deployment on push to the correspondent branch
+      - development # Trigger deployment on push to this branch
 
 jobs:
   build:
@@ -18,19 +84,17 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm install
+      - name: Build Next.js app (no npm install!)
+        run: |
+          # No 'npm install' here to avoid creating node_modules
+          npm run build || echo "Build may fail without dependencies — safe to ignore if handled server-side"
 
-      - name: Build Next.js app
-        run: npm run build
-
-      - name: Prepare staging directory
+      - name: Prepare staging directory (excluding node_modules)
         run: |
           mkdir staging
-          cp -r $(ls | grep -v 'node_modules\|staging') staging/
-          # Adjust the grep pattern to exclude any other directories or files as necessary
+          rsync -av --exclude=node_modules --exclude=staging ./ staging/
 
-      - name: Compress build output from staging directory
+      - name: Compress build output
         run: |
           tar -czf build.tar.gz -C staging .
           rm -rf staging
@@ -42,25 +106,29 @@ jobs:
           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           CPANEL_PORT: 22
         run: |
-          # Optional: Add SSH key if using key-based authentication
+          # Set up SSH key
           echo "$CPANEL_KEY" > private_key
           chmod 600 private_key
           eval $(ssh-agent -s)
           ssh-add private_key
 
-          # scp -v -r -P $CPANEL_PORT \
-          #   -o StrictHostKeyChecking=no \
-          #   ./* $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
-
-          # Transfer compressed build output
-          scp -v -P $CPANEL_PORT \
-            -o StrictHostKeyChecking=no \
+          # Upload compressed archive
+          scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
             build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
-          # Extract the files on the server
-          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ && rm /home/ozfea/repositories/nrk-next/build.tar.gz"
+          # Extract archive on the server
+          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
+            tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ &&
+            rm /home/ozfea/repositories/nrk-next/build.tar.gz
+          "
 
+          # Optional: Run npm install inside Node.js virtual environment
+          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
+            source /home/ozfea/nodevenv/nrk-next/20/bin/activate &&
+            cd /home/ozfea/repositories/nrk-next &&
+            npm install
+          "
 
-          # Cleanup
+          # Clean up
           ssh-agent -k
           rm private_key
