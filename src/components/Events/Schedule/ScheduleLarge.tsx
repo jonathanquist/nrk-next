@@ -1,16 +1,16 @@
-import React, { useState, useRef } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import CalendarDay from '../Calendar/CalendarDay';
-import FilterMenu from '../FilterMenu';
-import EventBar from '../EventBar';
-import WeekHeader from '../WeekHeader';
-import { navButtons } from '../navButtons';
-import { useSite } from '@/contexts/SiteContext';
-import Loader from '@/components/Loader/Loader';
-import { format } from 'date-fns';
-import { useEventSpan } from '@/hooks/useFetch';
+import React, { useState, useRef } from "react";
+import FullCalendar from "@fullcalendar/react";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import CalendarDay from "../Calendar/CalendarDay";
+import FilterMenu from "../FilterMenu";
+import EventBar from "../EventBar";
+import WeekHeader from "../WeekHeader";
+import { navButtons } from "../navButtons";
+import { useSite } from "@/contexts/SiteContext";
+import Loader from "@/components/Loader/Loader";
+import { format } from "date-fns";
+import { useEventSpan } from "@/hooks/useFetch";
 
 export default function ScheduleLarge() {
   const [eventID, setEventID] = useState<number | null>(null);
@@ -18,8 +18,8 @@ export default function ScheduleLarge() {
   const [dayInfo, setDayInfo] = useState({} as any);
   const [filtered, setFiltered] = useState<string[]>([]);
   const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
-    start: format(new Date(), 'yyyy-MM-01'),
-    end: format(new Date(), 'yyyy-MM-31'),
+    start: format(new Date(), "yyyy-MM-01"),
+    end: format(new Date(), "yyyy-MM-31"),
   });
 
   const scheduleRef = useRef<any>(null);
@@ -33,7 +33,7 @@ export default function ScheduleLarge() {
   const events = eventsData?.events || [];
 
   const handleEventClick = (clickInfo: any) => {
-    console.log('clickTest', clickInfo);
+    console.log("clickTest", clickInfo);
     const id = parseInt(clickInfo.event._def.publicId, 10);
     setEventID(id);
   };
@@ -56,7 +56,7 @@ export default function ScheduleLarge() {
       );
     });
     console.log(
-      'Events for the clicked date:',
+      "Events for the clicked date:",
       clickedDateEvents,
       clickInfo.date.getDate(),
       clickInfo.dayEl.offsetTop,
@@ -78,12 +78,12 @@ export default function ScheduleLarge() {
     }),
   };
 
-  document.querySelectorAll('.fc-timegrid-event-harness').forEach((event) => {
+  document.querySelectorAll(".fc-timegrid-event-harness").forEach((event) => {
     const siblingEvents = event?.parentNode?.querySelectorAll(
-      '.fc-timegrid-event-harness'
+      ".fc-timegrid-event-harness"
     );
     if (siblingEvents && siblingEvents.length > 1) {
-      event.classList.add('overlapping');
+      event.classList.add("overlapping");
     }
   });
 
@@ -100,18 +100,20 @@ export default function ScheduleLarge() {
         weekNumbers={true}
         firstDay={1}
         headerToolbar={{
-          left: '',
-          center: 'customPrevButton title customNextButton',
-          right: '',
+          left: "",
+          center: "customPrevButton title customNextButton",
+          right: "",
         }}
         customButtons={navButtons(scheduleRef, setDayInfo, setCurrentDayEvents)}
         eventTimeFormat={{
-          hour: '2-digit',
-          minute: '2-digit',
+          hour: "2-digit",
+          minute: "2-digit",
           hour12: false,
         }}
-        locale={'sv'}
-        eventContent={(info) => EventBar({ info, size: 'lg', isLoading })}
+        locale={"sv"}
+        eventContent={(info) => (
+          <EventBar info={info} size="lg" isLoading={isLoading} />
+        )}
         dayHeaderContent={(info) => WeekHeader(info)}
         events={filteredEvents.events.map((event: any) =>
           // console.log('event', event),

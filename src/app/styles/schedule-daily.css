@@ -1,9 +1,19 @@
-/* schedule-daily.css */
-
 /* Schedule daily Root Variables */
 .schedule-daily {
-  --fc-border-color: var(--primary-color);
-  --fc-today-bg-color: theme('colors.primary.300');
+  --fc-border-color: theme("colors.primary.100");
+  --fc-today-bg-color: theme("colors.primary.500");
+}
+
+/* Hide unused elements */
+.schedule-daily thead {
+  @apply hidden;
+}
+
+.schedule-daily
+  .schedule-daily-right
+  .fc-timegrid-slot-label-frame
+  .fc-timegrid-slot-label-cushion {
+  @apply text-primary-500;
 }
 
 /* Scrollgrid Customization */
@@ -30,11 +40,11 @@
 
 /* Timegrid Slot Labels */
 .schedule-daily .fc-timegrid-slot-label {
-  @apply border-dashed border-primary-500/60;
+  @apply border-dashed border-primary-100/60;
 }
 
 .schedule-daily .fc-timegrid-slots tr:nth-child(odd) .fc-timegrid-slot-label {
-  @apply border-primary-500/20;
+  @apply border-primary-100/20;
 }
 
 /* Column Frames */
@@ -57,7 +67,7 @@
 
 /* Slot Label Cushion */
 .schedule-daily .fc-timegrid-slot-label-cushion {
-  @apply px-2 bg-primary-500 text-primary-100 rounded-ee-md;
+  @apply px-2 bg-primary-500 text-primary-900 rounded-ee-md;
 }
 
 /* Overlapping Events */
@@ -72,4 +82,12 @@
 /* Column Events Margin */
 .schedule-daily .fc-direction-ltr .fc-timegrid-col-events {
   @apply mx-1;
+}
+
+.schedule-daily .fc-v-event {
+  @apply border-none bg-transparent shadow-card;
+}
+
+.schedule-daily .schedule-daily-left .fc-timegrid-event-harness {
+  @apply ml-[34px];
 }

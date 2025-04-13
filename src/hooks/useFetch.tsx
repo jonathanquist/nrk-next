@@ -1,11 +1,11 @@
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
 const BASE_URL = `https://wordpress.nybroridklubb.se/wp-json`;
 
 async function fetchData(url: string) {
   const res = await fetch(`${BASE_URL}${url}`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
   });
   return res.json();
 }
@@ -15,7 +15,7 @@ export function usePage(slug: string) {
   const url = `/wp/v2/pages/?slug=${slug}&_embed`;
 
   return useQuery({
-    queryKey: ['PAGE', slug],
+    queryKey: ["PAGE", slug],
     queryFn: async () => {
       const data = await fetchData(url);
       return data.length > 0 ? data[0] : null; // Return the first post or null if no post is found
@@ -27,7 +27,7 @@ export function usePage(slug: string) {
 //MULTIPLE PAGES
 export function usePages(slugs: string[]) {
   return useQuery({
-    queryKey: ['PAGES', slugs],
+    queryKey: ["PAGES", slugs],
     queryFn: async () => {
       const pages = await Promise.all(
         slugs.map((slug) =>
@@ -53,7 +53,7 @@ export function usePost(slug: string) {
   const url = `/wp/v2/posts?slug=${slug}&_embed`;
 
   return useQuery({
-    queryKey: ['POST', slug],
+    queryKey: ["POST", slug],
     queryFn: async () => {
       const data = await fetchData(url);
       return data.length > 0 ? data[0] : null; // Return the first post or null if no post is found
@@ -66,14 +66,14 @@ export function usePost(slug: string) {
 export function usePosts(
   currentCat?: number,
   page: number = 1,
-  perPage: number = 5
+  perPage: number = 10
 ) {
   const url =
     `/wp/v2/posts?_embed&per_page=${perPage}&page=${page}` +
-    (currentCat ? `&categories=${currentCat}` : '');
+    (currentCat ? `&categories=${currentCat}` : "");
 
   return useQuery({
-    queryKey: ['POSTS', currentCat || 'ALL', page],
+    queryKey: ["POSTS", currentCat || "ALL", page],
     queryFn: () => fetchData(url),
     staleTime: 1000 * 60 * 5, // 5 min fresh
     gcTime: 1000 * 60 * 30, // 30 min cached in memory
@@ -85,7 +85,7 @@ export function useCats() {
   const url = `/wp/v2/categories/`;
 
   return useQuery({
-    queryKey: ['CATS'],
+    queryKey: ["CATS"],
     queryFn: () => fetchData(url),
     staleTime: Infinity,
     gcTime: Infinity, // never refetch unless manually invalidated
@@ -96,16 +96,16 @@ export function useCats() {
 export function usePagination(perPage: number = 10, currentCat?: number) {
   const url =
     `/wp/v2/posts?per_page=${perPage}` +
-    (currentCat ? `&categories=${currentCat}` : '');
+    (currentCat ? `&categories=${currentCat}` : "");
 
   return useQuery({
-    queryKey: ['PAGINATION', currentCat ?? 'ALL', perPage],
+    queryKey: ["PAGINATION", currentCat ?? "ALL", perPage],
     queryFn: async () => {
       const res = await fetch(`${BASE_URL}${url}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
       });
-      const totalPages = res.headers.get('x-wp-totalpages');
+      const totalPages = res.headers.get("x-wp-totalpages");
       return totalPages ? parseInt(totalPages, 10) : 1;
     },
     staleTime: 1000 * 60 * 10, // 10 min
@@ -115,7 +115,7 @@ export function usePagination(perPage: number = 10, currentCat?: number) {
 //EVENTS
 export function useEvents() {
   return useQuery({
-    queryKey: ['EVENTS'],
+    queryKey: ["EVENTS"],
     queryFn: async () => {
       let allEvents: any[] = [];
       let page = 1;
@@ -144,7 +144,7 @@ export function useEventSpan(start_date: string, end_date: string) {
   const url = `/tribe/events/v1/events?start_date=${start_date}&end_date=${end_date}`;
 
   return useQuery({
-    queryKey: ['EVENTS', start_date, end_date],
+    queryKey: ["EVENTS", start_date, end_date],
     queryFn: async () => {
       let allEvents: any[] = [];
       let page = 1;
@@ -158,7 +158,7 @@ export function useEventSpan(start_date: string, end_date: string) {
           // Fix missing categories
           const eventsWithCategories = response.events.map((event: any) => {
             if (!event.categories || event.categories.length === 0) {
-              event.categories = [{ slug: 'annat' }]; // Default category
+              event.categories = [{ slug: "annat" }]; // Default category
             }
             return event;
           });

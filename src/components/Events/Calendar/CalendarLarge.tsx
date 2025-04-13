@@ -1,25 +1,30 @@
-import React, { useState, useRef, useEffect } from 'react';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import CalendarDay from './CalendarDay';
-import FilterMenu from '../FilterMenu';
-import EventBar from '../EventBar';
-import WeekHeader from '../WeekHeader';
-import { navButtons } from '../navButtons';
-import { getDayEvents, getDayInfo } from '@/lib/utils';
-import { format } from 'date-fns';
-import { useEventSpan } from '@/hooks/useFetch';
+import React, { useState, useRef } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import CalendarDay from "./CalendarDay";
+import FilterMenu from "../FilterMenu";
+import EventBar from "../EventBar";
+import WeekHeader from "../WeekHeader";
+import { navButtons } from "../navButtons";
+import {
+  eventsFilter,
+  getDayEvents,
+  getDayInfo,
+  getEventCategory,
+} from "@/lib/utils";
+import { format } from "date-fns";
+import { useEventSpan } from "@/hooks/useFetch";
 
 export default function CalendarLarge() {
   // const [eventID, setEventID] = useState<number | null>(null);
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
-  const [filtered, setFiltered] = useState<string[]>(['bokning']);
+  const [filtered, setFiltered] = useState<string[]>(["bokning"]);
   const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
-    start: format(new Date(), 'yyyy-MM-01'),
-    end: format(new Date(), 'yyyy-MM-31'),
+    start: format(new Date(), "yyyy-MM-01"),
+    end: format(new Date(), "yyyy-MM-31"),
   });
 
   const calendarRef = useRef<any>(null);
@@ -42,11 +47,7 @@ export default function CalendarLarge() {
     setCurrentDayEvents(getDayEvents(clickInfo, events));
   };
 
-  const filteredEvents = {
-    events: events.filter((event: any) => {
-      return !filtered.includes(event.categories[0].slug);
-    }),
-  };
+  const visibleEvents = eventsFilter(events, filtered);
 
   return (
     <div className="relative" ref={containerRef}>
@@ -59,32 +60,34 @@ export default function CalendarLarge() {
         weekNumbers={true}
         firstDay={1}
         headerToolbar={{
-          left: '',
-          center: 'customPrevButton title customNextButton',
-          right: '',
+          left: "",
+          center: "customPrevButton title customNextButton",
+          right: "",
         }}
         customButtons={navButtons(calendarRef, setDayInfo, setCurrentDayEvents)}
         eventTimeFormat={{
-          hour: '2-digit',
-          minute: '2-digit',
+          hour: "2-digit",
+          minute: "2-digit",
           hour12: false,
         }}
-        locale={'sv'}
-        eventContent={(info) => EventBar({ info, size: 'lg', isLoading })}
+        locale={"sv"}
+        eventContent={(info) => (
+          <EventBar info={info} size="lg" isLoading={isLoading} />
+        )}
         weekNumberContent={(info) => `Vecka ${info.num}`}
         dayHeaderContent={(info) => WeekHeader(info)}
-        events={filteredEvents.events.map((event: any) => ({
+        events={visibleEvents.map((event: any) => ({
           title: event.title,
           start: new Date(event.start_date),
           end: new Date(event.end_date),
           id: event.id,
-          category: event.categories[0].slug,
+          category: getEventCategory(event),
         }))}
         dateClick={(info) => handleDateClick(info)}
         datesSet={(info) => {
           setDateRange({
-            start: format(info.start, 'yyyy-MM-dd'),
-            end: format(info.end, 'yyyy-MM-dd'),
+            start: format(info.start, "yyyy-MM-dd"),
+            end: format(info.end, "yyyy-MM-dd"),
           });
         }}
       />

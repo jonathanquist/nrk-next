@@ -28,6 +28,7 @@
 
 .calendar-small .fc-toolbar-chunk .fc-toolbar-title {
   @apply w-48 text-center capitalize;
+  font-variant: small-caps;
 }
 
 /* Custom Button Icons */

@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import { mobileLinks } from './links.const';
-import { usePathname } from 'next/navigation';
-import { useViewport } from '@/hooks/useViewport';
+import Image from "next/image";
+import Link from "next/link";
+import React, { useEffect, useState } from "react";
+import { mobileLinks } from "./links.const";
+import { usePathname } from "next/navigation";
+import { useViewport } from "@/hooks/useViewport";
 import {
   IconArrowDouble,
   Modal,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '../UI';
-import { cn } from '@/lib/utils';
-import ScheduleDaily from '../Events/Schedule/ScheduleDaily';
+} from "../UI";
+import { cn } from "@/lib/utils";
+import ScheduleDaily from "../Events/Schedule/ScheduleDaily";
 
 interface Link {
   Icon: React.ReactNode;
@@ -25,33 +25,38 @@ interface Link {
 }
 
 export default function MenuMobile() {
-  const [currentPage, setCurrentPage] = useState('');
-  const [showSubmenu, setShowSubmenu] = useState('');
+  const [currentPage, setCurrentPage] = useState("");
+  const [showSubmenu, setShowSubmenu] = useState("");
   const [showSchema, setShowSchema] = useState(false);
 
   const path = usePathname();
   const { height } = useViewport();
 
   useEffect(() => {
-    const paths = path.split('/');
+    const paths = path.split("/");
     const currentPath =
-      paths[paths.length - 2] === 'posts'
-        ? 'anslagstavlan'
+      paths[paths.length - 2] === "posts"
+        ? "anslagstavlan"
         : paths[paths.length - 1];
 
     setCurrentPage(currentPath);
   }, [path]);
 
-  const handleClick = (label: string) => {
+  const handleMenuClick = (label: string) => {
     if (label === showSubmenu) {
-      setShowSubmenu('');
+      setShowSubmenu("");
     } else {
       setShowSubmenu(label);
     }
   };
 
   const handleLink = (page: string) => {
-    setShowSubmenu('');
+    setShowSubmenu("");
+  };
+
+  const handleScheduleClick = () => {
+    setShowSchema(!showSchema);
+    setShowSubmenu("");
   };
 
   return (
@@ -68,11 +73,11 @@ export default function MenuMobile() {
               <Popover open={showSubmenu === label}>
                 <PopoverTrigger asChild>
                   <button
-                    onClick={() => handleClick(label)}
+                    onClick={() => handleMenuClick(label)}
                     className={cn(
-                      'text-sm leading-none font-bold hover:underline flex flex-col items-center rounded-lg pb-2 w-full px-2 bg-primary-100 shadow-md',
+                      "text-sm leading-none font-bold hover:underline flex flex-col items-center rounded-lg pb-2 w-full px-2 bg-primary-100 shadow-md",
 
-                      isActive && 'text-accent-500'
+                      isActive && "text-accent-500"
                     )}
                   >
                     <Icon className="w-9 h-9 md:h-8 md:w-8 lg:h-9 lg:w-9" />
@@ -81,7 +86,7 @@ export default function MenuMobile() {
                 </PopoverTrigger>
                 <PopoverContent
                   sideOffset={12}
-                  side={height <= 520 ? 'left' : 'top'}
+                  side={height <= 520 ? "left" : "top"}
                   asChild
                 >
                   <div className="px-3.5 py-5 max-h-[100dvh] overflow-y-none">
@@ -99,10 +104,10 @@ export default function MenuMobile() {
                           >
                             <span
                               className={cn(
-                                'small',
+                                "small",
                                 currentPage === subLink.slug
-                                  ? 'text-accent-500'
-                                  : 'text-primary-900'
+                                  ? "text-accent-500"
+                                  : "text-primary-900"
                               )}
                             >
                               {subLink.label}
@@ -120,20 +125,23 @@ export default function MenuMobile() {
       </ul>
       <div
         className={cn(
-          'fixed top-0 w-full  h-[100dvh] transition flex-col z-50',
-          !showSchema && 'translate-y-full -m-8'
+          "fixed top-0 w-full  h-[100dvh] transition flex-col z-50",
+          !showSchema && "translate-y-full -m-8"
         )}
       >
         <div className="flex justify-center px-20 w-full">
           <button
-            onClick={() => setShowSchema(!showSchema)}
-            className="bg-primary-500 opacity-50 w-full rounded-t-full flex items-center justify-center py-2 text-xs h-sm:hidden"
+            onClick={() => handleScheduleClick()}
+            className="bg-primary-500 w-full rounded-t-full flex items-center justify-center py-2 gap-2 text-xs h-sm:hidden"
           >
-            <IconArrowDouble className="w-4 h-4" /> Kommer snart
+            <IconArrowDouble
+              className={cn(showSchema && "rotate-180", "w-4 h-4 transition")}
+            />
+            Ridhusschema
           </button>
         </div>
         {/*Schema*/}
-        <div className="h-full w-full bg-primary-500">
+        <div className="h-[calc(100dvh-32px)] w-full bg-primary-500">
           <ScheduleDaily />
         </div>
       </div>

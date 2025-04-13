@@ -1,5 +1,5 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -7,43 +7,43 @@ export function cn(...inputs: ClassValue[]) {
 
 export function getEventColor(category: string): string {
   switch (category) {
-    case 'clinic':
-      return 'rgb(254 97 0)';
-    case 'event':
-      return 'rgb(78 58 167)';
-    case 'lektion':
-      return 'rgb(195 38 220)';
-    case 'kurs':
-      return 'rgb(195 38 220)';
-    case 'tavling':
-      return 'rgb(100 143 255)';
-    case 'annat':
-      return 'rgb(253 193 60)';
+    case "clinic":
+      return "rgb(254 97 0)";
+    case "event":
+      return "rgb(78 58 167)";
+    case "lektion":
+      return "rgb(195 38 220)";
+    case "kurs":
+      return "rgb(195 38 220)";
+    case "tavling":
+      return "rgb(100 143 255)";
+    case "annat":
+      return "rgb(253 193 60)";
     default:
-      return 'rgb(204 68 75)';
+      return "rgb(204 68 75)";
   }
 }
 
 export function decodeHtmlEntities(text: string): string {
-  const textArea = document.createElement('textarea');
+  const textArea = document.createElement("textarea");
   textArea.innerHTML = text;
   return textArea.value;
 }
 
 export function getMonth(postDate: string): string {
   const date = new Date(postDate);
-  const monthYear = new Intl.DateTimeFormat('sv-SE', {
-    year: 'numeric',
-    month: 'long',
+  const monthYear = new Intl.DateTimeFormat("sv-SE", {
+    year: "numeric",
+    month: "long",
   }).format(date);
   return monthYear;
 }
 
 export function getDay(postDate: string): string {
   const date = new Date(postDate);
-  const dayMonth = new Intl.DateTimeFormat('sv-SE', {
-    day: 'numeric',
-    month: 'long',
+  const dayMonth = new Intl.DateTimeFormat("sv-SE", {
+    day: "numeric",
+    month: "long",
   }).format(date);
   return dayMonth;
 }
@@ -75,6 +75,27 @@ export function getDayEvents(clickInfo: any, events: any): any {
   return clickedDateEvents;
 }
 
+export function eventsFilter(events: any[], filterArr?: string[]) {
+  const filter = filterArr ? filterArr : ["bokning"];
+  return events.filter((event: any) => {
+    return event.categories.some(
+      (category: any) => !filter.includes(category.slug)
+    );
+  });
+}
+
+export const getEventCategory = (event: any) => {
+  let category;
+  if (event.categories[0].slug === "annat") {
+    category =
+      event.categories.length > 1
+        ? (category = event.categories[1].slug)
+        : event.categories[0].slug;
+  } else {
+    category = event.categories[0].slug;
+  }
+  return category;
+};
 // export function getWeek(date: Date) {
 //   const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
 //   const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
@@ -83,16 +104,16 @@ export function getDayEvents(clickInfo: any, events: any): any {
 
 export function cleanAndTruncateText(text: string, maxLength?: number): string {
   // Remove HTML tags
-  let cleanedText = text.replace(/<\/?[^>]+(>|$)/g, '');
+  let cleanedText = text.replace(/<\/?[^>]+(>|$)/g, "");
 
   // Decode HTML entities
-  const textArea = document.createElement('textarea');
+  const textArea = document.createElement("textarea");
   textArea.innerHTML = cleanedText;
   cleanedText = textArea.value;
 
   // Ensure that [...] at the end is replaced with ...
-  cleanedText = cleanedText.replace(/\[?&hellip;\]?|…/g, '...');
-  cleanedText = cleanedText.replace(/\s*\[\.\.\.\]\s*$/, '...');
+  cleanedText = cleanedText.replace(/\[?&hellip;\]?|…/g, "...");
+  cleanedText = cleanedText.replace(/\s*\[\.\.\.\]\s*$/, "...");
 
   // If maxLength is provided, truncate the text
   if (maxLength && cleanedText.length > maxLength) {

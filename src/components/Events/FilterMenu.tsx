@@ -4,8 +4,8 @@ import {
   PopoverContent,
   PopoverTrigger,
   Switch,
-} from '../UI';
-import { cn, getEventColor } from '@/lib/utils';
+} from "../UI";
+import { cn, getEventColor } from "@/lib/utils";
 
 interface FilterMenuProps {
   filtered: string[];
@@ -14,11 +14,11 @@ interface FilterMenuProps {
 
 export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
   const items = [
-    { id: 'clinic', name: 'Clinic' },
-    { id: 'event', name: 'Event' },
-    { id: 'lektion', name: 'Lektion' },
-    { id: 'tavling', name: 'Tävling' },
-    { id: 'annat', name: 'Annat' },
+    { id: "clinic", name: "Clinic" },
+    { id: "event", name: "Event" },
+    { id: "lektion", name: "Lektion" },
+    { id: "tavling", name: "Tävling" },
+    { id: "annat", name: "Annat" },
   ];
 
   // const handleToggle = (id: string) => {
@@ -30,13 +30,13 @@ export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
   // };
 
   const handleToggle = (id: string) => {
-    if (id === 'lektion') {
-      if (filtered.includes('lektion')) {
+    if (id === "lektion") {
+      if (filtered.includes("lektion")) {
         setFiltered(
-          filtered.filter((item) => item !== 'lektion' && item !== 'kurs')
+          filtered.filter((item) => item !== "lektion" && item !== "kurs")
         );
       } else {
-        setFiltered([...filtered, 'lektion', 'kurs']);
+        setFiltered([...filtered, "lektion", "kurs"]);
       }
     } else {
       if (filtered.includes(id)) {
@@ -52,7 +52,7 @@ export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
       <Popover>
         <PopoverTrigger asChild>
           <button>
-            <IconSettings className="w-8 h-8 text-primary-100" />
+            <IconSettings className="w-8 h-8 text-primary-100 hover:text-primary-100/80" />
           </button>
         </PopoverTrigger>
         <PopoverContent align="end" className="w-80 py-8 px-5">
@@ -61,10 +61,10 @@ export default function FilterMenu({ filtered, setFiltered }: FilterMenuProps) {
               <li key={item.id} className="w-full flex gap-2">
                 <div
                   className={cn(
-                    item.id === 'annat'
-                      ? 'text-accent-500'
-                      : 'text-primary-100',
-                    'flex justify-center items-center text-2xl w-8 font-bold font-cambria shrink-0 rounded-l-xl'
+                    item.id === "annat"
+                      ? "text-accent-500"
+                      : "text-primary-100",
+                    "flex justify-center items-center text-2xl w-8 font-bold font-cambria shrink-0 rounded-l-xl"
                   )}
                   style={{ backgroundColor: getEventColor(item.id) }}
                 >

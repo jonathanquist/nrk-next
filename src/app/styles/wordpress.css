@@ -7,7 +7,7 @@
 }
 
 .wordpress-content .wp-block-column {
-  @apply flex items-start flex-col gap-2;
+  @apply flex items-start flex-col gap-6;
 }
 
 .wordpress-content div {
@@ -32,6 +32,10 @@
 
 .wordpress-content figure {
   @apply flex flex-col rounded-lg shadow-md gap-2 overflow-x-auto;
+}
+
+.wordpress-content figure:has(a) {
+  @apply rise-animation-this;
 }
 
 .wordpress-content figure:has(table) {
@@ -89,18 +93,6 @@
   @apply border-primary-500 rounded-full w-full border-t-4 my-5;
 }
 
-.wordpress-content .has-text-align-left {
-  @apply text-left;
-}
-
-.wordpress-content .alignwide {
-  @apply w-full max-w-full;
-}
-
-.wordpress-content .is-layout-flex {
-  @apply flex gap-4;
-}
-
 .wordpress-content .wp-block-column figure.wp-block-image {
   @apply h-full p-0 overflow-hidden flex items-center justify-start;
 }
@@ -109,10 +101,40 @@
   @apply h-full overflow-hidden object-cover;
 }
 
+/* Wordpress modifiers */
+
+.wordpress-content .has-text-align-left {
+  @apply text-left;
+}
+
+.wordpress-content .has-text-align-center {
+  @apply text-center;
+}
+
+.wordpress-content .alignwide {
+  @apply w-full max-w-full;
+}
+
+.wordpress-content .is-layout-flex,
+.wp-block-group-is-layout-flex {
+  @apply flex gap-4 flex-col md:flex-row;
+}
+
+.wordpress-content .is-vertical {
+  @apply flex-col;
+}
+
+.wordpress-content .are-vertically-aligned-center {
+  @apply items-center;
+}
+.wordpress-content .is-vertically-aligned-center {
+  @apply justify-center;
+}
+
 /* Wordpress blockquote */
 
 .wordpress-content blockquote {
-  @apply flex flex-col w-full mb-4 mt-2 lg:w-2/3 rounded-lg bg-primary-100 text-accent-500 pt-6 pb-4 px-4 lg:px-12 shadow-md mx-auto;
+  @apply flex flex-col w-full mb-4 mt-2 lg:w-2/3 rounded-lg bg-primary-100 text-accent-500 pt-6 pb-4 px-4 lg:px-12 mx-auto;
 }
 
 .wordpress-content blockquote p {

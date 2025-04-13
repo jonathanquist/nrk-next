@@ -1,4 +1,4 @@
-import { cn, decodeHtmlEntities, getEventColor } from '@/lib/utils';
+import { cn, decodeHtmlEntities, getEventColor } from "@/lib/utils";
 import {
   Button,
   Dialog,
@@ -8,8 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../UI';
-import Image from 'next/image';
+} from "../UI";
+import Image from "next/image";
 
 interface EventDialogProps {
   info: any;
@@ -47,8 +47,8 @@ export function EventDialog({ info, children }: EventDialogProps) {
   const decodedTitle = decodeHtmlEntities(title);
 
   // Format dates to Swedish locale
-  const startDayName = startDate.toLocaleString('sv-SE', { weekday: 'long' });
-  const startMonthName = startDate.toLocaleString('sv-SE', { month: 'long' });
+  const startDayName = startDate.toLocaleString("sv-SE", { weekday: "long" });
+  const startMonthName = startDate.toLocaleString("sv-SE", { month: "long" });
 
   return (
     <Dialog>
@@ -83,22 +83,25 @@ export function EventDialog({ info, children }: EventDialogProps) {
           />
         </div>
         <DialogFooter>
-          {info.categories.map((category: any) => (
-            <span
-              key={category.slug}
-              className={cn(
-                category.slug === 'annat'
-                  ? 'text-accent-500'
-                  : 'text-primary-100',
-                'rounded-md px-2 py-1 text-xs'
-              )}
-              style={{
-                backgroundColor: getEventColor(category.slug),
-              }}
-            >
-              {category.name}
-            </span>
-          ))}
+          {info.categories.map((category: any) => {
+            if (category.slug === "bokning") return null;
+            return (
+              <span
+                key={category.slug}
+                className={cn(
+                  category.slug === "annat"
+                    ? "text-accent-500"
+                    : "text-primary-100",
+                  "rounded-md px-2 py-1 text-xs"
+                )}
+                style={{
+                  backgroundColor: getEventColor(category.slug),
+                }}
+              >
+                {category.name}
+              </span>
+            );
+          })}
         </DialogFooter>
       </DialogContent>
     </Dialog>

@@ -1,4 +1,11 @@
-import { cn, decodeHtmlEntities, getDay, getEventColor } from '@/lib/utils';
+import {
+  cn,
+  decodeHtmlEntities,
+  eventsFilter,
+  getDay,
+  getEventCategory,
+  getEventColor,
+} from "@/lib/utils";
 
 import {
   Dialog,
@@ -7,9 +14,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../../UI';
-import { useState } from 'react';
-import { EventMobile } from '../EventMobile';
+} from "../../UI";
+import { useState } from "react";
+import { EventMobile } from "../EventMobile";
 
 interface CalendarDayMobileProps {
   currentDayEvents: any[];
@@ -28,16 +35,18 @@ export default function CalendarDayMobile({
 }: CalendarDayMobileProps) {
   const [focusedEvent, setFocusedEvent] = useState<any>(null);
 
+  const visibleEvents = eventsFilter(currentDayEvents);
+
   return (
     <Dialog
-      open={!!currentDayEvents}
+      open={!!visibleEvents}
       onOpenChange={() => {
         setCurrentDayEvents([]);
         setFocusedEvent(null);
       }}
     >
       <DialogTrigger asChild>
-        <button style={{ display: 'none' }}></button>
+        <button style={{ display: "none" }}></button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -50,43 +59,46 @@ export default function CalendarDayMobile({
         </DialogDescription>
         <div className="h-96 overflow-y-auto custom-scroll">
           {!focusedEvent &&
-            currentDayEvents.map((event: any, index: number) => (
-              <button
-                onClick={() => setFocusedEvent(event)}
-                key={index}
-                className="h-fit w-full"
-              >
-                <div className="group flex rounded-2xl p-1.5 gap-2.5 w-full mt-6 bg-primary-100 shadow-md">
-                  <div
-                    className={cn(
-                      event.categories[0].slug === 'annat'
-                        ? 'text-accent-500'
-                        : 'text-primary-100',
-                      'flex justify-center items-center text-2xl w-8 font-bold shrink-0 rounded-l-xl'
-                    )}
-                    style={{
-                      backgroundColor: getEventColor(event.categories[0].slug),
-                    }}
-                  >
-                    {event.categories[0].slug.charAt(0).toUpperCase()}
-                  </div>
-                  <div className="flex flex-col w-full pr-2 py-1">
-                    <span className="font-bold text-left font-fira small text-lg line-clamp-2 leading-tight">
-                      {decodeHtmlEntities(event.title)}
-                    </span>
-                    <p
-                      dangerouslySetInnerHTML={{ __html: event.description }}
-                      className="paragraph-sm text-left font-fira line-clamp-2"
-                    />
-                    <div className="w-full flex justify-end">
-                      <span className="font-bold text-left text-lg small font-fira text-primary-900 underline-offset-4 group-hover:underline">
-                        Läs mer
+            visibleEvents.map((event: any, index: number) => {
+              const category = getEventCategory(event);
+              return (
+                <button
+                  onClick={() => setFocusedEvent(event)}
+                  key={index}
+                  className="h-fit w-full"
+                >
+                  <div className="group flex rounded-2xl p-1.5 gap-2.5 w-full mt-6 bg-primary-100 shadow-md">
+                    <div
+                      className={cn(
+                        category === "annat"
+                          ? "text-accent-500"
+                          : "text-primary-100",
+                        "flex justify-center items-center text-2xl w-8 font-bold shrink-0 rounded-l-xl"
+                      )}
+                      style={{
+                        backgroundColor: getEventColor(category),
+                      }}
+                    >
+                      {category.charAt(0).toUpperCase()}
+                    </div>
+                    <div className="flex flex-col w-full pr-2 py-1">
+                      <span className="font-bold text-left font-fira small text-lg line-clamp-2 leading-tight">
+                        {decodeHtmlEntities(event.title)}
                       </span>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: event.description }}
+                        className="paragraph-sm text-left font-fira line-clamp-2"
+                      />
+                      <div className="w-full flex justify-end">
+                        <span className="font-bold text-left text-lg small font-fira text-primary-900 underline-offset-4 group-hover:underline">
+                          Läs mer
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </button>
-            ))}
+                </button>
+              );
+            })}
           {focusedEvent && (
             <EventMobile info={focusedEvent} action={setFocusedEvent} />
           )}

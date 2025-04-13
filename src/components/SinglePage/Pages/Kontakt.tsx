@@ -1,44 +1,44 @@
-'use client';
+"use client";
 
-import PageSection from '../PageSection';
-import Header from '@/components/Header';
-import { usePage } from '@/hooks/useFetch';
-import Loader from '@/components/Loader/Loader';
+import PageSection from "../PageSection";
+import Header from "@/components/Header";
+import { usePage } from "@/hooks/useFetch";
+import Loader from "@/components/Loader/Loader";
 import {
   APIProvider,
   Map,
   Marker,
   useMarkerRef,
-} from '@vis.gl/react-google-maps';
-import { API } from '@/lib/const';
-import HeaderMobile from '@/components/HeaderMobile';
+} from "@vis.gl/react-google-maps";
+import { API } from "@/lib/const";
+import HeaderMobile from "@/components/HeaderMobile";
 
 export default function Kontakt() {
   const { data: page, isLoading } = usePage(API.KONTAKT);
-  const [markerRef, marker] = useMarkerRef();
+  // const [markerRef, marker] = useMarkerRef();
 
   if (isLoading || !page) return <Loader />;
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+  // const apiKey = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
-  if (!apiKey) {
-    throw new Error(
-      'Google Maps API key is missing. Please set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in your .env file.'
-    );
-  }
+  // if (!apiKey) {
+  //   throw new Error(
+  //     'Google Maps API key is missing. Please set NEXT_PUBLIC_GOOGLE_MAPS_API_KEY in your .env file.'
+  //   );
+  // }
 
   return (
-    <div className="h-full w-full card-base overflow-y-auto custom-scroll">
+    <div className="h-full w-full card-base overflow-y-auto custom-scroll ">
       <Header
         variant="page"
-        title={page.title.rendered || 'Kontakt'}
-        image={page._embedded['wp:featuredmedia'][0].source_url}
+        title={page.title.rendered || "Kontakt"}
+        image={page._embedded["wp:featuredmedia"][0].source_url}
       />
       <div className="block lg:hidden">
         <HeaderMobile
           variant="page"
-          title={page.title.rendered || 'Kontakt'}
-          image={page._embedded['wp:featuredmedia'][0].source_url}
+          title={page.title.rendered || "Kontakt"}
+          image={page._embedded["wp:featuredmedia"][0].source_url}
         />
       </div>
       <div className="card-px card-py h-full space-y-16">

@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import Logo from '../../public/images/logo.svg';
+import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../public/images/logo.svg";
 
 export default function Footer() {
   return (
@@ -35,9 +35,12 @@ export default function Footer() {
           <p className="text-sm">
             <span className="font-bold">E-post</span>
             <br />
-            <a href="mailto:ridskolan@nybroridklubb.se">
+            <Link
+              href="mailto:ridskolan@nybroridklubb.se"
+              className="hover:underline"
+            >
               ridskolan@nybroridklubb.se
-            </a>
+            </Link>
           </p>
         </div>
         <div className="flex flex-col gap-6 font-light">
@@ -50,9 +53,12 @@ export default function Footer() {
           <p className="text-sm">
             <span className="font-bold">E-post</span>
             <br />
-            <a href="mailto:ridskolan@nybroridklubb.se">
+            <Link
+              href="mailto:ridskolan@nybroridklubb.se"
+              className="hover:underline"
+            >
               ridskolan@nybroridklubb.se
-            </a>
+            </Link>
           </p>
         </div>
       </div>

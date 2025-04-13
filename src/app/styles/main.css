@@ -1,7 +1,7 @@
-@import url('variables.css');
-@import url('global.css');
-@import url('calendar-large.css');
-@import url('calendar-small.css');
-@import url('schedule-large.css');
-@import url('schedule-daily.css');
-@import url('wordpress.css');
+@import url("global.css");
+@import url("variables.css");
+@import url("calendar-large.css");
+@import url("calendar-small.css");
+@import url("schedule-large.css");
+@import url("schedule-daily.css");
+@import url("wordpress.css");

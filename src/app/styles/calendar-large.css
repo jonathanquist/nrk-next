@@ -23,7 +23,8 @@
 .calendar-large .fc-toolbar-chunk .fc-toolbar-title,
 .schedule-daily .fc-toolbar-chunk .fc-toolbar-title,
 .schedule-large .fc-toolbar-chunk .fc-toolbar-title {
-  @apply w-64 text-center capitalize;
+  @apply w-64 text-center capitalize font-cambria;
+  font-variant: small-caps;
 }
 
 .calendar-large .fc-toolbar-chunk > *,
@@ -53,7 +54,7 @@
 .schedule-small .fc-button-primary:not(:disabled):active,
 .calendar-small .fc-button-primary:not(:disabled):active:focus,
 .schedule-small .fc-button-primary:not(:disabled):active:focus {
-  @apply bg-accent-500 border-accent-500 rounded-sm shadow-none;
+  @apply bg-accent-500 border-accent-500 rounded-sm shadow-none text-blue-400;
 }
 
 /* Scroll Grid */
@@ -179,17 +180,21 @@
 .calendar-large .fc-customPrevButton-button .fc-icon-custom,
 .schedule-daily .fc-customPrevButton-button .fc-icon-custom,
 .schedule-large .fc-customPrevButton-button .fc-icon-custom {
-  @apply w-12 h-12 bg-[url(/images/icon_back.svg)];
+  @apply w-12 h-12 bg-[url(/images/icon_back.svg)] hover:opacity-80;
 }
 
 .calendar-large .fc-customNextButton-button .fc-icon-custom,
 .schedule-daily .fc-customNextButton-button .fc-icon-custom,
 .schedule-large .fc-customNextButton-button .fc-icon-custom {
-  @apply w-12 h-12 bg-[url(/images/icon_next.svg)];
+  @apply w-12 h-12 bg-[url(/images/icon_next.svg)] hover:opacity-80;
 }
 
 .calendar-large .fc-customSettingsButton-button .fc-icon-custom,
 .schedule-daily .fc-customSettingsButton-button .fc-icon-custom,
 .schedule-large .fc-customSettingsButton-button .fc-icon-custom {
   @apply w-12 h-12 bg-[url(/images/icon_settings.svg)];
+}
+
+.calendar-large .fc-daygrid-week-number {
+  @apply px-2 bg-primary-500 text-primary-100 rounded-ee-md select-none text-sm;
 }

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { IconBack } from '..';
+import Link from "next/link";
+import { IconBack } from "..";
 
 export function Breadcrumb({
   section,
@@ -18,7 +18,9 @@ export function Breadcrumb({
   return (
     <div className="hidden lg:flex gap-1 small font-bold px-8 mt-8 mb-9">
       {/*Home*/}
-      <Link href="/">Hem</Link>
+      <Link href="/" className="hover:underline">
+        Hem
+      </Link>
 
       {/*Section*/}
       <IconBack className="rotate-180 w-6 h-6 text-accent-500" />
@@ -33,6 +35,7 @@ export function Breadcrumb({
               pathname: subsection.link,
               query: { slug: subsection.label },
             }}
+            className="hover:underline"
           >
             {subsection.label}
           </Link>
