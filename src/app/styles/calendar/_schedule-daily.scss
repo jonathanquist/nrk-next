@@ -1,0 +1,181 @@
+/* Schedule Daily: Root Variables */
+.schedule-daily {
+  --fc-border-color: theme("colors.primary.100");
+  --fc-today-bg-color: theme("colors.primary.500");
+
+  .fc {
+    /* Hide unused elements */
+    thead {
+      @apply hidden;
+    }
+
+    .schedule-daily-right
+      .fc-timegrid-slot-label-frame
+      .fc-timegrid-slot-label-cushion {
+      @apply text-primary-500;
+    }
+
+    /* Scrollgrid Customization */
+    .fc-scrollgrid {
+      @apply border-t-0;
+    }
+
+    /* Hide Unused Elements */
+    colgroup,
+    .fc-timegrid-axis,
+    .fc-timegrid-slot-lane,
+    tr:has(.fc-timegrid-divider) {
+      @apply hidden;
+    }
+
+    .fc-timegrid-slot-label-frame {
+      @apply text-left;
+    }
+
+    /* Table Borders */
+    .fc-theme-standard {
+      td {
+        @apply border-[2px] first:border-l-0 last:border-r-0 font-fira;
+      }
+
+      tr:first-child > td {
+        @apply border-t-0;
+      }
+
+      tr:last-child > td {
+        @apply border-b-0;
+      }
+    }
+
+    /* Timegrid Slot Labels */
+    .fc-timegrid-slot-label {
+      @apply border-dashed border-primary-100/60;
+
+      &:nth-child(odd) {
+        @apply border-primary-100/20;
+      }
+    }
+
+    /* Column Frames */
+    .fc-day-mon .fc-timegrid-col-frame {
+      @apply w-[150px] ml-auto;
+    }
+
+    /* Event and Overlap */
+    .fc-event-title {
+      @apply h-full;
+    }
+
+    .fc-event-overlap {
+      @apply w-1/2;
+    }
+
+    .fc-timegrid-slots tr {
+      @apply border-none;
+    }
+
+    /* Slot Label Cushion */
+    .fc-timegrid-slot-label-cushion {
+      @apply px-2 bg-primary-500 text-primary-900 rounded-ee-md;
+    }
+
+    /* Overlapping Events */
+    .fc-timegrid-event-harness {
+      &.overlapping {
+        width: 50% !important;
+      }
+
+      & + .fc-timegrid-event-harness {
+        left: 50% !important;
+      }
+    }
+
+    /* Column Events Margin */
+    .fc-direction-ltr .fc-timegrid-col-events {
+      @apply mx-1;
+    }
+
+    .fc-v-event {
+      @apply border-none bg-transparent shadow-card;
+    }
+
+    /* Toolbar Section */
+    .fc-toolbar.fc-header-toolbar {
+      @apply bg-accent-500 h-20 text-primary-100 mb-0 px-8 justify-center;
+    }
+
+    /* Toolbar Chunk */
+    .fc-toolbar-chunk {
+      @apply flex items-center justify-between first:mr-auto first:w-12 last:ml-auto;
+
+      .fc-toolbar-title {
+        @apply w-64 text-center capitalize font-cambria;
+        font-variant: small-caps;
+      }
+
+      > * {
+        @apply ml-0;
+      }
+    }
+
+    /* Button States */
+    .fc-button-primary {
+      &:hover,
+      &:focus,
+      &:not(:disabled):active,
+      &:not(:disabled):active:focus {
+        @apply bg-accent-500 border-accent-500 rounded-sm shadow-none text-blue-400;
+      }
+    }
+
+    /* Column Header & Day Numbers */
+    .fc-col-header-cell-cushion .fc-daygrid-day-number {
+      @apply py-3 select-none cursor-default;
+    }
+
+    .fc .fc-daygrid-day-number {
+      @apply select-none cursor-default;
+    }
+
+    .fc-col-header-cell {
+      @apply border-none bg-primary-500 text-primary-100 font-fira;
+    }
+
+    .fc-day-today {
+      .fc-daygrid-day-frame,
+      .fc-daygrid-day-frame:has(.fc-event) {
+        @apply hover:bg-accent-500;
+      }
+    }
+
+    /* Daygrid Top & Today's Day */
+    &.fc-daygrid-day-top {
+      @apply justify-center mt-6 mb-2 text-xl;
+    }
+
+    /* Custom Button Icons */
+    .fc-customPrevButton-button,
+    .fc-customNextButton-button,
+    .fc-customSettingsButton-button {
+      @apply bg-transparent border-none p-0;
+
+      .fc-icon-custom {
+        &.fc-customPrevButton-button {
+          @apply w-12 h-12 bg-[url(/images/icon_back.svg)] hover:opacity-80;
+        }
+
+        &.fc-customNextButton-button {
+          @apply w-12 h-12 bg-[url(/images/icon_next.svg)] hover:opacity-80;
+        }
+
+        &.fc-customSettingsButton-button {
+          @apply w-12 h-12 bg-[url(/images/icon_settings.svg)];
+        }
+      }
+    }
+  }
+
+  .schedule-daily-left .fc-timegrid-event-harness {
+    @apply ml-[34px];
+  }
+}

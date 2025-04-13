@@ -7,10 +7,7 @@ import MenuMobile from "@/components/Menu/MenuMobile";
 import MenuHeader from "@/components/Menu/MenuHeader";
 import Footer from "@/components/Footer";
 
-import "./styles/main.css";
-// import './styles/globals.css';
-// import './styles/calendar.css';
-// import './styles/wordpress.css';
+import "./styles/main.scss";
 
 export const metadata: Metadata = {
   title: "Nybro Ridklubb",

@@ -1,0 +1,39 @@
+.fc {
+  /* // Toolbar button icon styles */
+  .fc-customPrevButton-button .fc-icon-custom,
+  .fc-customNextButton-button .fc-icon-custom,
+  .fc-customSettingsButton-button .fc-icon-custom {
+    @apply hover:opacity-80;
+  }
+
+  /* // Day number styling (header and grid) */
+  .fc-col-header-cell-cushion,
+  .fc-col-header-cell-cushion .fc-daygrid-day-number,
+  .fc .fc-daygrid-day-number,
+  .fc-scrollgrid-section-body .fc-daygrid-day-number {
+    @apply select-none;
+  }
+
+  /* // Event harness padding
+  //   .fc-daygrid-event-harness,
+  //   .fc-timegrid-event {
+  //     @apply px-2 py-1;
+  //   } */
+
+  /* // Today’s date cell */
+  .fc-day-today {
+    @apply text-primary-100;
+  }
+
+  /* // Hover interaction for event containers */
+  /* .fc-day:has(.fc-daygrid-event-harness),
+  .fc-timegrid-event-harness {
+    @apply cursor-pointer hover:bg-primary-300;
+  } */
+}
+
+/* // Hide header toolbar for minimal variants */
+.calendar-no-toolbar .fc .fc-header-toolbar,
+.schedule-no-toolbar .fc .fc-header-toolbar {
+  @apply hidden;
+}

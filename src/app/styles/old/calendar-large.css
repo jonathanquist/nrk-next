@@ -195,6 +195,6 @@
   @apply w-12 h-12 bg-[url(/images/icon_settings.svg)];
 }
 
-.calendar-large .fc-daygrid-week-number {
+.calendar-large .fc .fc-daygrid-week-number {
   @apply px-2 bg-primary-500 text-primary-100 rounded-ee-md select-none text-sm;
 }

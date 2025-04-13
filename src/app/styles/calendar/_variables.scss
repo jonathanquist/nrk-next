@@ -1,0 +1,19 @@
+:root {
+  --primary-color: theme("colors.primary.500");
+  --accent-color: theme("colors.accent.500");
+  --primary-today-bg: theme("colors.accent.500");
+}
+
+.calendar-large {
+  --fc-border-color: var(--primary-color);
+  --fc-today-bg-color: var(--accent-color);
+}
+
+.calendar-small {
+  --fc-today-bg-color: var(--accent-color);
+}
+
+.schedule-daily {
+  --fc-border-color: theme("colors.primary.100");
+  --fc-today-bg-color: theme("colors.primary.500");
+}

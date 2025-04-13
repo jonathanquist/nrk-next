@@ -55,6 +55,7 @@ export default function CalendarLarge() {
         ref={calendarRef}
         contentHeight="auto"
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        themeSystem="none"
         initialView="dayGridMonth"
         eventClick={(info) => handleEventClick(info)}
         weekNumbers={true}
