@@ -21,7 +21,7 @@ export default function CalendarLarge() {
   // const [eventID, setEventID] = useState<number | null>(null);
   const [currentDayEvents, setCurrentDayEvents] = useState<any[]>([]);
   const [dayInfo, setDayInfo] = useState({} as any);
-  const [filtered, setFiltered] = useState<string[]>(["bokning"]);
+  const [filtered, setFiltered] = useState<string[]>([]);
   const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
     start: format(new Date(), "yyyy-MM-01"),
     end: format(new Date(), "yyyy-MM-31"),

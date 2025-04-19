@@ -18,9 +18,9 @@ export default function MenuHeader() {
     if (slug) {
       setTitle(slug);
     } else {
-      const paths = path.split("/");
-      const fallbackSlug = paths[paths.length - 1] || "Home";
-      setTitle(fallbackSlug);
+      // const paths = path.split("/");
+      // const fallbackSlug = paths[paths.length - 1] || "Home";
+      setTitle("Anslag");
     }
   }, [path, searchParams]);
 

@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { format, getWeek, set } from 'date-fns';
-import { IconBack, IconNext } from '../../UI';
-import Filter from '../FilterMenu';
-import { useSite } from '@/contexts/SiteContext';
-import { useEventSpan } from '@/hooks/useFetch';
-import Loader from '@/components/Loader/Loader';
+import React, { useEffect, useState } from "react";
+import { format, getWeek, set } from "date-fns";
+import { IconBack, IconNext } from "../../UI";
+import Filter from "../FilterMenu";
+import { useEventSpan } from "@/hooks/useFetch";
+import Loader from "@/components/Loader/Loader";
 
-export default function Schedule({ size = 'lg' }: { size?: string }) {
+export default function Schedule({ size = "lg" }: { size?: string }) {
   const [week, setWeek] = useState(getWeek(new Date()));
   const [scheduleItems, setScheduleItems] = useState<any>(null);
   const [filtered, setFiltered] = useState<string[]>([]);
   const [dateRange, setDateRange] = useState<{ start: string; end: string }>({
-    start: format(new Date(), 'yyyy-MM-01'),
-    end: format(new Date(), 'yyyy-MM-31'),
+    start: format(new Date(), "yyyy-MM-01"),
+    end: format(new Date(), "yyyy-MM-31"),
   });
 
   const { data: eventsData, isLoading } = useEventSpan(
@@ -36,15 +35,13 @@ export default function Schedule({ size = 'lg' }: { size?: string }) {
 
   if (isLoading) return <Loader />;
 
-  console.log(scheduleItems);
-
   events.map((event: any) => {
     const start_date = new Date(event.start_date);
     const weekNumber = getWeek(start_date);
     console.log(`Event ${event.title} is in week ${weekNumber}`);
   });
 
-  if (size === 'lg') {
+  if (size === "lg") {
     return (
       <div className="relative">
         <div className="w-full bg-accent-500 text-primary-100 justify-between items-center flex">
@@ -53,7 +50,7 @@ export default function Schedule({ size = 'lg' }: { size?: string }) {
             <div>
               <IconBack />
             </div>
-            <div>{'v.' + week}</div>
+            <div>{"v." + week}</div>
             <div>
               <IconNext />
             </div>
@@ -66,7 +63,7 @@ export default function Schedule({ size = 'lg' }: { size?: string }) {
     );
   }
 
-  if (size === 'sm') {
+  if (size === "sm") {
     return <>Hej</>;
   }
 }

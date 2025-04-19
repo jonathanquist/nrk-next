@@ -1,4 +1,10 @@
-import { cn, decodeHtmlEntities, getEventColor } from "@/lib/utils";
+import {
+  cn,
+  decodeHtmlEntities,
+  getEventCategory,
+  getEventColor,
+  getEventTag,
+} from "@/lib/utils";
 import {
   Button,
   Dialog,
@@ -26,6 +32,8 @@ export function EventDialog({ info, children }: EventDialogProps) {
     venue,
     image,
     description,
+    tags,
+    categories,
   } = info;
 
   // Create Date objects
@@ -45,6 +53,7 @@ export function EventDialog({ info, children }: EventDialogProps) {
   );
 
   const decodedTitle = decodeHtmlEntities(title);
+  const tag = getEventTag(info);
 
   // Format dates to Swedish locale
   const startDayName = startDate.toLocaleString("sv-SE", { weekday: "long" });
@@ -62,7 +71,10 @@ export function EventDialog({ info, children }: EventDialogProps) {
             <p className="italic">
               {`${startDayName} ${start.day} ${startMonthName} ${start.hour}:${start.minutes} - ${end.hour}:${end.minutes}, `}
             </p>
-            <p>{venue.venue}</p>
+            <p>
+              {tag && tag}
+              {venue.venue && venue.venue}
+            </p>
           </DialogDescription>
         </DialogHeader>
         <div className="flex gap-4">
@@ -83,7 +95,7 @@ export function EventDialog({ info, children }: EventDialogProps) {
           />
         </div>
         <DialogFooter>
-          {info.categories.map((category: any) => {
+          {categories.map((category: any) => {
             if (category.slug === "bokning") return null;
             return (
               <span

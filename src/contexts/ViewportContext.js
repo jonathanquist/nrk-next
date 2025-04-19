@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 const viewportContext = createContext({});
 
@@ -14,8 +14,8 @@ export const ViewportProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-    return () => window.removeEventListener('resize', handleWindowResize);
+    window.addEventListener("resize", handleWindowResize);
+    return () => window.removeEventListener("resize", handleWindowResize);
   }, []);
 
   /* Now we are dealing with a context instead of a Hook, so instead
@@ -34,6 +34,5 @@ const useViewport = () => {
   /* We can use the "useContext" Hook to acccess a context from within
      another Hook, remember, Hooks are composable! */
   const { width, height } = useContext(viewportContext);
-  console.log(width);
   return { width, height };
 };

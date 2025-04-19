@@ -78,7 +78,7 @@
     }
 
     .fc-daygrid-event-harness {
-      @apply px-2 py-1;
+      @apply px-2 py-1 pointer-events-none;
     }
 
     .fc-direction-ltr .fc-daygrid-event.fc-event-start,

@@ -52,7 +52,7 @@ export default function CalendarDay({
     return left;
   };
 
-  const visibleEvents = eventsFilter(currentDayEvents);
+  const visibleEvents = eventsFilter(currentDayEvents, []);
 
   return (
     <div
@@ -71,6 +71,7 @@ export default function CalendarDay({
       </span>
       {visibleEvents.map((event: any, index: number) => {
         const category = getEventCategory(event);
+
         return (
           <EventDialog key={index} info={event}>
             <div className="group flex rounded-2xl p-1.5 gap-2.5 w-full mt-6 bg-primary-300 shadow-md">

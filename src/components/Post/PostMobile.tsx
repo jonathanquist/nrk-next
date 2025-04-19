@@ -1,27 +1,26 @@
-'use client';
+"use client";
 
-import { format } from 'date-fns';
+import { format } from "date-fns";
 import {
   Button,
   IconArrowDouble,
   IconSocialFacebook,
   IconSocialTwitter,
-} from '../UI';
+} from "../UI";
 
-import Image from 'next/image';
-import StandardImg from '../../../public/images/standard_image.jpg';
-import { shareOnFacebook, shareOnTwitter } from './post.utils';
-import Link from 'next/link';
-import PostTags from './PostTags';
-import { useSite } from '@/contexts/SiteContext';
-import { sv } from 'date-fns/locale';
+import Image from "next/image";
+import StandardImg from "../../../public/images/standard_image.jpg";
+import { shareOnFacebook, shareOnTwitter } from "./post.utils";
+import Link from "next/link";
+import PostTags from "./PostTags";
+import { useSite } from "@/contexts/SiteContext";
+import { sv } from "date-fns/locale";
 
 interface PostMobileProps {
   post: any;
 }
 
 export default function PostMobile({ post }: PostMobileProps) {
-  console.log('PostMobile', post);
   const { cats } = useSite();
 
   return (
@@ -30,8 +29,8 @@ export default function PostMobile({ post }: PostMobileProps) {
       <div className="relative h-72 w-full">
         <Image
           src={
-            post._embedded['wp:featuredmedia']
-              ? post._embedded['wp:featuredmedia'][0].source_url
+            post._embedded["wp:featuredmedia"]
+              ? post._embedded["wp:featuredmedia"][0].source_url
               : StandardImg
           }
           alt={post.title.rendered}
@@ -47,7 +46,7 @@ export default function PostMobile({ post }: PostMobileProps) {
           <h1>{post.title.rendered}</h1>
           <div className="flex flex-col lg:flex-row justify-start items-start lg:items-center">
             <div className="italic lg:font-medium text-sm lg:text-xl lg:text-primary-500 lg:my-0 mb-4 mt-1 capitalize">
-              {format(new Date(post.date), 'dd MMMM, yyyy', { locale: sv })}
+              {format(new Date(post.date), "dd MMMM, yyyy", { locale: sv })}
             </div>
             <div className="font-light lg:ml-5 flex gap-2 lg:gap-1 lg:text-xl lg:text-primary-500">
               <PostTags arr={post.categories} cats={cats} />
@@ -76,8 +75,8 @@ export default function PostMobile({ post }: PostMobileProps) {
         </div>
         <Link
           href={{
-            pathname: '/aktiviteter/anslagstavlan',
-            query: { slug: 'Anslagstavlan' },
+            pathname: "/aktiviteter/anslagstavlan",
+            query: { slug: "Anslagstavlan" },
           }}
         >
           <Button Icon={IconArrowDouble} iconClassName="rotate-90 h-7 w-7">

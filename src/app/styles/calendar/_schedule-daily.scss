@@ -9,12 +9,6 @@
       @apply hidden;
     }
 
-    .schedule-daily-right
-      .fc-timegrid-slot-label-frame
-      .fc-timegrid-slot-label-cushion {
-      @apply text-primary-500;
-    }
-
     /* Scrollgrid Customization */
     .fc-scrollgrid {
       @apply border-t-0;
@@ -96,7 +90,10 @@
     }
 
     .fc-v-event {
-      @apply border-none bg-transparent shadow-card;
+      @apply border-none bg-transparent shadow-card ring-primary-500 ring-2;
+      .fc-event-main {
+        @apply p-0;
+      }
     }
 
     /* Toolbar Section */
@@ -177,5 +174,13 @@
 
   .schedule-daily-left .fc-timegrid-event-harness {
     @apply ml-[34px];
+  }
+
+  .schedule-daily-right {
+    .fc-timegrid-slot-label-frame {
+      .fc-timegrid-slot-label-cushion {
+        @apply text-primary-500;
+      }
+    }
   }
 }

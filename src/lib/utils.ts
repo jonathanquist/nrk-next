@@ -96,11 +96,12 @@ export const getEventCategory = (event: any) => {
   }
   return category;
 };
-// export function getWeek(date: Date) {
-//   const firstDayOfYear = new Date(date.getFullYear(), 0, 1);
-//   const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
-//   return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
-// }
+
+export const getEventTag = (event: any) => {
+  return event.tags[0]?.slug === "stora" || event.tags[0]?.slug === "lilla"
+    ? event.tags[0].name
+    : null;
+};
 
 export function cleanAndTruncateText(text: string, maxLength?: number): string {
   // Remove HTML tags

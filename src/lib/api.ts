@@ -1,7 +1,7 @@
 const BASE_URL = `https://wordpress.nybroridklubb.se/wp-json`;
 const CACHE_VALIDITY_PERIOD = 0;
 
-const isBrowser = () => typeof window !== 'undefined';
+const isBrowser = () => typeof window !== "undefined";
 
 function getCache<T = any>(key: string, useLocal = false): T | null {
   if (!isBrowser()) return null;
@@ -18,12 +18,10 @@ function setCache(key: string, data: any, useLocal = false) {
 
 async function fetchData(url: string, giveHeaders = false) {
   const res = await fetch(`${BASE_URL}${url}`, {
-    method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
     next: { revalidate: CACHE_VALIDITY_PERIOD },
   });
-
-  console.log(`Fetching: ${BASE_URL}${url}`);
 
   const data = await res.json();
   return giveHeaders ? { data, headers: res.headers } : data;
@@ -41,10 +39,10 @@ async function fetchWithCache<T>(
   return data;
 }
 
-import { API } from './const';
+import { API } from "./const";
 
 export async function getPosts(currentCat?: number, page = 1, perPage = 10) {
-  const cacheKey = `posts_${currentCat || 'all'}_page_${page}`;
+  const cacheKey = `posts_${currentCat || "all"}_page_${page}`;
   let url = `/wp/v2/posts?_embed&per_page=${perPage}&page=${page}`;
   if (currentCat) url += `&categories=${currentCat}`;
   return fetchWithCache(cacheKey, url);
@@ -59,7 +57,7 @@ export async function getPagination(perPage = 10, currentCat?: number) {
   if (currentCat) url += `&categories=${currentCat}`;
 
   const data = await fetchData(url, true);
-  const totalPages = data.headers?.get('x-wp-totalpages');
+  const totalPages = data.headers?.get("x-wp-totalpages");
   return totalPages ? parseInt(totalPages, 10) : 1;
 }
 
@@ -85,9 +83,9 @@ export async function getPages(slugs: string[]) {
 }
 
 export async function getEvents() {
-  const cacheKey = 'events';
+  const cacheKey = "events";
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     const cached = getCache(cacheKey);
     if (cached) return cached;
   }
@@ -111,7 +109,7 @@ export async function getEvents() {
 
   const eventsData = { events: allEvents };
 
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     setCache(cacheKey, eventsData);
   }
 

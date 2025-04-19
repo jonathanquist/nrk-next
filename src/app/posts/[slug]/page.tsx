@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Post from '@/components/Post/Post';
-import PostMobile from '@/components/Post/PostMobile';
-import Loader from '@/components/Loader/Loader';
-import { usePost } from '@/hooks/useFetch';
-import { useViewport } from '@/hooks/useViewport';
+import Post from "@/components/Post/Post";
+import PostMobile from "@/components/Post/PostMobile";
+import Loader from "@/components/Loader/Loader";
+import { usePost } from "@/hooks/useFetch";
+import { useViewport } from "@/hooks/useViewport";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const { data: post, isLoading } = usePost(params.slug);
@@ -13,7 +13,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="w-full">
+    <div className="w-full height-full overflow-y-auto custom-scroll">
       <div className="hidden lg:block">
         {width > 1040 && <Post post={post} />}
       </div>

@@ -30,6 +30,14 @@
   .fc-timegrid-event-harness {
     @apply cursor-pointer hover:bg-primary-300;
   } */
+
+  .fc-h-event {
+    @apply bg-transparent border-0 text-green-50;
+
+    .fc-event-title {
+      @apply w-full;
+    }
+  }
 }
 
 /* // Hide header toolbar for minimal variants */
