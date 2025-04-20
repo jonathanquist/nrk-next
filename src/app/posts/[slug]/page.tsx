@@ -13,7 +13,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   if (isLoading) return <Loader />;
 
   return (
-    <div className="w-full height-full overflow-y-auto custom-scroll">
+    <div className="w-full h-full overflow-y-auto custom-scroll">
       <div className="hidden lg:block">
         {width > 1040 && <Post post={post} />}
       </div>
