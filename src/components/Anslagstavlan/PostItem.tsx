@@ -19,7 +19,7 @@ export default function PostItem({ post, monthMarker }: PostItemProps) {
     <>
       {monthMarker}
       <div className="lg:px-10">
-        <Link href={`/posts/${post.slug}`} className="group" as="image">
+        <Link href={`/posts/${post.slug}`} className="group">
           <div className="w-full overflow-hidden bg-primary-300 p-0 card card-base rise-animation lg:h-[270px] flex">
             <div className="relative w-24 sm:w-32 md:w-40 lg:w-72 shrink-0">
               <Image

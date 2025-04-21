@@ -130,6 +130,11 @@ jobs:
           scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
             build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
+                echo "Stopping any running process..."
+          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
+            pkill -f 'npm run start' || echo 'No process found to kill'
+          "
+
           echo "Extracting archive on server and installing dependencies..."
           ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
             tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ &&
