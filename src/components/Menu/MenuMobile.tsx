@@ -125,7 +125,7 @@ export default function MenuMobile() {
       </ul>
       <div
         className={cn(
-          "fixed top-0 w-full  h-[100dvh] transition flex-col z-50",
+          "fixed top-0 w-full h-sm:hidden  h-[100dvh] transition flex-col z-50",
           !showSchema && "translate-y-full -m-8"
         )}
       >

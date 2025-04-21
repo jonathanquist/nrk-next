@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { format } from 'date-fns';
-import { useSite } from '@/contexts/SiteContext';
-import PostItem from './PostItem';
-import MonthMarker from './MonthMarker';
-import Loader from '../Loader/Loader';
-import { getPosts } from '@/lib/api';
-import { usePosts } from '@/hooks/useFetch';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import { format } from "date-fns";
+import { useSite } from "@/contexts/SiteContext";
+import PostItem from "./PostItem";
+import MonthMarker from "./MonthMarker";
+import Loader from "../Loader/Loader";
+import { getPosts } from "@/lib/api";
+import { usePosts } from "@/hooks/useFetch";
 
 export default function PostListMobile() {
   const {
@@ -62,13 +62,13 @@ export default function PostListMobile() {
 
   if (isLoading && visiblePosts.length === 0) return <Loader />;
 
-  let currentMonth = '';
+  let currentMonth = "";
 
   return (
     <div className="flex justify-between w-full lg:gap-12 gap-6 items-stretch flex-col pb-8">
       {/* Post list */}
       {visiblePosts.map((post: any, index: any) => {
-        const postMonth = format(new Date(post.date), 'MMMM yyyy'); // Fetch the month of the post
+        const postMonth = format(new Date(post.date), "MMMM yyyy"); // Fetch the month of the post
         let monthMarker = null;
 
         // Display month marker if the month changes
