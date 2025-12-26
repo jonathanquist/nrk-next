@@ -118,7 +118,7 @@ jobs:
           CPANEL_HOST: ${{ secrets.SSH_HOST }}
           CPANEL_USER: ${{ secrets.SSH_USERNAME }}
           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          CPANEL_PORT: 21
+          CPANEL_PORT: 22
         run: |
           # Set up SSH key
           echo "$CPANEL_KEY" > private_key
