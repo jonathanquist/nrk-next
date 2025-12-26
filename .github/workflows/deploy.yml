@@ -64,155 +64,94 @@
 #           ssh-agent -k
 #           rm private_key
 
-# name: Deploy Next.js to cPanel
-
-# on:
-#   push:
-#     branches:
-#       - development # Trigger deployment on push to this branch
-
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#       - name: Checkout code
-#         uses: actions/checkout@v4
-
-#       - name: Remove .npmrc file to avoid config issues
-#         run: |
-#           if [ -f ".npmrc" ]; then
-#             echo "Removing .npmrc to avoid prefix config issues."
-#             rm .npmrc
-#           fi
-
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v4
-#         with:
-#           node-version: "20"
-
-#       - name: Install dependencies and build Next.js app
-#         run: |
-#           npm install
-#           npm run build
-
-#       - name: Remove node_modules to comply with CloudLinux NodeJS Selector
-#         run: |
-#           if [ -d "node_modules" ]; then
-#             echo "Removing node_modules folder..."
-#             rm -rf node_modules
-#           fi
-
-#       - name: Prepare staging directory (excluding node_modules)
-#         run: |
-#           mkdir staging
-#           rsync -av --exclude=node_modules --exclude=staging ./ staging/
-
-#       - name: Compress build output from staging directory
-#         run: |
-#           tar -czf build.tar.gz -C staging .
-#           rm -rf staging
-
-#       - name: Deploy to cPanel
-#         env:
-#           CPANEL_HOST: ${{ secrets.SSH_HOST }}
-#           CPANEL_USER: ${{ secrets.SSH_USERNAME }}
-#           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-#           CPANEL_PORT: 22
-#         run: |
-#           # Set up SSH key
-#           echo "$CPANEL_KEY" > private_key
-#           chmod 600 private_key
-#           eval $(ssh-agent -s)
-#           ssh-add private_key
-
-#           echo "Checking SSH connectivity (3 attempts)..."
-#           ATTEMPTS=3
-#           for i in $(seq 1 $ATTEMPTS); do
-#             ssh -o BatchMode=yes -o ConnectTimeout=10 -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "echo SSH_OK" && { echo "SSH reachable"; break; }
-#             echo "Attempt $i failed, retrying..."
-#             sleep 5
-#             if [ "$i" -eq "$ATTEMPTS" ]; then
-#               echo "ERROR: Unable to reach $CPANEL_HOST:$CPANEL_PORT via SSH"; exit 1
-#             fi
-#           done
-
-#           echo "Uploading archive..."
-#           scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
-#             build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
-
-#           echo "Extracting archive on server and installing dependencies..."
-#           ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
-#             tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ &&
-#             rm /home/ozfea/repositories/nrk-next/build.tar.gz &&
-#             source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate &&
-#             cd /home/ozfea/repositories/nrk-next &&
-#             npm install &&
-#             npm run build &&
-#             nohup npm run start &
-#           "
-
-#           echo "Cleaning up..."
-#           ssh-agent -k
-#           rm private_key
-
 name: Deploy Next.js to cPanel
 
 on:
   push:
     branches:
-      - development
+      - development # Trigger deployment on push to this branch
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      # ...existing code...
-      - name: Trigger cPanel Update and Deploy
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Remove .npmrc file to avoid config issues
+        run: |
+          if [ -f ".npmrc" ]; then
+            echo "Removing .npmrc to avoid prefix config issues."
+            rm .npmrc
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies and build Next.js app
+        run: |
+          npm install
+          npm run build
+
+      - name: Remove node_modules to comply with CloudLinux NodeJS Selector
+        run: |
+          if [ -d "node_modules" ]; then
+            echo "Removing node_modules folder..."
+            rm -rf node_modules
+          fi
+
+      - name: Prepare staging directory (excluding node_modules)
+        run: |
+          mkdir staging
+          rsync -av --exclude=node_modules --exclude=staging ./ staging/
+
+      - name: Compress build output from staging directory
+        run: |
+          tar -czf build.tar.gz -C staging .
+          rm -rf staging
+
+      - name: Deploy to cPanel
         env:
           CPANEL_HOST: ${{ secrets.SSH_HOST }}
-          CPANEL_USER: "ozfea"
-          CPANEL_TOKEN: ${{ secrets.CPANEL_API_TOKEN }}
+          CPANEL_USER: ${{ secrets.SSH_USERNAME }}
+          CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          CPANEL_PORT: 22
         run: |
-          set -euo pipefail
+          # Set up SSH key
+          echo "$CPANEL_KEY" > private_key
+          chmod 600 private_key
+          eval $(ssh-agent -s)
+          ssh-add private_key
 
-          API_BASE="https://$CPANEL_HOST:2083/execute/VersionControl"
-          REPO_ROOT="%2fhome%2fozfea%2frepositories%2fnrk-next"
+          echo "Checking SSH connectivity (3 attempts)..."
+          ATTEMPTS=3
+          for i in $(seq 1 $ATTEMPTS); do
+            ssh -o BatchMode=yes -o ConnectTimeout=10 -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "echo SSH_OK" && { echo "SSH reachable"; break; }
+            echo "Attempt $i failed, retrying..."
+            sleep 5
+            if [ "$i" -eq "$ATTEMPTS" ]; then
+              echo "ERROR: Unable to reach $CPANEL_HOST:$CPANEL_PORT via SSH"; exit 1
+            fi
+          done
 
-          call() {
-            local path="$1"
-            local attempt=1
-            local max=3
-            while [ $attempt -le $max ]; do
-              echo "Calling: $API_BASE/$path?repository_root=$REPO_ROOT (attempt $attempt)"
-              resp=$(curl -sS -w "\n%{http_code}" -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" \
-                "$API_BASE/$path?repository_root=$REPO_ROOT" ) || true
-              body=$(echo "$resp" | sed '$d')
-              code=$(echo "$resp" | tail -n1)
-              echo "HTTP $code"
-              echo "Response body:"
-              echo "$body"
-              if [ "$code" = "200" ]; then
-                return 0
-              fi
-              echo "Non-200 response. Retrying in 5s..."
-              sleep 5
-              attempt=$((attempt+1))
-            done
-            echo "Failed calling $path after $max attempts"
-            return 1
-          }
+          echo "Uploading archive..."
+          scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
+            build.tar.gz $CPANEL_USER@$CPANEL_HOST:/home/ozfea/repositories/nrk-next/
 
-          # 1) pull/update repo on server
-          call update
+          echo "Extracting archive on server and installing dependencies..."
+          ssh -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "
+            tar -xzf /home/ozfea/repositories/nrk-next/build.tar.gz -C /home/ozfea/repositories/nrk-next/ &&
+            rm /home/ozfea/repositories/nrk-next/build.tar.gz &&
+            source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate &&
+            cd /home/ozfea/repositories/nrk-next &&
+            npm install &&
+            npm run build &&
+            nohup npm run start &
+          "
 
-          # 2) trigger .cpanel.yml deployment tasks
-          call deploy
-
-          # 1. Force the Git Pull on the server
-          curl -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" \
-          "https://$CPANEL_HOST:2083/execute/VersionControl/update?repository_root=%2fhome%2fozfea%2frepositories%2fnrk-next"
-
-          # 2. Trigger the deployment tasks (building the app)
-          curl -H "Authorization: cpanel $CPANEL_USER:$CPANEL_TOKEN" \
-          "https://$CPANEL_HOST:2083/execute/VersionControl/deploy?repository_root=%2fhome%2fozfea%2frepositories%2fnrk-next"
+          echo "Cleaning up..."
+          ssh-agent -k
+          rm private_key
