@@ -118,13 +118,24 @@ jobs:
           CPANEL_HOST: ${{ secrets.SSH_HOST }}
           CPANEL_USER: ${{ secrets.SSH_USERNAME }}
           CPANEL_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          CPANEL_PORT: 22
+          CPANEL_PORT: 21
         run: |
           # Set up SSH key
           echo "$CPANEL_KEY" > private_key
           chmod 600 private_key
           eval $(ssh-agent -s)
           ssh-add private_key
+
+          echo "Checking SSH connectivity (3 attempts)..."
+          ATTEMPTS=3
+          for i in $(seq 1 $ATTEMPTS); do
+            ssh -o BatchMode=yes -o ConnectTimeout=10 -p $CPANEL_PORT $CPANEL_USER@$CPANEL_HOST "echo SSH_OK" && { echo "SSH reachable"; break; }
+            echo "Attempt $i failed, retrying..."
+            sleep 5
+            if [ "$i" -eq "$ATTEMPTS" ]; then
+              echo "ERROR: Unable to reach $CPANEL_HOST:$CPANEL_PORT via SSH"; exit 1
+            fi
+          done
 
           echo "Uploading archive..."
           scp -v -P $CPANEL_PORT -o StrictHostKeyChecking=no \
