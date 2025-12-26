@@ -2,3 +2,7 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/ozfea/public_html/
     - /bin/cp -R * $DEPLOYPATH
+    - source /home/ozfea/nodevenv/repositories/nrk-next/20/bin/activate
+    - cd /home/ozfea/repositories/nrk-next
+    - npm install
+    - npm run build
