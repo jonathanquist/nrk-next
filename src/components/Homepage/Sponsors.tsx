@@ -1,27 +1,37 @@
-import Image from 'next/image';
-import React from 'react';
+import Image from "next/image";
+import React from "react";
 
-import SponsorNBAB from '../../../public/images/sponsor_nbab.png';
-import SponsorNybroEnergi from '../../../public/images/sponsor_nybro-energi.svg';
-import SponsorRFSISU from '../../../public/images/sponsor_rf-sisu.svg';
-import SponsorOgOhlsson from '../../../public/images/sponsor_og-ohlsson.png';
-import { cn } from '@/lib/utils';
+import SponsorNBAB from "../../../public/images/sponsor_nbab.png";
+import SponsorNybroEnergi from "../../../public/images/sponsor_nybro-energi.svg";
+import SponsorRFSISU from "../../../public/images/sponsor_rf-sisu.svg";
+import SponsorOgOhlsson from "../../../public/images/sponsor_og-ohlsson.png";
+import SponsorProjektByggaren from "../../../public/images/sponsor_projekt-byggaren.jpg";
+import SponsorLansforsakringar from "../../../public/images/sponsor_lansforsakringar-v.svg";
+import { cn } from "@/lib/utils";
 
 const sponsors = [
   {
-    name: 'Nybro Energi',
+    name: "Nybro Energi",
     image: SponsorNybroEnergi,
   },
   {
-    name: 'Nybro Bostads AB',
+    name: "Nybro Bostads AB",
     image: SponsorNBAB,
   },
   {
-    name: 'RF-SISU',
+    name: "RF-SISU",
     image: SponsorRFSISU,
   },
   {
-    name: 'Byggnads AB O.G. Ohlsson',
+    name: "Projekt Byggaren",
+    image: SponsorProjektByggaren,
+  },
+  {
+    name: "Länsförsäkringar",
+    image: SponsorLansforsakringar,
+  },
+  {
+    name: "Byggnads AB O.G. Ohlsson",
     image: SponsorOgOhlsson,
   },
 ];
@@ -30,15 +40,15 @@ export default function Sponsors() {
   return (
     <div className="w-full flex flex-col items-center justify-center gap-12 md:desktop">
       <h2 className="!font-normal">Sponsorer</h2>
-      <div className="flex justify-center w-full lg:gap-32 xl:gap-40 items-stretch px-16">
+      <div className="flex justify-center w-full lg:gap-32 xl:gap-32 items-stretch px-16 flex-wrap">
         {sponsors.map((sponsor, index) => (
-          <div key={index} className="relative w-52 h-52 flex items-center">
+          <div key={index} className="relative w-40 h-40 flex items-center">
             <div
               className={cn(
                 index === sponsors.length - 1
-                  ? 'h-28 rounded-md bg-accent-500'
-                  : 'h-full',
-                'relative  w-full'
+                  ? "h-28 rounded-md bg-accent-500"
+                  : "h-full",
+                "relative  w-full"
               )}
             >
               <Image
@@ -47,8 +57,8 @@ export default function Sponsors() {
                 fill
                 sizes="100%"
                 className={cn(
-                  index === sponsors.length - 1 && 'p-4',
-                  'object-contain'
+                  index === sponsors.length - 1 && "p-4",
+                  "object-contain"
                 )}
               />
             </div>
