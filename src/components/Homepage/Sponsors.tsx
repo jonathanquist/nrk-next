@@ -7,6 +7,7 @@ import SponsorRFSISU from "../../../public/images/sponsor_rf-sisu.svg";
 import SponsorOgOhlsson from "../../../public/images/sponsor_og-ohlsson.png";
 import SponsorProjektByggaren from "../../../public/images/sponsor_projekt-byggaren.jpg";
 import SponsorLansforsakringar from "../../../public/images/sponsor_lansforsakringar-v.svg";
+import SponsorAgria from "../../../public/images/sponsor_agria.svg";
 import { cn } from "@/lib/utils";
 
 const sponsors = [
@@ -29,6 +30,10 @@ const sponsors = [
   {
     name: "Länsförsäkringar",
     image: SponsorLansforsakringar,
+  },
+  {
+    name: "Agria Djurförsäkring",
+    image: SponsorAgria,
   },
   {
     name: "Byggnads AB O.G. Ohlsson",
