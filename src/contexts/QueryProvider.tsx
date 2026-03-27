@@ -17,10 +17,10 @@ export default function QueryProvider({
 
   return (
     <QueryClientProvider client={queryClient}>
-      <HydrationBoundary>
+      {/* <HydrationBoundary> */}
         {children}
         <ReactQueryDevtools initialIsOpen={false} />
-      </HydrationBoundary>
+      {/* </HydrationBoundary> */}
     </QueryClientProvider>
   );
 }

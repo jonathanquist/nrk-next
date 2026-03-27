@@ -7,6 +7,8 @@ interface ListTagsProps {
 export default function ListTags({ tags }: ListTagsProps) {
   const { cats } = useSite();
 
+  if (!cats || !tags) return null;
+
   const catNames = tags.map((catId: any) => {
     const catObject = cats.find(
       (currentCat: { id: string }) => currentCat.id === catId
