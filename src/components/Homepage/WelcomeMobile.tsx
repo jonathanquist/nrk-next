@@ -55,7 +55,7 @@ export default function WelcomeMobile() {
               className="mb-5 paragraph-lg text-xl"
             />
           </div>
-          <Link href="tel:+4670882215" className="w-full">
+          <Link href="tel:+4648116248" className="w-full">
             <Button
               className="justify-start rounded-xl text-base px-5 py-4 gap-5 mb-7 w-full"
               Icon={IconCall}
